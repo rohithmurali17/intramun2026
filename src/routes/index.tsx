@@ -1,15 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import logoAsset from "@/assets/logo.asset.json";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroCrowd from "@/assets/hero-crowd.jpg";
 import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
-import { Award, Users, User, Calendar, MapPin, Phone, Gavel, Globe2, Scale, Trophy, Clock } from "lucide-react";
+import commUnhrc from "@/assets/comm-unhrc.jpg";
+import commCcc from "@/assets/comm-ccc.jpg";
+import commLoksabha from "@/assets/comm-loksabha.jpg";
+import commMedia from "@/assets/comm-media.jpg";
+import commJournalism from "@/assets/comm-journalism.jpg";
+import { ArrowRight, ArrowUpRight, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "INTRA MUN 2026 | DOC MUN Society" },
-      { name: "description", content: "INTRA MUN 2026 by the Department of Commerce MUN Society. 20–21 July 2026. ₹10,000 cash prize. Register as an individual or a delegation of 7+." },
+      { name: "description", content: "INTRA MUN 2026 by the Department of Commerce MUN Society. 20–21 July 2026. ₹10,000 cash prize. Register as Individual or Delegation." },
       { property: "og:title", content: "INTRA MUN 2026 | DOC MUN Society" },
       { property: "og:description", content: "Diplomacy. Debate. Distinction. 20–21 July 2026 — ₹10,000 cash prize." },
     ],
@@ -19,129 +25,229 @@ export const Route = createFileRoute("/")({
 
 const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdQAYZW8GmzOW_Xky8vpt4g8wQSdWJVYTZQOc8sA59stS2pEg/viewform?usp=dialog";
 
-const NAV_LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#what", label: "What is MUN" },
+const NAV = [
+  { href: "#society", label: "Society" },
+  { href: "#mun", label: "MUN" },
   { href: "#committees", label: "Committees" },
-  { href: "#eb", label: "Executive Board" },
-  { href: "#heads", label: "Event Heads" },
+  { href: "#board", label: "Board" },
+  { href: "#heads", label: "Heads" },
+  { href: "#process", label: "Process" },
   { href: "#register", label: "Register" },
   { href: "#contact", label: "Contact" },
 ];
 
 const COMMITTEES = [
-  { name: "UNHRC", full: "United Nations Human Rights Council", icon: Globe2 },
-  { name: "CCC", full: "Continuous Crisis Committee", icon: Scale },
-  { name: "Lok Sabha", full: "Indian Parliament — Lower House", icon: Gavel },
-  { name: "IPC — Media", full: "International Press Corps · Media", icon: Users },
-  { name: "IPC — Journalism", full: "International Press Corps · Journalism", icon: Users },
+  { n: "01", name: "UNHRC", tag: "Human Rights, weaponised.", img: commUnhrc },
+  { n: "02", name: "CCC", tag: "Crisis in real time. No second chances.", img: commCcc },
+  { n: "03", name: "Lok Sabha", tag: "The republic, on the floor.", img: commLoksabha },
+  { n: "04", name: "IPC · Media", tag: "Frame the narrative. Or be framed by it.", img: commMedia },
+  { n: "05", name: "IPC · Journalism", tag: "The first draft of history.", img: commJournalism },
 ];
 
 const HEADS = [
-  { name: "Bharanitharan TH", phone: "+91 88676 20512" },
-  { name: "Dhruv S Dali", phone: "+91 99729 67558" },
-  { name: "Hayati Podugu", phone: "+91 63015 92872" },
-  { name: "Nihal P Patil", phone: "+91 93533 45923" },
-  { name: "Rohith M", phone: "+91 84959 12380" },
+  { n: "01", name: "Bharanitharan TH", phone: "+91 88676 20512" },
+  { n: "02", name: "Dhruv S Dali", phone: "+91 99729 67558" },
+  { n: "03", name: "Hayati Podugu", phone: "+91 63015 92872" },
+  { n: "04", name: "Nihal P Patil", phone: "+91 93533 45923" },
+  { n: "05", name: "Rohith M", phone: "+91 84959 12380" },
 ];
 
-function Navbar() {
+const PROCESS = [
+  { n: "01", when: "Now Open", title: "Registration Live", body: "Apply as an individual or assemble a delegation of seven or more." },
+  { n: "02", when: "19 July · 12:00 PM", title: "Applications Close", body: "Last call. No extensions. The gate locks at noon." },
+  { n: "03", when: "20 July", title: "Day One · Opening", body: "Ceremony, committee sessions, the first vote on the floor." },
+  { n: "04", when: "21 July", title: "Day Two · Verdict", body: "Final sessions, closing remarks, the ₹10,000 cash prize awarded." },
+];
+
+function useScrollProgress() {
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      setP(max > 0 ? (h.scrollTop / max) * 100 : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return p;
+}
+
+function TopBar() {
+  const p = useScrollProgress();
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-[oklch(0.15_0.09_300/0.85)] border-b border-border">
-      <nav className="container mx-auto flex items-center justify-between px-4 py-3">
-        <a href="#top" className="flex items-center gap-3">
-          <img src={logoAsset.url} alt="DOC MUN Society logo" className="h-10 w-10 rounded-full" />
-          <span className="font-display tracking-wider text-lg text-primary hidden sm:inline">DOC MUN SOCIETY</span>
-        </a>
-        <ul className="hidden lg:flex items-center gap-6 text-sm">
-          {NAV_LINKS.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="text-foreground/80 hover:text-primary transition-colors">{l.label}</a>
-            </li>
-          ))}
-        </ul>
-        <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity">
-          Register
-        </a>
-      </nav>
-    </header>
+    <>
+      <div className="fixed top-0 left-0 right-0 z-[60] h-[2px] bg-transparent">
+        <div className="h-full bg-primary transition-[width] duration-150" style={{ width: `${p}%` }} />
+      </div>
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.09_300/0.6)] border-b border-border/60">
+        <div className="mx-auto max-w-[1400px] flex items-center justify-between px-6 py-4">
+          <a href="#top" className="flex items-center gap-3 group">
+            <img src={logoAsset.url} alt="DOC MUN Society" className="h-9 w-9 rounded-full ring-1 ring-primary/40" />
+            <div className="hidden sm:block leading-tight">
+              <p className="font-mono text-[10px] tracking-[0.25em] text-primary/80">DOC · MUN · SOCIETY</p>
+              <p className="font-serif italic text-sm text-foreground">Intra MUN / 2026</p>
+            </div>
+          </a>
+          <nav className="hidden lg:flex items-center gap-7 text-xs font-mono tracking-widest uppercase">
+            {NAV.map((l) => (
+              <a key={l.href} href={l.href} className="text-foreground/70 hover:text-primary transition-colors">{l.label}</a>
+            ))}
+          </nav>
+          <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-xs font-mono tracking-widest uppercase text-primary-foreground hover:opacity-90">
+            Apply <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
+      </header>
+    </>
   );
 }
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      <img src={heroBg} alt="" width={1920} height={1280} className="absolute inset-0 h-full w-full object-cover opacity-50" />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, oklch(0.15 0.09 300 / 0.6) 0%, oklch(0.18 0.09 300) 100%)" }} />
-      <div className="relative container mx-auto px-4 py-20 md:py-32 text-center">
-        <img src={logoAsset.url} alt="DOC MUN Society logo" className="mx-auto h-32 w-32 md:h-40 md:w-40 drop-shadow-2xl mb-8" />
-        <p className="text-primary font-semibold tracking-[0.3em] text-sm md:text-base mb-4">DEPARTMENT OF COMMERCE MUN SOCIETY PRESENTS</p>
-        <h1 className="font-display text-7xl md:text-9xl tracking-wider text-primary leading-none drop-shadow-[0_4px_30px_oklch(0.78_0.17_75/0.4)]">
-          INTRA MUN
+    <section id="top" className="relative min-h-screen overflow-hidden flex flex-col">
+      <img src={heroCrowd} alt="Delegates in conference hall" width={1600} height={900} className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.09_300/0.85)] via-[oklch(0.18_0.09_300/0.7)] to-[oklch(0.15_0.09_300)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.78_0.17_75/0.15),transparent_60%)]" />
+
+      <div className="relative mx-auto max-w-[1400px] w-full px-6 pt-28 pb-10 flex items-center justify-between text-xs font-mono tracking-widest uppercase text-foreground/70">
+        <span>066 <span className="text-primary">MUNSOC</span> / 2026</span>
+        <span className="hidden sm:inline">Vol. 26 · Presented by DOC MUNSOC</span>
+      </div>
+
+      <div className="relative flex-1 mx-auto max-w-[1400px] w-full px-6 flex flex-col justify-center">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="inline-flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+          <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">Registration Live</span>
+          <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-foreground/60">· Bengaluru · India</span>
+        </div>
+        <h1 className="font-display tracking-[-0.02em] leading-[0.82] text-[18vw] sm:text-[16vw] md:text-[13vw] lg:text-[180px] text-foreground">
+          INTRA
+          <br />
+          <span className="text-primary italic font-serif font-light pr-3">M</span>
+          <span className="text-primary">UN</span>
         </h1>
-        <p className="font-display text-3xl md:text-5xl tracking-widest text-foreground mt-2">2026</p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-foreground/90">
-          <span className="inline-flex items-center gap-2"><Calendar className="h-5 w-5 text-primary" /> 20 – 21 July 2026</span>
-          <span className="inline-flex items-center gap-2"><MapPin className="h-5 w-5 text-primary" /> Venue: TBA</span>
-          <span className="inline-flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" /> ₹10,000 Cash Prize</span>
-        </div>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="rounded-full bg-primary px-8 py-3 font-semibold text-primary-foreground shadow-[var(--shadow-gold)] hover:translate-y-[-2px] transition-transform">
-            Register Now
-          </a>
-          <a href="#about" className="rounded-full border border-primary/60 px-8 py-3 font-semibold text-primary hover:bg-primary/10 transition-colors">
-            Learn More
-          </a>
-        </div>
-        <p className="mt-6 text-sm text-muted-foreground inline-flex items-center gap-2 justify-center">
-          <Clock className="h-4 w-4" /> Registration closes 12:00 PM, 19 July 2026
+        <p className="mt-8 max-w-xl font-serif text-xl md:text-2xl italic text-foreground/85 leading-snug">
+          Diplomacy. Debate. Distinction.
         </p>
+        <p className="mt-3 max-w-xl text-sm md:text-base text-foreground/70 leading-relaxed">
+          The 2026 edition of INTRA MUN is open. Five committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3.5 font-mono text-xs tracking-widest uppercase text-primary-foreground hover:gap-5 transition-all">
+            Apply Now <ArrowRight className="h-4 w-4" />
+          </a>
+          <a href="#society" className="font-mono text-xs tracking-widest uppercase text-foreground/70 hover:text-primary border-b border-foreground/30 hover:border-primary pb-1 transition-colors">
+            Scroll ↓
+          </a>
+        </div>
+      </div>
+
+      <div className="relative border-t border-border/60 bg-[oklch(0.15_0.09_300/0.5)] backdrop-blur-sm">
+        <div className="mx-auto max-w-[1400px] grid grid-cols-3 sm:grid-cols-4 divide-x divide-border/60 text-xs font-mono uppercase tracking-widest">
+          {[
+            ["Dates", "20–21 Jul"],
+            ["Prize", "₹10,000"],
+            ["Deadline", "19 Jul · 12PM"],
+            ["Venue", "TBA"],
+          ].map(([k, v], i) => (
+            <div key={k} className={`px-4 py-5 ${i === 3 ? "hidden sm:block" : ""}`}>
+              <p className="text-foreground/50 text-[10px]">{k}</p>
+              <p className="text-foreground mt-1 text-sm">{v}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
+function Marquee() {
+  const items = ["UNHRC", "CCC", "Lok Sabha", "IPC Media", "IPC Journalism", "Diplomacy", "Debate", "Distinction"];
+  const row = [...items, ...items, ...items];
   return (
-    <div className="text-center mb-12">
-      <p className="text-primary tracking-[0.3em] text-xs font-semibold mb-3">{kicker}</p>
-      <h2 className="font-display text-5xl md:text-6xl tracking-wider text-foreground">{title}</h2>
-      <div className="mx-auto mt-4 h-[2px] w-24 bg-primary" />
+    <div className="border-y border-border bg-[oklch(0.20_0.10_300)] overflow-hidden py-5">
+      <div className="flex gap-10 whitespace-nowrap animate-[marquee_40s_linear_infinite]">
+        {row.map((t, i) => (
+          <span key={i} className="font-display text-3xl md:text-4xl tracking-wider text-foreground/40 inline-flex items-center gap-10">
+            {t}
+            <span className="text-primary">✦</span>
+          </span>
+        ))}
+      </div>
+      <style>{`@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-33.3333%)}}`}</style>
     </div>
   );
 }
 
-function About() {
+function SectionNumber({ n, label }: { n: string; label: string }) {
   return (
-    <section id="about" className="py-24 container mx-auto px-4">
-      <SectionTitle kicker="WHO WE ARE" title="About Us" />
-      <div className="grid md:grid-cols-2 gap-12 items-center">
-        <img src={munHall} alt="MUN conference hall" width={1600} height={900} loading="lazy" className="rounded-2xl border border-border shadow-2xl" />
-        <div className="space-y-5 text-lg text-foreground/90 leading-relaxed">
-          <p>The <span className="text-primary font-semibold">Department of Commerce MUN Society</span> is a student-run diplomatic forum committed to nurturing tomorrow's leaders through rigorous debate, research, and global affairs.</p>
-          <p>Through simulations of international and national bodies, we equip delegates with the art of negotiation, the rigor of policy, and the courage of conviction.</p>
-          <p>INTRA MUN is our flagship internal conference — a launchpad for first-time delegates and a battleground for seasoned ones.</p>
+    <div className="flex items-center gap-4 font-mono text-[11px] tracking-[0.3em] uppercase text-primary mb-10">
+      <span>{n}</span>
+      <span className="h-px w-12 bg-primary/50" />
+      <span className="text-foreground/70">{label}</span>
+    </div>
+  );
+}
+
+function Society() {
+  const stats = [
+    ["1+", "Years Strong"],
+    ["5", "Committees"],
+    ["10K", "Cash Prize"],
+    ["100+", "Delegates"],
+  ];
+  return (
+    <section id="society" className="py-24 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-6">
+        <SectionNumber n="001" label="The Society" />
+        <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-5xl">
+          We don't run <span className="italic text-primary">a club.</span> We run <span className="italic text-primary">a delegation.</span>
+        </h2>
+        <div className="mt-14 grid md:grid-cols-2 gap-12 lg:gap-20">
+          <div className="space-y-5 text-base md:text-lg text-foreground/75 leading-relaxed max-w-xl">
+            <p>Within the Department of Commerce, the MUN Society stands as a premier forum for diplomacy, debate, and global affairs — fostering a culture of research, rhetoric, and leadership.</p>
+            <p>We don't gather to participate. We gather to set the standard the rest follow.</p>
+            <p>INTRA MUN is our flagship internal conference — the proving ground where new delegates discover their voice and veterans defend their record.</p>
+          </div>
+          <div className="grid grid-cols-2 gap-px bg-border border border-border self-start">
+            {stats.map(([v, l]) => (
+              <div key={l} className="bg-background p-8">
+                <p className="font-display text-6xl md:text-7xl text-primary leading-none">{v}</p>
+                <p className="mt-3 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/60">{l}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function WhatIsMUN() {
+function WhatIsMun() {
   return (
-    <section id="what" className="py-24 bg-secondary/30 border-y border-border">
-      <div className="container mx-auto px-4">
-        <SectionTitle kicker="THE EXPERIENCE" title="What is MUN?" />
-        <div className="grid md:grid-cols-3 gap-6">
+    <section id="mun" className="relative py-24 md:py-32 bg-[oklch(0.16_0.09_300)] border-y border-border">
+      <img src={munHall} alt="" width={1600} height={900} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[oklch(0.16_0.09_300/0.6)] to-[oklch(0.16_0.09_300)]" />
+      <div className="relative mx-auto max-w-[1400px] px-6">
+        <SectionNumber n="002" label="The Practice" />
+        <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-5xl">
+          So, <span className="italic text-primary">what is</span> Model UN?
+        </h2>
+        <p className="mt-8 max-w-2xl text-lg text-foreground/75 leading-relaxed">
+          A simulation. A stress test. A theatre where eighteen-year-olds defend nations, draft policy, and learn that conviction is the rarest currency in the room.
+        </p>
+        <div className="mt-16 grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border border border-border">
           {[
-            { icon: Globe2, title: "Simulate the UN", body: "Step into the shoes of diplomats and represent nations on issues that shape our world." },
-            { icon: Scale, title: "Debate & Negotiate", body: "Defend foreign policy, draft resolutions, and find consensus across competing interests." },
-            { icon: Award, title: "Win Recognition", body: "Awards for Best Delegate, High Commendation, and Special Mention across every committee." },
-          ].map((c) => (
-            <div key={c.title} className="rounded-2xl border border-border bg-card p-8 hover:border-primary/60 transition-colors">
-              <c.icon className="h-10 w-10 text-primary mb-4" />
-              <h3 className="font-display text-2xl tracking-wider text-foreground mb-2">{c.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{c.body}</p>
+            { n: "I.", title: "Represent", body: "You're not yourself in committee. You're a country, a delegate, a foreign policy. Speak only as they would." },
+            { n: "II.", title: "Resolve", body: "Build coalitions. Draft working papers. Negotiate amendments until a resolution passes — or doesn't." },
+            { n: "III.", title: "Recognise", body: "Best Delegate, High Commendation, Special Mention. The dais watches everything." },
+          ].map((b) => (
+            <div key={b.title} className="p-8 md:p-10 bg-background/40 backdrop-blur-sm">
+              <p className="font-serif italic text-3xl text-primary">{b.n}</p>
+              <h3 className="mt-4 font-display text-3xl tracking-wider">{b.title}</h3>
+              <p className="mt-3 text-sm text-foreground/70 leading-relaxed">{b.body}</p>
             </div>
           ))}
         </div>
@@ -152,112 +258,161 @@ function WhatIsMUN() {
 
 function Committees() {
   return (
-    <section id="committees" className="py-24 container mx-auto px-4">
-      <SectionTitle kicker="THE FLOOR" title="Committees" />
-      <p className="text-center text-muted-foreground -mt-6 mb-12">Five committees. One arena. Agendas to be announced.</p>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {COMMITTEES.map((c) => (
-          <div key={c.name} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-8 hover:border-primary transition-all hover:shadow-[var(--shadow-gold)]">
-            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors" />
-            <c.icon className="relative h-10 w-10 text-primary mb-4" />
-            <h3 className="relative font-display text-3xl tracking-wider text-foreground">{c.name}</h3>
-            <p className="relative text-muted-foreground mt-2">{c.full}</p>
-            <p className="relative mt-4 text-xs font-semibold tracking-widest text-primary/80">AGENDA · TBA</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function ExecutiveBoard() {
-  return (
-    <section id="eb" className="py-24 bg-secondary/30 border-y border-border">
-      <div className="container mx-auto px-4">
-        <SectionTitle kicker="THE DAIS" title="Executive Board" />
-        <div className="max-w-2xl mx-auto rounded-2xl border border-border bg-card p-12 text-center">
-          <Gavel className="h-12 w-12 text-primary mx-auto mb-4" />
-          <h3 className="font-display text-3xl tracking-wider text-foreground mb-3">To Be Announced</h3>
-          <p className="text-muted-foreground">Our distinguished Executive Board for INTRA MUN 2026 will be revealed soon. Stay tuned across our channels.</p>
+    <section id="committees" className="py-24 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-6">
+        <SectionNumber n="003" label="The Floor" />
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
+            Five <span className="italic text-primary">committees.</span>
+          </h2>
+          <p className="max-w-md text-foreground/70 text-base">Five battlegrounds. Five sets of rules. Choose your portfolio. Agendas to be announced soon.</p>
         </div>
-      </div>
-    </section>
-  );
-}
 
-function EventHeads() {
-  return (
-    <section id="heads" className="py-24 container mx-auto px-4">
-      <SectionTitle kicker="BEHIND THE SCENES" title="Event Heads" />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-        {HEADS.map((h) => (
-          <div key={h.name} className="rounded-2xl border border-border bg-card p-6 text-center hover:border-primary transition-colors">
-            <div className="mx-auto h-20 w-20 rounded-full flex items-center justify-center mb-4" style={{ background: "var(--gradient-gold)" }}>
-              <span className="font-display text-2xl text-[oklch(0.18_0.09_300)]">
-                {h.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
-              </span>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+          {COMMITTEES.map((c) => (
+            <article key={c.name} className="group relative bg-background overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={c.img} alt={c.name} width={1000} height={800} loading="lazy" className="h-full w-full object-cover grayscale-[0.4] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent pointer-events-none" />
+              <div className="relative p-7">
+                <p className="font-mono text-xs tracking-widest text-primary">{c.n}</p>
+                <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight">{c.name}</h3>
+                <p className="mt-2 font-serif italic text-foreground/70">{c.tag}</p>
+                <p className="mt-5 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">Agenda · TBA</p>
+              </div>
+            </article>
+          ))}
+          <article className="relative bg-background p-7 flex flex-col justify-between min-h-[300px] border-t sm:border-t-0">
+            <div>
+              <p className="font-mono text-xs tracking-widest text-primary">06</p>
+              <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight italic">Your portfolio<br />awaits.</h3>
             </div>
-            <h3 className="font-semibold text-foreground">{h.name}</h3>
-            <a href={`tel:${h.phone.replace(/\s/g, "")}`} className="mt-2 inline-flex items-center justify-center gap-1 text-xs text-primary hover:underline">
-              <Phone className="h-3 w-3" /> {h.phone}
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-primary hover:gap-4 transition-all">
+              Register <ArrowUpRight className="h-4 w-4" />
             </a>
-          </div>
-        ))}
+          </article>
+        </div>
       </div>
     </section>
   );
 }
 
-function Registration() {
+function Board() {
   return (
-    <section id="register" className="relative py-24 overflow-hidden">
-      <img src={gavel} alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-15" />
-      <div className="absolute inset-0 bg-[oklch(0.15_0.09_300/0.9)]" />
-      <div className="relative container mx-auto px-4">
-        <SectionTitle kicker="JOIN THE CONFERENCE" title="Registration" />
+    <section id="board" className="py-24 md:py-32 bg-[oklch(0.16_0.09_300)] border-y border-border">
+      <div className="mx-auto max-w-[1400px] px-6">
+        <SectionNumber n="004" label="The Dais" />
+        <div className="grid md:grid-cols-12 gap-10 items-end">
+          <h2 className="md:col-span-7 font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
+            The Executive <span className="italic text-primary">Board.</span>
+          </h2>
+          <p className="md:col-span-5 text-foreground/70">The dais decides the tempo. Names of our chairs, vice-chairs, and rapporteurs across all five committees are unveiled in the coming weeks.</p>
+        </div>
+        <div className="mt-14 border border-primary/40 px-8 py-16 text-center bg-background/40 backdrop-blur-sm">
+          <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">Announcement Pending</p>
+          <p className="mt-4 font-serif italic text-3xl md:text-5xl text-foreground/90">"The board is being assembled."</p>
+          <p className="mt-6 font-mono text-xs tracking-widest uppercase text-foreground/50">Stay tuned · Reveal Soon</p>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="mx-auto max-w-3xl rounded-2xl border-2 border-primary p-6 mb-12 text-center" style={{ background: "var(--gradient-gold)" }}>
-          <Trophy className="h-10 w-10 mx-auto text-[oklch(0.18_0.09_300)]" />
-          <p className="font-display text-4xl md:text-5xl tracking-wider text-[oklch(0.18_0.09_300)] mt-2">₹10,000 CASH PRIZE</p>
-          <p className="text-[oklch(0.18_0.09_300)]/80 font-semibold">For the winning delegation</p>
+function Heads() {
+  return (
+    <section id="heads" className="py-24 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-6">
+        <SectionNumber n="005" label="The Architects" />
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
+            The five <span className="italic text-primary">Event Heads.</span>
+          </h2>
+          <p className="max-w-sm text-foreground/70">The invisible architecture behind the conference. Five people. One standard.</p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-border border border-border">
+          {HEADS.map((h) => (
+            <a key={h.name} href={`tel:${h.phone.replace(/\s/g, "")}`} className="group bg-background p-7 flex flex-col justify-between min-h-[260px] hover:bg-secondary/40 transition-colors">
+              <div>
+                <p className="font-mono text-xs tracking-widest text-primary">{h.n}</p>
+                <h3 className="mt-4 font-serif text-2xl leading-tight">{h.name}</h3>
+              </div>
+              <div className="flex items-center justify-between mt-6 pt-4 border-t border-border/60">
+                <span className="font-mono text-xs text-foreground/60">{h.phone}</span>
+                <Phone className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Process() {
+  return (
+    <section id="process" className="py-24 md:py-32 bg-[oklch(0.16_0.09_300)] border-y border-border">
+      <div className="mx-auto max-w-[1400px] px-6">
+        <SectionNumber n="006" label="The Process" />
+        <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-4xl">
+          The road to <span className="italic text-primary">the floor.</span>
+        </h2>
+        <div className="mt-16 grid md:grid-cols-2 gap-px bg-border border border-border">
+          {PROCESS.map((p) => (
+            <div key={p.n} className="bg-background p-8 md:p-10">
+              <div className="flex items-baseline justify-between">
+                <span className="font-mono text-xs tracking-widest text-primary">{p.n} /</span>
+                <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/60">{p.when}</span>
+              </div>
+              <h3 className="mt-6 font-serif text-3xl md:text-4xl">{p.title}</h3>
+              <p className="mt-3 text-foreground/70 leading-relaxed">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Register() {
+  return (
+    <section id="register" className="relative py-24 md:py-32 overflow-hidden">
+      <img src={gavel} alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-10" />
+      <div className="absolute inset-0 bg-[oklch(0.15_0.09_300/0.92)]" />
+      <div className="relative mx-auto max-w-[1400px] px-6">
+        <SectionNumber n="007" label="Final Call" />
+        <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.88] tracking-tight max-w-6xl">
+          Apply. <span className="italic text-primary">Before</span><br /> 19 . 07 . 2026.
+        </h2>
+
+        <div className="mt-12 inline-flex flex-wrap items-center gap-6 border border-primary/50 px-7 py-5 bg-background/40 backdrop-blur-sm">
+          <span className="font-display text-5xl md:text-6xl text-primary leading-none">₹10,000</span>
+          <span className="font-serif italic text-foreground/80">cash prize · winning delegation</span>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          <div className="rounded-2xl border border-border bg-card p-8">
-            <User className="h-10 w-10 text-primary mb-4" />
-            <h3 className="font-display text-3xl tracking-wider text-foreground mb-2">Individual</h3>
-            <p className="text-muted-foreground mb-6">Register on your own and get allocated to a committee and portfolio of your choice.</p>
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-block rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:opacity-90 transition-opacity">
-              Register as Individual →
+        <div className="mt-14 grid md:grid-cols-2 gap-px bg-border border border-border">
+          <div className="group bg-background p-8 md:p-12">
+            <p className="font-mono text-xs tracking-widest text-primary">A.</p>
+            <h3 className="mt-4 font-serif text-4xl md:text-5xl">Individual</h3>
+            <p className="mt-4 text-foreground/70 leading-relaxed">Apply alone. We allocate you to a committee and portfolio. You walk in, you walk out — entirely your own.</p>
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="mt-10 inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-foreground border-b border-foreground/40 hover:border-primary hover:text-primary group-hover:gap-5 pb-1 transition-all">
+              Register as Individual <ArrowRight className="h-4 w-4" />
             </a>
           </div>
-          <div className="rounded-2xl border-2 border-primary bg-card p-8 shadow-[var(--shadow-gold)]">
-            <Users className="h-10 w-10 text-primary mb-4" />
-            <h3 className="font-display text-3xl tracking-wider text-foreground mb-2">Delegation</h3>
-            <p className="text-muted-foreground mb-6">Bring your crew. <span className="text-primary font-semibold">Minimum 7 members</span> per delegation. Compete together for the cash prize.</p>
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-block rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:opacity-90 transition-opacity">
-              Register as Delegation →
+          <div className="group bg-[oklch(0.22_0.10_300)] p-8 md:p-12 relative">
+            <span className="absolute top-6 right-6 font-mono text-[10px] tracking-[0.25em] uppercase text-primary border border-primary/60 px-2 py-1">Min · 7</span>
+            <p className="font-mono text-xs tracking-widest text-primary">B.</p>
+            <h3 className="mt-4 font-serif text-4xl md:text-5xl">Delegation</h3>
+            <p className="mt-4 text-foreground/70 leading-relaxed">Bring your crew. Seven members minimum. Compete together. Win together. The ₹10,000 cash prize is built for you.</p>
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="mt-10 inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-foreground border-b border-primary pb-1 group-hover:gap-5 transition-all">
+              Register as Delegation <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>
 
-        <div className="mt-12 grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-center">
-          <div className="rounded-xl border border-border bg-card p-4">
-            <Calendar className="h-5 w-5 text-primary mx-auto mb-2" />
-            <p className="text-xs text-muted-foreground">DATES</p>
-            <p className="font-semibold text-foreground text-sm">20 – 21 July 2026</p>
-          </div>
-          <div className="rounded-xl border border-border bg-card p-4">
-            <Clock className="h-5 w-5 text-primary mx-auto mb-2" />
-            <p className="text-xs text-muted-foreground">DEADLINE</p>
-            <p className="font-semibold text-foreground text-sm">12:00 PM, 19 July</p>
-          </div>
-          <div className="rounded-xl border border-border bg-card p-4">
-            <MapPin className="h-5 w-5 text-primary mx-auto mb-2" />
-            <p className="text-xs text-muted-foreground">VENUE</p>
-            <p className="font-semibold text-foreground text-sm">To be announced</p>
-          </div>
-        </div>
+        <p className="mt-10 font-mono text-xs tracking-[0.25em] uppercase text-foreground/60">
+          Deadline · 19 . 07 . 2026 · 12:00 PM IST
+        </p>
       </div>
     </section>
   );
@@ -265,19 +420,21 @@ function Registration() {
 
 function Contact() {
   return (
-    <section id="contact" className="py-24 bg-secondary/30 border-t border-border">
-      <div className="container mx-auto px-4">
-        <SectionTitle kicker="REACH OUT" title="Contact" />
-        <div className="max-w-3xl mx-auto grid sm:grid-cols-2 gap-4">
+    <section id="contact" className="py-24 md:py-32 bg-[oklch(0.13_0.08_300)] border-t border-border">
+      <div className="mx-auto max-w-[1400px] px-6">
+        <SectionNumber n="008" label="Reach Out" />
+        <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-4xl">
+          Questions? <span className="italic text-primary">Call us.</span>
+        </h2>
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
           {HEADS.map((h) => (
-            <a key={h.name} href={`tel:${h.phone.replace(/\s/g, "")}`} className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 hover:border-primary transition-colors">
-              <div className="h-10 w-10 rounded-full flex items-center justify-center" style={{ background: "var(--gradient-gold)" }}>
-                <Phone className="h-4 w-4 text-[oklch(0.18_0.09_300)]" />
-              </div>
+            <a key={h.name} href={`tel:${h.phone.replace(/\s/g, "")}`} className="group bg-background p-7 flex items-center justify-between hover:bg-secondary/40 transition-colors">
               <div>
-                <p className="font-semibold text-foreground">{h.name}</p>
-                <p className="text-sm text-muted-foreground">{h.phone}</p>
+                <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{h.n} · Event Head</p>
+                <p className="mt-2 font-serif text-2xl">{h.name}</p>
+                <p className="mt-1 font-mono text-sm text-foreground/60">{h.phone}</p>
               </div>
+              <ArrowUpRight className="h-5 w-5 text-foreground/40 group-hover:text-primary group-hover:rotate-45 transition-all" />
             </a>
           ))}
         </div>
@@ -288,16 +445,32 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="bg-[oklch(0.12_0.08_300)] py-10 border-t border-border">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <img src={logoAsset.url} alt="DOC MUN Society" className="h-10 w-10 rounded-full" />
+    <footer className="bg-[oklch(0.11_0.07_300)] py-14 border-t border-border">
+      <div className="mx-auto max-w-[1400px] px-6 grid md:grid-cols-3 gap-10 items-start">
+        <div className="flex items-center gap-4">
+          <img src={logoAsset.url} alt="DOC MUN Society" className="h-14 w-14 rounded-full ring-1 ring-primary/40" />
           <div>
-            <p className="font-display tracking-wider text-primary">DOC MUN SOCIETY</p>
-            <p className="text-xs text-muted-foreground">Department of Commerce · MUN Society</p>
+            <p className="font-display tracking-wider text-primary text-lg">DOC MUN SOCIETY</p>
+            <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/60 mt-1">Department of Commerce</p>
           </div>
         </div>
-        <p className="text-xs text-muted-foreground">© 2026 DOC MUN Society. All rights reserved.</p>
+        <div>
+          <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50 mb-4">Sections</p>
+          <ul className="grid grid-cols-2 gap-y-2 text-sm text-foreground/70">
+            {NAV.map((n) => (
+              <li key={n.href}><a href={n.href} className="hover:text-primary transition-colors">{n.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50 mb-4">Edition</p>
+          <p className="font-serif italic text-2xl text-foreground">Intra MUN / 2026</p>
+          <p className="mt-2 font-mono text-xs tracking-widest uppercase text-foreground/60">20–21 July · Bengaluru</p>
+        </div>
+      </div>
+      <div className="mx-auto max-w-[1400px] px-6 mt-14 pt-6 border-t border-border/50 flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">
+        <span>© 2026 DOC MUN Society</span>
+        <span>All rights reserved · Designed with diplomacy</span>
       </div>
     </footer>
   );
@@ -305,17 +478,19 @@ function Footer() {
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans scroll-smooth" style={{ fontFamily: "var(--font-sans)" }}>
-      <style>{`html{scroll-behavior:smooth}.font-display{font-family:var(--font-display)}`}</style>
-      <Navbar />
+    <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
+      <style>{`html{scroll-behavior:smooth}.font-display{font-family:var(--font-display)}.font-serif{font-family:var(--font-serif)}.font-mono{font-family:var(--font-mono)}`}</style>
+      <TopBar />
       <main>
         <Hero />
-        <About />
-        <WhatIsMUN />
+        <Marquee />
+        <Society />
+        <WhatIsMun />
         <Committees />
-        <ExecutiveBoard />
-        <EventHeads />
-        <Registration />
+        <Board />
+        <Heads />
+        <Process />
+        <Register />
         <Contact />
       </main>
       <Footer />
