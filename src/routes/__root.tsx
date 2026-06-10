@@ -81,10 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "INTRA MUN 2026 — Department of Commerce MUN Society. 20–21 July 2026. ₹10,000 cash prize. Register now." },
       { name: "author", content: "DOC MUN Society" },
       { property: "og:title", content: "INTRA MUN 2026 | DOC MUN Society" },
-      { property: "og:description", content: "Join INTRA MUN 2026 on 20–21 July. Compete for a ₹10,000 cash prize." },
+      { property: "og:description", content: "INTRA MUN 2026 — Department of Commerce MUN Society. 20–21 July 2026. ₹10,000 cash prize. Register now." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "INTRA MUN 2026 | DOC MUN Society" },
+      { name: "twitter:description", content: "INTRA MUN 2026 — Department of Commerce MUN Society. 20–21 July 2026. ₹10,000 cash prize. Register now." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/PC6nvkHGbzSbY6K25N3GJkYyJK43/social-images/social-1781106824373-DOCMUNSOC_LOGO.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/PC6nvkHGbzSbY6K25N3GJkYyJK43/social-images/social-1781106824373-DOCMUNSOC_LOGO.webp" },
     ],
     links: [
       {
