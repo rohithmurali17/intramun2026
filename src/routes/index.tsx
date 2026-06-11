@@ -45,7 +45,7 @@ const COMMITTEES = [
 ];
 
 const HEADS = [
-  { n: "01", name: "Bharanitharan TH", phone: "+91 88676 20512" },
+  { n: "01", name: "Bharanidharan TH", phone: "+91 88676 20512" },
   { n: "02", name: "Dhruv S Dali", phone: "+91 99729 67558" },
   { n: "03", name: "Hayati Podugu", phone: "+91 63015 92872" },
   { n: "04", name: "Nihal P Patil", phone: "+91 93533 45923" },
@@ -125,8 +125,8 @@ function Hero() {
         <h1 className="font-display tracking-[-0.02em] leading-[0.82] text-[18vw] sm:text-[16vw] md:text-[13vw] lg:text-[180px] text-foreground">
           INTRA
           <br />
-          <span className="text-primary italic font-serif font-light pr-3">M</span>
-          <span className="text-primary">UN</span>
+          <span className="text-primary italic font-serif font-light pr-3"></span>
+          <span className="text-primary">MUN</span>
         </h1>
         <p className="mt-8 max-w-xl font-serif text-xl md:text-2xl italic text-foreground/85 leading-snug">
           Diplomacy. Debate. Distinction.
@@ -193,7 +193,7 @@ function SectionNumber({ n, label }: { n: string; label: string }) {
 
 function Society() {
   const stats = [
-    ["1+", "Years Strong"],
+    ["10+", "Years Strong"],
     ["5", "Committees"],
     ["10K", "Cash Prize"],
     ["100+", "Delegates"],
