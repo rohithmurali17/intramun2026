@@ -108,9 +108,20 @@ function TopBar() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen overflow-hidden flex flex-col">
-      <img src={heroCrowd} alt="Delegates in conference hall" width={1600} height={900} className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.09_300/0.85)] via-[oklch(0.18_0.09_300/0.7)] to-[oklch(0.15_0.09_300)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.78_0.17_75/0.15),transparent_60%)]" />
+      <video
+        src={heroVideo.url}
+        poster={heroCrowd}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover scale-110 will-change-transform animate-[kenburns_22s_ease-in-out_infinite_alternate]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.09_300/0.78)] via-[oklch(0.18_0.09_300/0.65)] to-[oklch(0.15_0.09_300)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.78_0.17_75/0.18),transparent_60%)]" />
+      <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>')]" />
 
       <div className="relative mx-auto max-w-[1400px] w-full px-6 pt-28 pb-10 flex items-center justify-between text-xs font-mono tracking-widest uppercase text-foreground/70">
         <span>066 <span className="text-primary">MUNSOC</span> / 2026</span>
