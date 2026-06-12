@@ -5,11 +5,11 @@ import heroCrowd from "@/assets/hero-crowd.jpg";
 import heroVideo from "@/assets/un-vid.mp4.asset.json";
 import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
+import commUnsc from "@/assets/comm-unsc.jpg";
 import commUnhrc from "@/assets/comm-unhrc.jpg";
-import commCcc from "@/assets/comm-ccc.jpg";
 import commLoksabha from "@/assets/comm-loksabha.jpg";
-import commMedia from "@/assets/comm-media.jpg";
-import commJournalism from "@/assets/comm-journalism.jpg";
+import commIpc from "@/assets/comm-media.jpg";
+import commCcc from "@/assets/comm-ccc.jpg";
 import { ArrowRight, ArrowUpRight, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/")({
