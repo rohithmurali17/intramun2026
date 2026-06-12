@@ -5,11 +5,11 @@ import heroCrowd from "@/assets/hero-crowd.jpg";
 import heroVideo from "@/assets/un-vid.mp4.asset.json";
 import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
+import commUnsc from "@/assets/comm-unsc.jpg";
 import commUnhrc from "@/assets/comm-unhrc.jpg";
-import commCcc from "@/assets/comm-ccc.jpg";
 import commLoksabha from "@/assets/comm-loksabha.jpg";
-import commMedia from "@/assets/comm-media.jpg";
-import commJournalism from "@/assets/comm-journalism.jpg";
+import commIpc from "@/assets/comm-media.jpg";
+import commCcc from "@/assets/comm-ccc.jpg";
 import { ArrowRight, ArrowUpRight, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -38,11 +38,11 @@ const NAV = [
 ];
 
 const COMMITTEES = [
-  { n: "01", name: "UNHRC", tag: "Human Rights, weaponised.", img: commUnhrc },
-  { n: "02", name: "CCC", tag: "Crisis in real time. No second chances.", img: commCcc },
+  { n: "01", name: "UNSC", tag: "Peace and security. Veto power. No veto on voice.", img: commUnsc },
+  { n: "02", name: "UNHRC", tag: "Human Rights, weaponised.", img: commUnhrc },
   { n: "03", name: "Lok Sabha", tag: "The republic, on the floor.", img: commLoksabha },
-  { n: "04", name: "IPC · Media", tag: "Frame the narrative. Or be framed by it.", img: commMedia },
-  { n: "05", name: "IPC · Journalism", tag: "The first draft of history.", img: commJournalism },
+  { n: "04", name: "IPC", tag: "Camera & Journalism. Frame it. File it. Own it.", img: commIpc },
+  { n: "05", name: "CCC", tag: "Crisis in real time. No second chances.", img: commCcc },
 ];
 
 const HEADS = [
@@ -176,7 +176,7 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = ["UNHRC", "CCC", "Lok Sabha", "IPC Media", "IPC Journalism", "Diplomacy", "Debate", "Distinction"];
+  const items = ["UNSC", "UNHRC", "Lok Sabha", "IPC", "CCC", "Diplomacy", "Debate", "Distinction"];
   const row = [...items, ...items, ...items];
   return (
     <div className="border-y border-border bg-[oklch(0.20_0.10_300)] overflow-hidden py-5">
