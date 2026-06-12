@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import logoAsset from "@/assets/logo.asset.json";
 import heroCrowd from "@/assets/hero-crowd.jpg";
+import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
 import commUnhrc from "@/assets/comm-unhrc.jpg";
@@ -107,9 +108,20 @@ function TopBar() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen overflow-hidden flex flex-col">
-      <img src={heroCrowd} alt="Delegates in conference hall" width={1600} height={900} className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.09_300/0.85)] via-[oklch(0.18_0.09_300/0.7)] to-[oklch(0.15_0.09_300)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.78_0.17_75/0.15),transparent_60%)]" />
+      <video
+        src={heroVideo.url}
+        poster={heroCrowd}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover scale-110 will-change-transform animate-[kenburns_22s_ease-in-out_infinite_alternate]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.09_300/0.78)] via-[oklch(0.18_0.09_300/0.65)] to-[oklch(0.15_0.09_300)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.78_0.17_75/0.18),transparent_60%)]" />
+      <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>')]" />
 
       <div className="relative mx-auto max-w-[1400px] w-full px-6 pt-28 pb-10 flex items-center justify-between text-xs font-mono tracking-widest uppercase text-foreground/70">
         <span>066 <span className="text-primary">MUNSOC</span> / 2026</span>
@@ -479,7 +491,22 @@ function Footer() {
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
-      <style>{`html{scroll-behavior:smooth}.font-display{font-family:var(--font-display)}.font-serif{font-family:var(--font-serif)}.font-mono{font-family:var(--font-mono)}`}</style>
+      <style>{`
+        html{scroll-behavior:smooth}
+        body{font-feature-settings:"ss01","cv11";letter-spacing:-0.005em}
+        .font-display{font-family:var(--font-display)}
+        .font-serif{font-family:var(--font-serif)}
+        .font-mono{font-family:var(--font-mono)}
+        @keyframes kenburns{0%{transform:scale(1.1) translate3d(0,0,0)}100%{transform:scale(1.18) translate3d(-1%,-2%,0)}}
+        @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+        @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+        section{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
+        section.in-view{opacity:1;transform:none}
+        section#top{opacity:1;transform:none}
+        h2,h3,p,article,a,div[class*="grid"]>*{transition:transform .5s ease,color .35s ease,background-color .35s ease,border-color .35s ease,opacity .5s ease}
+        a:hover{letter-spacing:.005em}
+        img{transition:transform .8s cubic-bezier(.22,.61,.36,1),filter .6s ease}
+      `}</style>
       <TopBar />
       <main>
         <Hero />
@@ -494,6 +521,27 @@ function Index() {
         <Contact />
       </main>
       <Footer />
+      <ScrollReveal />
     </div>
   );
+}
+
+function ScrollReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll("main section");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in-view");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+  return null;
 }
