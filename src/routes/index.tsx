@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import logoAsset from "@/assets/logo.asset.json";
 import heroCrowd from "@/assets/hero-crowd.jpg";
-import heroVideo from "@/assets/hero-loop.mp4.asset.json";
+import heroVideo from "@/assets/un-vid.mp4.asset.json";
 import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
 import commUnhrc from "@/assets/comm-unhrc.jpg";
