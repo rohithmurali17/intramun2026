@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import logoAsset from "@/assets/logo.asset.json";
-import { getCommittee, INSTAGRAM_URL } from "@/data/committees";
+import { getCommittee, INSTAGRAM_URL, type Committee } from "@/data/committees";
 
 export const Route = createFileRoute("/committees/$slug")({
   loader: ({ params }) => {
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/committees/$slug")({
 });
 
 function CommitteePage() {
-  const { committee } = Route.useLoaderData();
+  const { committee } = Route.useLoaderData() as { committee: Committee };
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.09_300/0.7)] border-b border-border/60">
