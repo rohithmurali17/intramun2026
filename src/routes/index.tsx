@@ -84,9 +84,14 @@ function TopBar() {
               <a key={l.href} href={l.href} className="text-foreground/70 hover:text-primary transition-colors">{l.label}</a>
             ))}
           </nav>
-          <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-xs font-mono tracking-widest uppercase text-primary-foreground hover:opacity-90">
-            Apply <ArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+          <div className="flex items-center gap-3">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram @docmunsoc" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-foreground/70 hover:text-primary hover:border-primary transition-colors">
+              <Instagram className="h-4 w-4" />
+            </a>
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-xs font-mono tracking-widest uppercase text-primary-foreground hover:opacity-90">
+              Apply <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
         </div>
       </header>
     </>
@@ -132,7 +137,7 @@ function Hero() {
           Diplomacy. Debate. Distinction.
         </p>
         <p className="mt-3 max-w-xl text-sm md:text-base text-foreground/70 leading-relaxed">
-          The 2026 edition of INTRA MUN is open. Five committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
+          The 2026 edition of INTRA MUN is open. Four committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3.5 font-mono text-xs tracking-widest uppercase text-primary-foreground hover:gap-5 transition-all">
@@ -164,7 +169,7 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = ["UNSC", "UNHRC", "Lok Sabha", "IPC", "CCC", "Diplomacy", "Debate", "Distinction"];
+  const items = ["UNSC", "UNHRC", "AIPPM", "IPC", "Diplomacy", "Debate", "Distinction"];
   const row = [...items, ...items, ...items];
   return (
     <div className="border-y border-border bg-[oklch(0.20_0.10_300)] overflow-hidden py-5">
@@ -194,7 +199,7 @@ function SectionNumber({ n, label }: { n: string; label: string }) {
 function Society() {
   const stats = [
     ["10+", "Years Strong"],
-    ["5", "Committees"],
+    ["4", "Committees"],
     ["10K", "Cash Prize"],
     ["100+", "Delegates"],
   ];
