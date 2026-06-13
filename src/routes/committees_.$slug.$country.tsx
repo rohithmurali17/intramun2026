@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import logoAsset from "@/assets/logo.asset.json";
 import { getCommittee, getPortfolio, INSTAGRAM_URL, type Committee, type Portfolio } from "@/data/committees";
 
-export const Route = createFileRoute("/committees/$slug/$country")({
+export const Route = createFileRoute("/committees_/$slug/$country")({
   loader: ({ params }) => {
     const committee = getCommittee(params.slug);
     if (!committee) throw notFound();
