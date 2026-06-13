@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CommitteesSlugRouteImport } from './routes/committees.$slug'
+import { Route as CommitteesSlugCountryRouteImport } from './routes/committees_.$slug.$country'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommitteesSlugRoute = CommitteesSlugRouteImport.update({
+  id: '/committees/$slug',
+  path: '/committees/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommitteesSlugCountryRoute = CommitteesSlugCountryRouteImport.update({
+  id: '/committees_/$slug/$country',
+  path: '/committees/$slug/$country',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/committees/$slug': typeof CommitteesSlugRoute
+  '/committees/$slug/$country': typeof CommitteesSlugCountryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/committees/$slug': typeof CommitteesSlugRoute
+  '/committees/$slug/$country': typeof CommitteesSlugCountryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/committees/$slug': typeof CommitteesSlugRoute
+  '/committees_/$slug/$country': typeof CommitteesSlugCountryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/committees/$slug' | '/committees/$slug/$country'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/committees/$slug' | '/committees/$slug/$country'
+  id: '__root__' | '/' | '/committees/$slug' | '/committees_/$slug/$country'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CommitteesSlugRoute: typeof CommitteesSlugRoute
+  CommitteesSlugCountryRoute: typeof CommitteesSlugCountryRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +68,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/committees/$slug': {
+      id: '/committees/$slug'
+      path: '/committees/$slug'
+      fullPath: '/committees/$slug'
+      preLoaderRoute: typeof CommitteesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/committees_/$slug/$country': {
+      id: '/committees_/$slug/$country'
+      path: '/committees/$slug/$country'
+      fullPath: '/committees/$slug/$country'
+      preLoaderRoute: typeof CommitteesSlugCountryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommitteesSlugRoute: CommitteesSlugRoute,
+  CommitteesSlugCountryRoute: CommitteesSlugCountryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

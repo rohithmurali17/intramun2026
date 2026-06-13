@@ -1,16 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import logoAsset from "@/assets/logo.asset.json";
 import heroCrowd from "@/assets/hero-crowd.jpg";
 import heroVideo from "@/assets/un-vid.mp4.asset.json";
 import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
-import commUnsc from "@/assets/comm-unsc.jpg";
-import commUnhrc from "@/assets/comm-unhrc.jpg";
-import commLoksabha from "@/assets/comm-loksabha.jpg";
-import commIpc from "@/assets/comm-media.jpg";
-import commCcc from "@/assets/comm-ccc.jpg";
-import { ArrowRight, ArrowUpRight, Phone } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Instagram, Phone } from "lucide-react";
+import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,14 +31,6 @@ const NAV = [
   { href: "#process", label: "Process" },
   { href: "#register", label: "Register" },
   { href: "#contact", label: "Contact" },
-];
-
-const COMMITTEES = [
-  { n: "01", name: "UNSC", tag: "Peace and security. Veto power. No veto on voice.", img: commUnsc },
-  { n: "02", name: "UNHRC", tag: "Human Rights, weaponised.", img: commUnhrc },
-  { n: "03", name: "Lok Sabha", tag: "The republic, on the floor.", img: commLoksabha },
-  { n: "04", name: "IPC", tag: "Camera & Journalism. Frame it. File it. Own it.", img: commIpc },
-  { n: "05", name: "CCC", tag: "Crisis in real time. No second chances.", img: commCcc },
 ];
 
 const HEADS = [
@@ -96,9 +84,14 @@ function TopBar() {
               <a key={l.href} href={l.href} className="text-foreground/70 hover:text-primary transition-colors">{l.label}</a>
             ))}
           </nav>
-          <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-xs font-mono tracking-widest uppercase text-primary-foreground hover:opacity-90">
-            Apply <ArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+          <div className="flex items-center gap-3">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram @docmunsoc" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-foreground/70 hover:text-primary hover:border-primary transition-colors">
+              <Instagram className="h-4 w-4" />
+            </a>
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-xs font-mono tracking-widest uppercase text-primary-foreground hover:opacity-90">
+              Apply <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
         </div>
       </header>
     </>
@@ -144,7 +137,7 @@ function Hero() {
           Diplomacy. Debate. Distinction.
         </p>
         <p className="mt-3 max-w-xl text-sm md:text-base text-foreground/70 leading-relaxed">
-          The 2026 edition of INTRA MUN is open. Five committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
+          The 2026 edition of INTRA MUN is open. Four committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3.5 font-mono text-xs tracking-widest uppercase text-primary-foreground hover:gap-5 transition-all">
@@ -176,7 +169,7 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = ["UNSC", "UNHRC", "Lok Sabha", "IPC", "CCC", "Diplomacy", "Debate", "Distinction"];
+  const items = ["UNSC", "UNHRC", "AIPPM", "IPC", "Diplomacy", "Debate", "Distinction"];
   const row = [...items, ...items, ...items];
   return (
     <div className="border-y border-border bg-[oklch(0.20_0.10_300)] overflow-hidden py-5">
@@ -206,7 +199,7 @@ function SectionNumber({ n, label }: { n: string; label: string }) {
 function Society() {
   const stats = [
     ["10+", "Years Strong"],
-    ["5", "Committees"],
+    ["4", "Committees"],
     ["10K", "Cash Prize"],
     ["100+", "Delegates"],
   ];
@@ -275,29 +268,40 @@ function Committees() {
         <SectionNumber n="003" label="The Floor" />
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
-            Five <span className="italic text-primary">committees.</span>
+            Four <span className="italic text-primary">committees.</span>
           </h2>
-          <p className="max-w-md text-foreground/70 text-base">Five battlegrounds. Five sets of rules. Choose your portfolio. Agendas to be announced soon.</p>
+          <p className="max-w-md text-foreground/70 text-base">Four battlegrounds. Four sets of rules. Tap a committee to see its portfolio matrix and the role of every seat on the floor.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
           {COMMITTEES.map((c) => (
-            <article key={c.name} className="group relative bg-background overflow-hidden">
+            <Link
+              key={c.slug}
+              to="/committees/$slug"
+              params={{ slug: c.slug }}
+              className="group relative bg-background overflow-hidden block hover:ring-1 hover:ring-primary/60 transition-all"
+            >
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={c.img} alt={c.name} width={1000} height={800} loading="lazy" className="h-full w-full object-cover grayscale-[0.4] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent pointer-events-none" />
               <div className="relative p-7">
-                <p className="font-mono text-xs tracking-widest text-primary">{c.n}</p>
-                <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight">{c.name}</h3>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="font-mono text-xs tracking-widest text-primary">{c.n}</p>
+                    <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight">{c.name}</h3>
+                    <p className="mt-1 font-mono text-[10px] tracking-[0.2em] uppercase text-foreground/50">{c.fullForm}</p>
+                  </div>
+                  <ArrowUpRight className="h-5 w-5 text-foreground/40 group-hover:text-primary group-hover:rotate-45 transition-all" />
+                </div>
                 <p className="mt-2 font-serif italic text-foreground/70">{c.tag}</p>
-                <p className="mt-5 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">Agenda · TBA</p>
+                <p className="mt-5 font-mono text-[10px] tracking-[0.25em] uppercase text-primary/80">View Portfolio Matrix →</p>
               </div>
-            </article>
+            </Link>
           ))}
           <article className="relative bg-background p-7 flex flex-col justify-between min-h-[300px] border-t sm:border-t-0">
             <div>
-              <p className="font-mono text-xs tracking-widest text-primary">06</p>
+              <p className="font-mono text-xs tracking-widest text-primary">05</p>
               <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight italic">Your portfolio<br />awaits.</h3>
             </div>
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-primary hover:gap-4 transition-all">
@@ -478,6 +482,9 @@ function Footer() {
           <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50 mb-4">Edition</p>
           <p className="font-serif italic text-2xl text-foreground">Intra MUN / 2026</p>
           <p className="mt-2 font-mono text-xs tracking-widest uppercase text-foreground/60">20–21 July · Bengaluru</p>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-foreground/70 hover:text-primary">
+            <Instagram className="h-4 w-4" /> @docmunsoc
+          </a>
         </div>
       </div>
       <div className="mx-auto max-w-[1400px] px-6 mt-14 pt-6 border-t border-border/50 flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">
