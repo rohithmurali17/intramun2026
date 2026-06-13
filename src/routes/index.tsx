@@ -1,16 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import logoAsset from "@/assets/logo.asset.json";
 import heroCrowd from "@/assets/hero-crowd.jpg";
 import heroVideo from "@/assets/un-vid.mp4.asset.json";
 import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
-import commUnsc from "@/assets/comm-unsc.jpg";
-import commUnhrc from "@/assets/comm-unhrc.jpg";
-import commLoksabha from "@/assets/comm-loksabha.jpg";
-import commIpc from "@/assets/comm-media.jpg";
-import commCcc from "@/assets/comm-ccc.jpg";
-import { ArrowRight, ArrowUpRight, Phone } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Instagram, Phone } from "lucide-react";
+import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,14 +31,6 @@ const NAV = [
   { href: "#process", label: "Process" },
   { href: "#register", label: "Register" },
   { href: "#contact", label: "Contact" },
-];
-
-const COMMITTEES = [
-  { n: "01", name: "UNSC", tag: "Peace and security. Veto power. No veto on voice.", img: commUnsc },
-  { n: "02", name: "UNHRC", tag: "Human Rights, weaponised.", img: commUnhrc },
-  { n: "03", name: "Lok Sabha", tag: "The republic, on the floor.", img: commLoksabha },
-  { n: "04", name: "IPC", tag: "Camera & Journalism. Frame it. File it. Own it.", img: commIpc },
-  { n: "05", name: "CCC", tag: "Crisis in real time. No second chances.", img: commCcc },
 ];
 
 const HEADS = [
