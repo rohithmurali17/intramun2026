@@ -63,13 +63,13 @@ export function BgmPlayer() {
       aria-label={playing ? "Mute background music" : "Play background music"}
       aria-pressed={playing}
       disabled={!ready}
-      className="fixed top-4 right-4 z-[100] flex items-center gap-2 rounded-full border border-[color:var(--mun-gold)]/40 bg-background/70 px-3 py-2 backdrop-blur-md transition-all hover:border-[color:var(--mun-gold)] hover:shadow-[var(--shadow-gold)]"
+      className="fixed top-4 right-4 z-[100] flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--mun-gold)]/40 bg-background/70 backdrop-blur-md transition-all hover:border-[color:var(--mun-gold)] hover:shadow-[var(--shadow-gold)]"
     >
-      <div className="flex h-5 items-end gap-[3px]">
+      <div className="flex h-4 items-end gap-[2px]">
         {Array.from({ length: BARS }).map((_, i) => (
           <span
             key={i}
-            className="block w-[3px] rounded-full bg-[color:var(--mun-gold)]"
+            className="block w-[2px] rounded-full bg-[color:var(--mun-gold)]"
             style={
               playing
                 ? {
@@ -81,9 +81,6 @@ export function BgmPlayer() {
           />
         ))}
       </div>
-      <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-foreground/80">
-        {playing ? "Sound on" : "Sound off"}
-      </span>
       <style>{`
         @keyframes bgmBar {
           0%, 100% { height: 20%; }
