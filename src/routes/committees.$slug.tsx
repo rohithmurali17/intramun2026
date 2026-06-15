@@ -97,7 +97,7 @@ function CommitteePage() {
                   <h3 className="mt-2 font-serif text-3xl">{t.name}</h3>
                   <p className="mt-3 text-foreground/70 leading-relaxed">{t.blurb}</p>
                   {t.intro && (
-                    <IntroPlayer audioUrl={t.intro.audioUrl} segments={t.intro.segments} />
+                    <IntroPlayer audioUrl={t.intro.audioUrl} segments={t.intro.segments} autoPlay={false} />
                   )}
                 </div>
               ))}
