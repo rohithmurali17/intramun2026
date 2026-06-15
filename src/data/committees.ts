@@ -4,6 +4,7 @@ import commAippm from "@/assets/comm-loksabha.jpg";
 import commIpc from "@/assets/comm-media.jpg";
 import unscIntroAudio from "@/assets/unsc-intro.mp3.asset.json";
 import unhrcIntroAudio from "@/assets/unhrc-intro.mp3.asset.json";
+import aippmIntroAudio from "@/assets/aippm-intro.mp3.asset.json";
 
 export type CommitteeSlug = "unsc" | "unhrc" | "aippm" | "ipc";
 
@@ -140,6 +141,33 @@ export const COMMITTEES: Committee[] = [
     agenda: "TBA",
     board: "TBA",
     img: commAippm,
+    intro: {
+      audioUrl: aippmIntroAudio.url,
+      segments: [
+        "Welcome to the All India Political Parties Meet—",
+        "the ideological crucible of the world's largest democracy",
+        "and the defining national stage of our Model UN.",
+        "In this vibrant chamber,",
+        "the rigid bounds of standard parliamentary procedure",
+        "give way to the raw, unyielding clash of political doctrine,",
+        "tasking leaders from the ruling bloc and the opposition",
+        "with forging consensus on the nation's most critical internal crises.",
+        "This is a profound test of statecraft",
+        "where national interests collide with regional demands,",
+        "and where sweeping policy decisions",
+        "must be negotiated across deep partisan divides.",
+        "Adding to this complex tapestry",
+        "are the independent observers and regional representatives—",
+        "vital voices from the periphery who wield the immense power",
+        "to sway the public narrative,",
+        "broker crucial alliances,",
+        "and hold the major coalitions accountable.",
+        "As the weight of a billion voices echoes through the room,",
+        "you must navigate a soaring symphony of debate, strategy, and coalition-building,",
+        "knowing that the destiny of the republic",
+        "rests entirely on your ability to unite a fractured political landscape.",
+      ],
+    },
     portfolios: [
       "Bharatiya Janata Party", "Indian National Congress", "Aam Aadmi Party",
       "Dravida Munnetra Kazhagam", "All India Trinamool Congress",
