@@ -7,7 +7,6 @@ export function BgmPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
-  const wasPlayingBeforeDuckRef = useRef(false);
 
   useEffect(() => {
     const a = new Audio(bgm.url);
@@ -37,24 +36,9 @@ export function BgmPlayer() {
     };
     tryPlay();
 
-    const onIntro = (e: Event) => {
-      const ev = e as CustomEvent<boolean>;
-      const a2 = audioRef.current;
-      if (!a2) return;
-      if (ev.detail) {
-        wasPlayingBeforeDuckRef.current = !a2.paused;
-        a2.pause();
-        setPlaying(false);
-      } else if (wasPlayingBeforeDuckRef.current) {
-        a2.play().then(() => setPlaying(true)).catch(() => {});
-      }
-    };
-    window.addEventListener("intro:playing", onIntro as EventListener);
-
     return () => {
       a.pause();
       audioRef.current = null;
-      window.removeEventListener("intro:playing", onIntro as EventListener);
     };
   }, []);
 
