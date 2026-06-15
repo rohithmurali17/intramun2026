@@ -37,6 +37,7 @@ export function IntroPlayer({ audioUrl, segments }: Props) {
     const a = new Audio(audioUrl);
     a.preload = "auto";
     audioRef.current = a;
+    let cancelled = false;
 
     const onLoaded = () => setDuration(a.duration || 0);
     const onTime = () => setCurrent(a.currentTime);
@@ -63,10 +64,12 @@ export function IntroPlayer({ audioUrl, segments }: Props) {
     const tryPlay = async () => {
       try {
         await a.play();
+        if (cancelled) a.pause();
       } catch {
         const onFirst = async () => {
           try {
             await a.play();
+            if (cancelled) a.pause();
           } catch {}
           window.removeEventListener("pointerdown", onFirst);
           window.removeEventListener("keydown", onFirst);
@@ -78,7 +81,11 @@ export function IntroPlayer({ audioUrl, segments }: Props) {
     tryPlay();
 
     return () => {
+      cancelled = true;
       a.pause();
+      a.currentTime = 0;
+      a.src = "";
+      a.load();
       a.removeEventListener("loadedmetadata", onLoaded);
       a.removeEventListener("timeupdate", onTime);
       a.removeEventListener("play", onPlay);
