@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import logoAsset from "@/assets/logo.asset.json";
 import { getCommittee, INSTAGRAM_URL, type Committee } from "@/data/committees";
+import { IntroPlayer } from "@/components/IntroPlayer";
 
 export const Route = createFileRoute("/committees/$slug")({
   loader: ({ params }) => {
@@ -65,7 +66,11 @@ function CommitteePage() {
           <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">Committee · {committee.n}</p>
           <h1 className="mt-4 font-display tracking-tight text-[14vw] md:text-[10rem] leading-[0.85] text-foreground">{committee.name}</h1>
           <p className="mt-4 font-serif italic text-2xl md:text-3xl text-primary">{committee.fullForm}</p>
-          <p className="mt-6 max-w-2xl text-foreground/80 leading-relaxed">{committee.description}</p>
+          {committee.intro ? (
+            <IntroPlayer audioUrl={committee.intro.audioUrl} segments={committee.intro.segments} />
+          ) : (
+            <p className="mt-6 max-w-2xl text-foreground/80 leading-relaxed">{committee.description}</p>
+          )}
         </div>
       </section>
 

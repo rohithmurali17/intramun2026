@@ -1,53 +1,33 @@
-## Plan
+## Goal
 
-### 1. Committees update
-Reduce to 4 committees, shown as clickable cards on the homepage:
-1. **UNSC** — UN Security Council
-2. **UNHRC** — UN Human Rights Council
-3. **AIPPM** — All India Political Parties Meet
-4. **IPC** — International Press Corps, with two tracks: **IPP (Photography)** and **IPJ (Journalism)**
+When a user opens the UNSC committee page, auto-play the uploaded `UNSC intro.mp3` voiceover and replace the current hero description with a live-highlighted transcript that follows the audio word-by-word. Other committees keep their normal description.
 
-Each card on the home page becomes a `<Link>` to its detail route.
+## Changes
 
-### 2. New routes (TanStack file-based)
-```
-src/routes/committees.$slug.tsx              -> /committees/unsc, /committees/unhrc, /committees/aippm, /committees/ipc
-src/routes/committees.$slug.$country.tsx     -> /committees/unsc/france  (country position page)
-```
+### 1. Upload the audio as a CDN asset
+- Upload `user-uploads://UNSC_intro.mp3` via `lovable-assets create`, write pointer to `src/assets/unsc-intro.mp3.asset.json`.
 
-Each committee detail page shows:
-- Hero (committee name, full form, image)
-- **Committee description**
-- **Agenda** (TBA placeholder)
-- **Chair / Executive Board** (TBA placeholder)
-- **Background guide** (download/link slot — TBA)
-- **Portfolio Matrix**: clickable list of countries/portfolios. Clicking one navigates to `/committees/$slug/$country` showing that country's role/stance on the agenda (placeholder copy per country until you provide real text).
-- IPC page additionally splits into IPP and IPJ sub-sections inside the same detail page.
+### 2. Add intro media to UNSC data
+In `src/data/committees.ts`, add an optional `intro` field to the UNSC committee only:
+- `audioUrl`: the asset URL
+- `transcript`: full text broken into ~40–55 timed phrase segments, each `{ text, start, end }` in seconds. Timings will be estimated proportionally from the audio's duration (read at runtime) so we don't hand-tune dozens of timestamps. Segments are split on punctuation + em-dashes so highlight chunks feel natural.
 
-Data lives in a single typed file `src/data/committees.ts` (committee metadata + portfolio list + per-country position text) so it's easy to edit later.
+### 3. New `IntroPlayer` component (`src/components/IntroPlayer.tsx`)
+- Renders the audio element plus the transcript styled as a large serif paragraph.
+- Auto-plays on mount (muted-fallback if browser blocks autoplay; also kicks off on first user interaction via the global BGM pattern). While the intro plays, pause the global BGM, then resume it when finished or when the user navigates away.
+- On `timeupdate`, finds the active segment and applies a highlighted class (gold text + subtle background) to that span. Past segments dim slightly; upcoming segments stay muted foreground.
+- Small play/pause + restart control underneath (so users can replay the voiceover).
+- Respects `prefers-reduced-motion` (skips the smooth color transitions).
 
-Both new routes get unique `head()` metadata (title/description/OG).
+### 4. Wire it into the UNSC page
+In `src/routes/committees.$slug.tsx`:
+- If `committee.intro` exists, render `<IntroPlayer />` in the hero section in place of the `committee.description` paragraph.
+- All other committees fall back to the existing `<p>` description — no change for UNHRC / AIPPM / IPC.
 
-### 3. Typography — Fraunces site-wide
-- Keep Fraunces (already loaded in `__root.tsx`).
-- In `src/styles.css` set `--font-sans: "Fraunces", serif;` so body + headings use Fraunces (close to Bookmania's warm transitional serif look). Bebas Neue stays available for the big display "INTRA MUN" wordmark only.
-- Remove Rethink Sans from the Google Fonts URL since it's no longer used.
+### 5. BGM coordination
+Add a tiny shared signal (window event `intro:playing` true/false) the existing `BgmPlayer` listens for, so the background music ducks/pauses while the voiceover speaks and resumes after.
 
-### 4. Instagram link
-- Add Instagram icon button (lucide `Instagram`) to the Navbar and the Contact/Footer section, linking to `https://www.instagram.com/docmunsoc/` (opens in new tab, `rel="noopener noreferrer"`).
+## Notes / trade-offs
 
-### 5. Animations
-Keep existing scroll-reveal + hover transitions. Add a subtle hover lift + gold ring on committee cards to signal they're clickable.
-
-### Files touched
-- `src/routes/__root.tsx` — fonts link update, Instagram in nav
-- `src/styles.css` — `--font-sans` → Fraunces
-- `src/routes/index.tsx` — 4 committees, cards become `<Link>`s, Instagram in footer
-- `src/data/committees.ts` (new) — committee + portfolio data
-- `src/routes/committees.$slug.tsx` (new) — detail page
-- `src/routes/committees.$slug.$country.tsx` (new) — country position page
-
-### Open items (placeholders until you send them)
-- Committee descriptions, agendas, EB names, background guide links
-- Country portfolio lists per committee (I'll seed each with ~10 placeholder countries you can edit)
-- Per-country position write-ups
+- Timings are estimated, not hand-authored. They'll feel tight but won't be word-perfect. If you want frame-accurate sync, we'd need a manually timed `.vtt` file or a transcription pass — let me know if you'd like that follow-up.
+- Browser autoplay policies sometimes block sound until the user clicks; in that case the transcript still shows and a "Play voiceover" button appears.
