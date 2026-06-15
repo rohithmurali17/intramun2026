@@ -2,6 +2,7 @@ import commUnsc from "@/assets/comm-unsc.jpg";
 import commUnhrc from "@/assets/comm-unhrc.jpg";
 import commAippm from "@/assets/comm-loksabha.jpg";
 import commIpc from "@/assets/comm-media.jpg";
+import unscIntroAudio from "@/assets/unsc-intro.mp3.asset.json";
 
 export type CommitteeSlug = "unsc" | "unhrc" | "aippm" | "ipc";
 
@@ -25,6 +26,10 @@ export type Committee = {
   img: string;
   tracks?: { code: string; name: string; blurb: string }[];
   portfolios: Portfolio[];
+  intro?: {
+    audioUrl: string;
+    segments: string[];
+  };
 };
 
 const placeholder = (name: string) =>
@@ -48,6 +53,31 @@ export const COMMITTEES: Committee[] = [
     agenda: "TBA",
     board: "TBA",
     img: commUnsc,
+    intro: {
+      audioUrl: unscIntroAudio.url,
+      segments: [
+        "Welcome to the United Nations Security Council—",
+        "the highest echelon of international diplomacy",
+        "and the defining theater of our Model UN.",
+        "In this chamber, fifteen voting nations are tasked with the ultimate mandate:",
+        "confronting imminent threats to global stability",
+        "and forging binding resolutions that carry the force of international law—",
+        "a delicate machinery of peace",
+        "constantly balanced against the absolute power of the veto.",
+        "Sharpening this tension are the observer nations;",
+        "though they sit without a vote,",
+        "they wield the quiet, formidable power of global conscience,",
+        "using their voice to shape the narrative,",
+        "build coalitions,",
+        "and alter the strategy of the fifteen from the periphery.",
+        "Together, as crises unfold in real-time,",
+        "voting powers and observer nations alike",
+        "must navigate a sweeping symphony of statecraft,",
+        "knowing that in this room,",
+        "the fragile line between order and chaos",
+        "rests entirely in your hands.",
+      ],
+    },
     portfolios: [
       "United States", "Russia", "China", "United Kingdom", "France",
       "India", "Brazil", "Japan", "Germany", "South Africa",
