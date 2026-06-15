@@ -3,6 +3,7 @@ import commUnhrc from "@/assets/comm-unhrc.jpg";
 import commAippm from "@/assets/comm-loksabha.jpg";
 import commIpc from "@/assets/comm-media.jpg";
 import unscIntroAudio from "@/assets/unsc-intro.mp3.asset.json";
+import unhrcIntroAudio from "@/assets/unhrc-intro.mp3.asset.json";
 
 export type CommitteeSlug = "unsc" | "unhrc" | "aippm" | "ipc";
 
@@ -95,6 +96,33 @@ export const COMMITTEES: Committee[] = [
     agenda: "TBA",
     board: "TBA",
     img: commUnhrc,
+    intro: {
+      audioUrl: unhrcIntroAudio.url,
+      segments: [
+        "Welcome to the United Nations Human Rights Council—",
+        "the moral compass of the international community",
+        "and the beating conscience of our Model UN.",
+        "Here, the veil of state sovereignty is drawn back",
+        "to confront the most profound injustices of our time,",
+        "tasking member states with investigating systemic abuses",
+        "and drafting universal resolutions",
+        "that protect the vulnerable and condemn the oppressor.",
+        "This is a diplomatic battleground not of military might,",
+        "but of truth and accountability,",
+        "where the defense of human dignity",
+        "often clashes directly with political ambition.",
+        "Standing alongside the voting bloc are the observer nations—",
+        "vital voices from the periphery who, while without a formal vote,",
+        "shine a relentless spotlight on hidden atrocities,",
+        "command the floor with critical testimonies,",
+        "and lobby fiercely to hold the council to its highest ideals.",
+        "As the stories of the silenced echo through this chamber,",
+        "voting powers and observers alike",
+        "must navigate a sweeping symphony of advocacy and statecraft—",
+        "because here, you are not simply defending borders;",
+        "you are defending humanity itself.",
+      ],
+    },
     portfolios: [
       "United States", "China", "India", "Pakistan", "Saudi Arabia",
       "Iran", "Israel", "Germany", "France", "United Kingdom",
