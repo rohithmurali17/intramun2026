@@ -4,9 +4,10 @@ import { Pause, Play, RotateCcw } from "lucide-react";
 type Props = {
   audioUrl: string;
   segments: string[];
+  autoPlay?: boolean;
 };
 
-export function IntroPlayer({ audioUrl, segments }: Props) {
+export function IntroPlayer({ audioUrl, segments, autoPlay = true }: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [duration, setDuration] = useState(0);
   const [current, setCurrent] = useState(0);
@@ -62,6 +63,7 @@ export function IntroPlayer({ audioUrl, segments }: Props) {
 
     // Autoplay attempt
     const tryPlay = async () => {
+      if (!autoPlay) return;
       try {
         await a.play();
         if (cancelled) a.pause();
@@ -94,7 +96,7 @@ export function IntroPlayer({ audioUrl, segments }: Props) {
       audioRef.current = null;
       window.dispatchEvent(new CustomEvent("intro:playing", { detail: false }));
     };
-  }, [audioUrl]);
+  }, [audioUrl, autoPlay]);
 
   const toggle = async () => {
     const a = audioRef.current;
