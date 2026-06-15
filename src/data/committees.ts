@@ -5,6 +5,8 @@ import commIpc from "@/assets/comm-media.jpg";
 import unscIntroAudio from "@/assets/unsc-intro.mp3.asset.json";
 import unhrcIntroAudio from "@/assets/unhrc-intro.mp3.asset.json";
 import aippmIntroAudio from "@/assets/aippm-intro.mp3.asset.json";
+import ipjIntroAudio from "@/assets/ipj-intro.mp3.asset.json";
+import ippIntroAudio from "@/assets/ipp-intro.mp3.asset.json";
 
 export type CommitteeSlug = "unsc" | "unhrc" | "aippm" | "ipc";
 
@@ -26,7 +28,12 @@ export type Committee = {
   board: string;
   guideUrl?: string;
   img: string;
-  tracks?: { code: string; name: string; blurb: string }[];
+  tracks?: {
+    code: string;
+    name: string;
+    blurb: string;
+    intro?: { audioUrl: string; segments: string[] };
+  }[];
   portfolios: Portfolio[];
   intro?: {
     audioUrl: string;
@@ -188,8 +195,64 @@ export const COMMITTEES: Committee[] = [
     board: "TBA",
     img: commIpc,
     tracks: [
-      { code: "IPP", name: "International Press Photography", blurb: "Capture the moment a resolution dies. The handshake. The walkout. Visual record of the floor." },
-      { code: "IPJ", name: "International Press Journalism", blurb: "Editorials, op-eds, breaking bulletins. File copy on deadline. Hold the dais to account." },
+      {
+        code: "IPP",
+        name: "International Press Photography",
+        blurb: "Capture the moment a resolution dies. The handshake. The walkout. Visual record of the floor.",
+        intro: {
+          audioUrl: ippIntroAudio.url,
+          segments: [
+            "Welcome to the International Press Corps—",
+            "the unseen observers of global diplomacy",
+            "and the visual historians of our Model UN.",
+            "While the council chambers echo with sweeping speeches and political maneuvering,",
+            "the truest story is often found in the silent moments that words cannot capture:",
+            "the tension of a whispered alliance in a hallway,",
+            "the exhaustion of a deadlocked debate,",
+            "and the raw emotion of a final, historic vote.",
+            "As a photojournalist,",
+            "you are tasked with freezing these fleeting moments in time,",
+            "cutting through the carefully crafted diplomatic facades",
+            "to reveal the unvarnished human reality of the conference.",
+            "Armed with your lens,",
+            "you command the profound power to frame the narrative without uttering a single word,",
+            "capturing the defining images that will stand",
+            "as the ultimate, undeniable record of our shared history.",
+            "Step into the corridors of power,",
+            "for the world is waiting to see the truth through your eyes.",
+          ],
+        },
+      },
+      {
+        code: "IPJ",
+        name: "International Press Journalism",
+        blurb: "Editorials, op-eds, breaking bulletins. File copy on deadline. Hold the dais to account.",
+        intro: {
+          audioUrl: ipjIntroAudio.url,
+          segments: [
+            "Welcome to the International Press Corps—",
+            "the relentless watchdogs of global diplomacy",
+            "and the narrative engine of our Model UN.",
+            "While delegates maneuver for power behind closed doors",
+            "and draft the policies of tomorrow,",
+            "it is the journalists who hold them to the absolute truth.",
+            "In this dynamic arena,",
+            "you are armed not with votes or vetoes,",
+            "but with the profound power of the written word—",
+            "tasked with investigating hidden agendas,",
+            "conducting high-stakes interviews,",
+            "and publishing the breaking reports",
+            "that can instantly shift the balance of power across every committee.",
+            "You are the vital link between the secret corridors of statecraft and the public eye,",
+            "wielding the authority to expose hypocrisy,",
+            "elevate the unheard,",
+            "and shape the definitive history of this conference as it unfolds.",
+            "In a world driven by perception,",
+            "your questions are your weapons,",
+            "and your stories will dictate the legacy of every leader.",
+          ],
+        },
+      },
     ],
     portfolios: [
       { slug: "reuters", name: "Reuters", role: "Wire Service", position: placeholder("Reuters") },
