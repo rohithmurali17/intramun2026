@@ -86,55 +86,85 @@ function CommitteePage() {
         </div>
       </section>
 
-      {committee.tracks && (
+      {committee.slug === "ipc" ? (
         <section className="py-16 md:py-20 bg-[oklch(0.16_0.09_300)] border-y border-border">
           <div className="mx-auto max-w-[1400px] px-6">
-            <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary mb-6">Two Tracks</p>
-            <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
-              {committee.tracks.map((t) => (
-                <div key={t.code} className="bg-background p-8 md:p-10">
+            <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary mb-6">Choose your track</p>
+            <div className="grid md:grid-cols-2 gap-6">
+              {committee.tracks?.map((t) => (
+                <Link
+                  key={t.code}
+                  to="/committees/ipc/track/$trackCode"
+                  params={{ trackCode: t.code.toLowerCase() }}
+                  className="group block bg-background p-8 md:p-10 border border-border hover:border-primary/60 transition-colors"
+                >
                   <p className="font-mono text-xs tracking-widest text-primary">{t.code}</p>
                   <h3 className="mt-2 font-serif text-3xl">{t.name}</h3>
                   <p className="mt-3 text-foreground/70 leading-relaxed">{t.blurb}</p>
-                  {t.intro && (
-                    <IntroPlayer audioUrl={t.intro.audioUrl} segments={t.intro.segments} autoPlay={false} />
-                  )}
-                </div>
+                  <div className="mt-6 inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-primary">
+                    Enter track <ArrowUpRight className="h-4 w-4 group-hover:rotate-45 transition-transform" />
+                  </div>
+                  <p className="mt-2 font-mono text-[10px] tracking-widest uppercase text-foreground/40">
+                    {t.code === "IPP" ? "Individual Representation" : "News Agency Representation"}
+                  </p>
+                </Link>
               ))}
             </div>
           </div>
         </section>
-      )}
-
-      <section className="py-20 md:py-24">
-        <div className="mx-auto max-w-[1400px] px-6">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
-            <div>
-              <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">Portfolio Matrix</p>
-              <h2 className="mt-3 font-serif text-4xl md:text-6xl tracking-tight">Choose your <span className="italic text-primary">seat.</span></h2>
-            </div>
-            <p className="max-w-sm text-sm text-foreground/60">Click a portfolio to read its position on the agenda within this committee.</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-            {committee.portfolios.map((p, i) => (
-              <Link
-                key={p.slug}
-                to="/committees/$slug/$country"
-                params={{ slug: committee.slug, country: p.slug }}
-                className="group bg-background p-7 flex items-center justify-between hover:bg-secondary/40 transition-colors"
-              >
-                <div>
-                  <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{String(i + 1).padStart(2, "0")}</p>
-                  <p className="mt-3 font-serif text-2xl leading-tight">{p.name}</p>
-                  {p.role && <p className="mt-1 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">{p.role}</p>}
+      ) : (
+        <>
+          {committee.tracks && (
+            <section className="py-16 md:py-20 bg-[oklch(0.16_0.09_300)] border-y border-border">
+              <div className="mx-auto max-w-[1400px] px-6">
+                <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary mb-6">Two Tracks</p>
+                <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
+                  {committee.tracks.map((t) => (
+                    <div key={t.code} className="bg-background p-8 md:p-10">
+                      <p className="font-mono text-xs tracking-widest text-primary">{t.code}</p>
+                      <h3 className="mt-2 font-serif text-3xl">{t.name}</h3>
+                      <p className="mt-3 text-foreground/70 leading-relaxed">{t.blurb}</p>
+                      {t.intro && (
+                        <IntroPlayer audioUrl={t.intro.audioUrl} segments={t.intro.segments} autoPlay={false} />
+                      )}
+                    </div>
+                  ))}
                 </div>
-                <ArrowUpRight className="h-5 w-5 text-foreground/40 group-hover:text-primary group-hover:rotate-45 transition-all" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+              </div>
+            </section>
+          )}
+
+          <section className="py-20 md:py-24">
+            <div className="mx-auto max-w-[1400px] px-6">
+              <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+                <div>
+                  <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">Portfolio Matrix</p>
+                  <h2 className="mt-3 font-serif text-4xl md:text-6xl tracking-tight">Choose your <span className="italic text-primary">seat.</span></h2>
+                </div>
+                <p className="max-w-sm text-sm text-foreground/60">Click a portfolio to read its position on the agenda within this committee.</p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+                {committee.portfolios.map((p, i) => (
+                  <Link
+                    key={p.slug}
+                    to="/committees/$slug/$country"
+                    params={{ slug: committee.slug, country: p.slug }}
+                    className="group bg-background p-7 flex items-center justify-between hover:bg-secondary/40 transition-colors"
+                  >
+                    <div>
+                      <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{String(i + 1).padStart(2, "0")}</p>
+                      <p className="mt-3 font-serif text-2xl leading-tight">{p.name}</p>
+                      {p.role && <p className="mt-1 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">{p.role}</p>}
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-foreground/40 group-hover:text-primary group-hover:rotate-45 transition-all" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       <footer className="bg-[oklch(0.11_0.07_300)] py-10 border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">

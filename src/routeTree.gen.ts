@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommitteesSlugRouteImport } from './routes/committees.$slug'
 import { Route as CommitteesSlugCountryRouteImport } from './routes/committees_.$slug.$country'
+import { Route as CommitteesIpcTrackTrackCodeRouteImport } from './routes/committees.ipc.track.$trackCode'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,58 @@ const CommitteesSlugCountryRoute = CommitteesSlugCountryRouteImport.update({
   path: '/committees/$slug/$country',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommitteesIpcTrackTrackCodeRoute =
+  CommitteesIpcTrackTrackCodeRouteImport.update({
+    id: '/committees/ipc/track/$trackCode',
+    path: '/committees/ipc/track/$trackCode',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/committees/$slug': typeof CommitteesSlugRoute
   '/committees/$slug/$country': typeof CommitteesSlugCountryRoute
+  '/committees/ipc/track/$trackCode': typeof CommitteesIpcTrackTrackCodeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/committees/$slug': typeof CommitteesSlugRoute
   '/committees/$slug/$country': typeof CommitteesSlugCountryRoute
+  '/committees/ipc/track/$trackCode': typeof CommitteesIpcTrackTrackCodeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/committees/$slug': typeof CommitteesSlugRoute
   '/committees_/$slug/$country': typeof CommitteesSlugCountryRoute
+  '/committees/ipc/track/$trackCode': typeof CommitteesIpcTrackTrackCodeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/committees/$slug' | '/committees/$slug/$country'
+  fullPaths:
+    | '/'
+    | '/committees/$slug'
+    | '/committees/$slug/$country'
+    | '/committees/ipc/track/$trackCode'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/committees/$slug' | '/committees/$slug/$country'
-  id: '__root__' | '/' | '/committees/$slug' | '/committees_/$slug/$country'
+  to:
+    | '/'
+    | '/committees/$slug'
+    | '/committees/$slug/$country'
+    | '/committees/ipc/track/$trackCode'
+  id:
+    | '__root__'
+    | '/'
+    | '/committees/$slug'
+    | '/committees_/$slug/$country'
+    | '/committees/ipc/track/$trackCode'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CommitteesSlugRoute: typeof CommitteesSlugRoute
   CommitteesSlugCountryRoute: typeof CommitteesSlugCountryRoute
+  CommitteesIpcTrackTrackCodeRoute: typeof CommitteesIpcTrackTrackCodeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +106,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommitteesSlugCountryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/committees/ipc/track/$trackCode': {
+      id: '/committees/ipc/track/$trackCode'
+      path: '/committees/ipc/track/$trackCode'
+      fullPath: '/committees/ipc/track/$trackCode'
+      preLoaderRoute: typeof CommitteesIpcTrackTrackCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,17 +120,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CommitteesSlugRoute: CommitteesSlugRoute,
   CommitteesSlugCountryRoute: CommitteesSlugCountryRoute,
+  CommitteesIpcTrackTrackCodeRoute: CommitteesIpcTrackTrackCodeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
