@@ -5,7 +5,7 @@ import heroCrowd from "@/assets/hero-crowd.jpg";
 import heroVideo from "@/assets/un-vid.mp4.asset.json";
 import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
-import { ArrowRight, ArrowUpRight, Instagram, Phone } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
 import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
 
 export const Route = createFileRoute("/")({
@@ -27,7 +27,7 @@ const NAV = [
   { href: "#mun", label: "MUN" },
   { href: "#committees", label: "Committees" },
   { href: "#board", label: "Board" },
-  { href: "#heads", label: "Heads" },
+  { href: "#process", label: "Process" },
   { href: "#process", label: "Process" },
   { href: "#register", label: "Register" },
   { href: "#contact", label: "Contact" },
@@ -335,35 +335,6 @@ function Board() {
   );
 }
 
-function Heads() {
-  return (
-    <section id="heads" className="py-24 md:py-32">
-      <div className="mx-auto max-w-[1400px] px-6">
-        <SectionNumber n="005" label="The Architects" />
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
-            The five <span className="italic text-primary">Event Heads.</span>
-          </h2>
-          <p className="max-w-sm text-foreground/70">The invisible architecture behind the conference. Five people. One standard.</p>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-border border border-border">
-          {HEADS.map((h) => (
-            <a key={h.name} href={`tel:${h.phone.replace(/\s/g, "")}`} className="group bg-background p-7 flex flex-col justify-between min-h-[260px] hover:bg-secondary/40 transition-colors">
-              <div>
-                <p className="font-mono text-xs tracking-widest text-primary">{h.n}</p>
-                <h3 className="mt-4 font-serif text-2xl leading-tight">{h.name}</h3>
-              </div>
-              <div className="flex items-center justify-between mt-6 pt-4 border-t border-border/60">
-                <span className="font-mono text-xs text-foreground/60">{h.phone}</span>
-                <Phone className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function Process() {
   return (
@@ -522,7 +493,6 @@ function Index() {
         <WhatIsMun />
         <Committees />
         <Board />
-        <Heads />
         <Process />
         <Register />
         <Contact />
