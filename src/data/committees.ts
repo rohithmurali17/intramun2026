@@ -193,7 +193,7 @@ export const COMMITTEES: Committee[] = [
     tag: "Camera & Journalism. Frame it. File it. Own it.",
     description:
       "The IPC is the lens and the pen of the conference. Photographers chase the frame; journalists chase the story. Two tracks, one newsroom, every committee under watch.",
-    agenda: "Live coverage of all four committees",
+    agenda: "Live coverage of all five committees",
     board: "TBA",
     img: commIpc,
     tracks: [
