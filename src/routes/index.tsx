@@ -198,10 +198,10 @@ function SectionNumber({ n, label }: { n: string; label: string }) {
 
 function Society() {
   const stats = [
-    ["10+", "Years Strong"],
+    ["5+", "Years Strong"],
     ["5", "Committees"],
     ["10K", "Cash Prize"],
-    ["100+", "Delegates"],
+    ["150+", "Delegates"],
   ];
   return (
     <section id="society" className="py-24 md:py-32">
