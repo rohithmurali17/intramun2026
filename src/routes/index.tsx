@@ -137,7 +137,7 @@ function Hero() {
           Diplomacy. Debate. Distinction.
         </p>
         <p className="mt-3 max-w-xl text-sm md:text-base text-foreground/70 leading-relaxed">
-          The 2026 edition of INTRA MUN is open. Four committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
+          The 2026 edition of INTRA MUN is open. Five committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3.5 font-mono text-xs tracking-widest uppercase text-primary-foreground hover:gap-5 transition-all">
@@ -169,7 +169,7 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = ["UNSC", "UNHRC", "AIPPM", "IPC", "Diplomacy", "Debate", "Distinction"];
+  const items = ["UNSC", "UNHRC", "AIPPM", "IPC", "ECOSOC", "Diplomacy", "Debate", "Distinction"];
   const row = [...items, ...items, ...items];
   return (
     <div className="border-y border-border bg-[oklch(0.20_0.10_300)] overflow-hidden py-5">
@@ -199,7 +199,7 @@ function SectionNumber({ n, label }: { n: string; label: string }) {
 function Society() {
   const stats = [
     ["10+", "Years Strong"],
-    ["4", "Committees"],
+    ["5", "Committees"],
     ["10K", "Cash Prize"],
     ["100+", "Delegates"],
   ];
@@ -268,9 +268,9 @@ function Committees() {
         <SectionNumber n="003" label="The Floor" />
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
-            Four <span className="italic text-primary">committees.</span>
+            Five <span className="italic text-primary">committees.</span>
           </h2>
-          <p className="max-w-md text-foreground/70 text-base">Four battlegrounds. Four sets of rules. Tap a committee to see its portfolio matrix and the role of every seat on the floor.</p>
+          <p className="max-w-md text-foreground/70 text-base">Five battlegrounds. Five sets of rules. Tap a committee to see its portfolio matrix and the role of every seat on the floor.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
@@ -301,7 +301,7 @@ function Committees() {
           ))}
           <article className="relative bg-background p-7 flex flex-col justify-between min-h-[300px] border-t sm:border-t-0">
             <div>
-              <p className="font-mono text-xs tracking-widest text-primary">05</p>
+              <p className="font-mono text-xs tracking-widest text-primary">06</p>
               <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight italic">Your portfolio<br />awaits.</h3>
             </div>
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-primary hover:gap-4 transition-all">
