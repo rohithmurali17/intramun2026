@@ -2,13 +2,15 @@ import commUnsc from "@/assets/comm-unsc.jpg";
 import commUnhrc from "@/assets/comm-unhrc.jpg";
 import commAippm from "@/assets/comm-loksabha.jpg";
 import commIpc from "@/assets/comm-media.jpg";
+import commEcosoc from "@/assets/comm-ecosoc.jpg";
 import unscIntroAudio from "@/assets/unsc-intro.mp3.asset.json";
 import unhrcIntroAudio from "@/assets/unhrc-intro.mp3.asset.json";
 import aippmIntroAudio from "@/assets/aippm-intro.mp3.asset.json";
 import ipjIntroAudio from "@/assets/ipj-intro.mp3.asset.json";
 import ippIntroAudio from "@/assets/ipp-intro.mp3.asset.json";
+import ecosocIntroAudio from "@/assets/ecosoc-intro.mp3.asset.json";
 
-export type CommitteeSlug = "unsc" | "unhrc" | "aippm" | "ipc";
+export type CommitteeSlug = "unsc" | "unhrc" | "aippm" | "ipc" | "ecosoc";
 
 export type Portfolio = {
   slug: string;
@@ -191,7 +193,7 @@ export const COMMITTEES: Committee[] = [
     tag: "Camera & Journalism. Frame it. File it. Own it.",
     description:
       "The IPC is the lens and the pen of the conference. Photographers chase the frame; journalists chase the story. Two tracks, one newsroom, every committee under watch.",
-    agenda: "Live coverage of all four committees",
+    agenda: "Live coverage of all five committees",
     board: "TBA",
     img: commIpc,
     tracks: [
@@ -267,7 +269,51 @@ export const COMMITTEES: Committee[] = [
       { slug: "afp-photo", name: "AFP Photo", role: "Photography", position: placeholder("AFP Photo") },
     ],
   },
+  {
+    slug: "ecosoc",
+    n: "05",
+    name: "ECOSOC",
+    fullForm: "Economic and Social Council",
+    tag: "Progress, prosperity, policy.",
+    description:
+      "The ECOSOC is the architect of global progress — shaping economic, social, and environmental policy. It bridges divides between developed and developing nations and designs the blueprint of human prosperity.",
+    agenda: "TBA",
+    board: "TBA",
+    img: commEcosoc,
+    intro: {
+      audioUrl: ecosocIntroAudio.url,
+      segments: [
+        "Welcome to the Economic and Social Council—",
+        "the architect of global progress",
+        "and the foundational pillar of our Model UN.",
+        "In this sweeping chamber,",
+        "the world's most intricate and interconnected challenges—",
+        "from sudden economic collapse to sustainable development and global health—",
+        "converge on a single diplomatic stage.",
+        "As voting delegates,",
+        "your mandate is to look beyond immediate conflict",
+        "and forge the comprehensive financial and social frameworks",
+        "that bridge the deep divides between emerging and developed economies.",
+        "Enriching this complex tapestry are the observer nations;",
+        "though they sit without a formal vote,",
+        "they act as the vital conscience of the international community,",
+        "wielding the quiet power to inject unique regional realities into the debate,",
+        "shape crucial economic coalitions,",
+        "and steer the allocation of global resources from the periphery.",
+        "Together, as you navigate a soaring symphony of economic diplomacy and humanitarian foresight,",
+        "you carry the profound responsibility of designing the very blueprint of human prosperity,",
+        "ensuring that no nation is left behind",
+        "in the march toward a secure future.",
+      ],
+    },
+    portfolios: [
+      "United States", "United Kingdom", "France", "Germany",
+      "Japan", "India", "Brazil", "China",
+      "Saudi Arabia", "South Africa", "Argentina", "Bangladesh",
+    ].map(country),
+  },
 ];
+
 
 export function getCommittee(slug: string): Committee | undefined {
   return COMMITTEES.find((c) => c.slug === slug);
