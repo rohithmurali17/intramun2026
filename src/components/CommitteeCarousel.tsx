@@ -190,7 +190,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
               ) : (
                 <button
                   type="button"
-                  onClick={() => setActive(i)}
+                  onClick={() => scrollToIndex(i)}
                   className="block h-full w-full cursor-pointer"
                   aria-label={`Show ${c.name}`}
                 >
@@ -219,7 +219,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
             <button
               key={c.slug}
               type="button"
-              onClick={() => setActive(i)}
+              onClick={() => scrollToIndex(i)}
               className={`h-1.5 rounded-full transition-all ${i === active ? "w-8 bg-primary" : "w-2 bg-foreground/30 hover:bg-foreground/60"}`}
               aria-label={`Go to ${c.name}`}
             />
