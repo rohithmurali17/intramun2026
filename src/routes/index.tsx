@@ -263,27 +263,42 @@ function WhatIsMun() {
 }
 
 function Committees() {
+  const carouselSectionRef = useRef<HTMLDivElement>(null);
   return (
-    <section id="committees" className="py-24 md:py-32">
-      <div className="mx-auto max-w-[1400px] px-6">
-        <SectionNumber n="003" label="The Floor" />
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
-            Five <span className="italic text-primary">committees.</span>
-          </h2>
-          <p className="max-w-md text-foreground/70 text-base">Five battlegrounds. Five sets of rules. Tap a committee to see its portfolio matrix and the role of every seat on the floor.</p>
-        </div>
-
-        <CommitteeCarousel committees={COMMITTEES} />
-
-        <div className="mt-16 flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-t border-border pt-8">
-          <div>
-            <p className="font-mono text-xs tracking-widest text-primary">06</p>
-            <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight italic">Your portfolio awaits.</h3>
+    <section id="committees" className="bg-background">
+      <div className="py-20 md:py-28">
+        <div className="mx-auto max-w-[1400px] px-6">
+          <SectionNumber n="003" label="The Floor" />
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+              Five <span className="italic text-primary">committees.</span>
+            </h2>
+            <p className="max-w-md text-foreground/70 text-base">
+              Five battlegrounds. Five sets of rules. Tap a committee to see its portfolio matrix and the role of every seat on the floor.
+            </p>
           </div>
-          <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-primary hover:gap-4 transition-all">
-            Register <ArrowUpRight className="h-4 w-4" />
-          </a>
+        </div>
+      </div>
+
+      <div ref={carouselSectionRef} className="relative h-[350vh] bg-background">
+        <div className="sticky top-0 h-screen w-full flex items-center justify-center px-6">
+          <div className="w-full max-w-[1400px]">
+            <CommitteeCarousel committees={COMMITTEES} sectionRef={carouselSectionRef} />
+          </div>
+        </div>
+      </div>
+
+      <div className="py-20 md:py-28 bg-background">
+        <div className="mx-auto max-w-[1400px] px-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-t border-border pt-8">
+            <div>
+              <p className="font-mono text-xs tracking-widest text-primary">06</p>
+              <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight italic">Your portfolio awaits.</h3>
+            </div>
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-primary hover:gap-4 transition-all">
+              Register <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
