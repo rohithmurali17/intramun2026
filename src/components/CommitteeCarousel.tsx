@@ -3,15 +3,19 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Committee } from "@/data/committees";
 
-type Props = { committees: Committee[] };
+type Props = {
+  committees: Committee[];
+  sectionRef?: React.RefObject<HTMLElement | null>;
+};
 
-export function CommitteeCarousel({ committees }: Props) {
+export function CommitteeCarousel({ committees, sectionRef }: Props) {
   const [active, setActive] = useState(0);
   const [dragDX, setDragDX] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const wheelLock = useRef(0);
   const dragStart = useRef<number | null>(null);
   const reduced = useRef(false);
+  const activeRef = useRef(0);
+  const raf = useRef<number>(0);
 
   useEffect(() => {
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -23,31 +27,59 @@ export function CommitteeCarousel({ committees }: Props) {
     [count],
   );
 
-  const go = useCallback((dir: number) => setActive((a) => clamp(a + dir)), [clamp]);
-
-  // Wheel: advance carousel when section is in view & user scrolls horizontally-ish
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      const now = performance.now();
-      if (now - wheelLock.current < 450) return;
-      // Prefer horizontal intent, but allow vertical when card is the focus
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      if (Math.abs(delta) < 12) return;
-      const rect = el.getBoundingClientRect();
-      const visible = rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.4;
-      if (!visible) return;
-      const next = clamp(active + (delta > 0 ? 1 : -1));
-      if (next !== active) {
-        e.preventDefault();
-        wheelLock.current = now;
-        setActive(next);
-      }
+    activeRef.current = active;
+  }, [active]);
+
+  const scrollContainer = useCallback(() => {
+    const el = sectionRef?.current || containerRef.current;
+    if (!el) return null;
+    const rect = el.getBoundingClientRect();
+    const viewport = window.innerHeight;
+    const end = rect.height - viewport;
+    if (end <= 0) return null;
+    const progress = Math.max(0, Math.min(1, -rect.top / end));
+    return { progress, end, rect, viewport };
+  }, [sectionRef]);
+
+  const scrollToIndex = useCallback(
+    (i: number) => {
+      const data = scrollContainer();
+      if (!data) return;
+      const targetProgress = (i + 0.5) / count;
+      const targetScrollY = window.scrollY + data.rect.top + targetProgress * data.end;
+      window.scrollTo({ top: targetScrollY, behavior: "smooth" });
+    },
+    [count, scrollContainer],
+  );
+
+  const go = useCallback(
+    (dir: number) => {
+      const next = clamp(activeRef.current + dir);
+      scrollToIndex(next);
+    },
+    [clamp, scrollToIndex],
+  );
+
+  // Scroll-driven active index while the section is pinned
+  useEffect(() => {
+    const onScroll = () => {
+      cancelAnimationFrame(raf.current);
+      raf.current = requestAnimationFrame(() => {
+        const data = scrollContainer();
+        if (!data) return;
+        const next = Math.min(count - 1, Math.floor(data.progress * count));
+        setActive(clamp(next));
+      });
     };
-    window.addEventListener("wheel", onWheel, { passive: false });
-    return () => window.removeEventListener("wheel", onWheel);
-  }, [active, clamp]);
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf.current);
+    };
+  }, [clamp, count, scrollContainer]);
 
   // Keyboard
   useEffect(() => {
@@ -158,7 +190,7 @@ export function CommitteeCarousel({ committees }: Props) {
               ) : (
                 <button
                   type="button"
-                  onClick={() => setActive(i)}
+                  onClick={() => scrollToIndex(i)}
                   className="block h-full w-full cursor-pointer"
                   aria-label={`Show ${c.name}`}
                 >
@@ -187,7 +219,7 @@ export function CommitteeCarousel({ committees }: Props) {
             <button
               key={c.slug}
               type="button"
-              onClick={() => setActive(i)}
+              onClick={() => scrollToIndex(i)}
               className={`h-1.5 rounded-full transition-all ${i === active ? "w-8 bg-primary" : "w-2 bg-foreground/30 hover:bg-foreground/60"}`}
               aria-label={`Go to ${c.name}`}
             />
