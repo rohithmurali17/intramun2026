@@ -68,7 +68,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
       raf.current = requestAnimationFrame(() => {
         const data = scrollContainer();
         if (!data) return;
-        const next = Math.floor(data.progress * (count - 1));
+        const next = Math.min(count - 1, Math.floor(data.progress * count));
         setActive(clamp(next));
       });
     };
