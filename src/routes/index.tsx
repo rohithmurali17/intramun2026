@@ -7,6 +7,7 @@ import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
 import { ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
 import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
+import { CommitteeCarousel } from "@/components/CommitteeCarousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
