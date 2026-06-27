@@ -7,6 +7,7 @@ import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
 import { ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
 import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
+import { CommitteeCarousel } from "@/components/CommitteeCarousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -273,41 +274,16 @@ function Committees() {
           <p className="max-w-md text-foreground/70 text-base">Five battlegrounds. Five sets of rules. Tap a committee to see its portfolio matrix and the role of every seat on the floor.</p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-          {COMMITTEES.map((c) => (
-            <Link
-              key={c.slug}
-              to="/committees/$slug"
-              params={{ slug: c.slug }}
-              className="group relative bg-background overflow-hidden block hover:ring-1 hover:ring-primary/60 transition-all"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={c.img} alt={c.name} width={1000} height={800} loading="lazy" className="h-full w-full object-cover grayscale-[0.4] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent pointer-events-none" />
-              <div className="relative p-7">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="font-mono text-xs tracking-widest text-primary">{c.n}</p>
-                    <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight">{c.name}</h3>
-                    <p className="mt-1 font-mono text-[10px] tracking-[0.2em] uppercase text-foreground/50">{c.fullForm}</p>
-                  </div>
-                  <ArrowUpRight className="h-5 w-5 text-foreground/40 group-hover:text-primary group-hover:rotate-45 transition-all" />
-                </div>
-                <p className="mt-2 font-serif italic text-foreground/70">{c.tag}</p>
-                <p className="mt-5 font-mono text-[10px] tracking-[0.25em] uppercase text-primary/80">View Portfolio Matrix →</p>
-              </div>
-            </Link>
-          ))}
-          <article className="relative bg-background p-7 flex flex-col justify-between min-h-[300px] border-t sm:border-t-0">
-            <div>
-              <p className="font-mono text-xs tracking-widest text-primary">06</p>
-              <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight italic">Your portfolio<br />awaits.</h3>
-            </div>
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-primary hover:gap-4 transition-all">
-              Register <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </article>
+        <CommitteeCarousel committees={COMMITTEES} />
+
+        <div className="mt-16 flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-t border-border pt-8">
+          <div>
+            <p className="font-mono text-xs tracking-widest text-primary">06</p>
+            <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight italic">Your portfolio awaits.</h3>
+          </div>
+          <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-primary hover:gap-4 transition-all">
+            Register <ArrowUpRight className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>
