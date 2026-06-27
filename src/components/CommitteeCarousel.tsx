@@ -93,8 +93,6 @@ export function CommitteeCarousel({ committees }: Props) {
           const isActive = offset === 0;
           const abs = Math.abs(offset);
           const angle = reduced.current ? 0 : offset * -32;
-          const tx = offset * (window !== undefined ? 0 : 0); // placeholder
-          // translateX scales with viewport-ish constant
           const translateX = offset * 240;
           const translateZ = -abs * 180;
           const scale = isActive ? 1 : Math.max(0.78, 1 - abs * 0.1);
