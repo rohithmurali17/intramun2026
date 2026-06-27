@@ -46,7 +46,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
     (i: number) => {
       const data = scrollContainer();
       if (!data) return;
-      const targetProgress = i / (count - 1);
+      const targetProgress = (i + 0.5) / count;
       const targetScrollY = window.scrollY + data.rect.top + targetProgress * data.end;
       window.scrollTo({ top: targetScrollY, behavior: "smooth" });
     },
