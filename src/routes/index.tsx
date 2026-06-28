@@ -280,8 +280,8 @@ function Committees() {
         </div>
       </div>
 
-      <div ref={carouselSectionRef} className="relative h-[350vh] bg-background">
-        <div className="sticky top-0 h-screen w-full flex items-center justify-center px-6">
+      <div ref={carouselSectionRef} className="relative h-[280svh] bg-background">
+        <div className="sticky top-0 h-svh w-full flex items-center justify-center px-4 sm:px-6">
           <div className="w-full max-w-[1400px]">
             <CommitteeCarousel committees={COMMITTEES} sectionRef={carouselSectionRef} />
           </div>
@@ -469,9 +469,9 @@ function Index() {
         @keyframes kenburns{0%{transform:scale(1.1) translate3d(0,0,0)}100%{transform:scale(1.18) translate3d(-1%,-2%,0)}}
         @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
         @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-        section{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
-        section.in-view{opacity:1;transform:none}
-        section#top{opacity:1;transform:none}
+        main section:not(#top):not(#committees){opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
+        main section:not(#top):not(#committees).in-view{opacity:1;transform:none}
+        section#top,section#committees{opacity:1;transform:none}
         h2,h3,p,article,a,div[class*="grid"]>*{transition:transform .5s ease,color .35s ease,background-color .35s ease,border-color .35s ease,opacity .5s ease}
         a:hover{letter-spacing:.005em}
         img{transition:transform .8s cubic-bezier(.22,.61,.36,1),filter .6s ease}

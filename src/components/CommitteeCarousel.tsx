@@ -16,6 +16,8 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
   const reduced = useRef(false);
   const activeRef = useRef(0);
   const raf = useRef<number>(0);
+  const touchY = useRef<number | null>(null);
+  const lastStep = useRef(0);
 
   useEffect(() => {
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -46,7 +48,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
     (i: number) => {
       const data = scrollContainer();
       if (!data) return;
-      const targetProgress = (i + 0.5) / count;
+    const targetProgress = count <= 1 ? 0 : (i + 0.08) / (count - 0.84);
       const targetScrollY = window.scrollY + data.rect.top + targetProgress * data.end;
       window.scrollTo({ top: targetScrollY, behavior: "smooth" });
     },
@@ -61,6 +63,25 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
     [clamp, scrollToIndex],
   );
 
+  const isPinned = useCallback(() => {
+    const data = scrollContainer();
+    if (!data) return null;
+    return data.rect.top <= 1 && data.rect.bottom >= data.viewport - 1 ? data : null;
+  }, [scrollContainer]);
+
+  const stepLocked = useCallback(
+    (dir: number) => {
+      const next = clamp(activeRef.current + dir);
+      if (next === activeRef.current) return false;
+      const now = window.performance.now();
+      if (now - lastStep.current < 280) return true;
+      lastStep.current = now;
+      scrollToIndex(next);
+      return true;
+    },
+    [clamp, scrollToIndex],
+  );
+
   // Scroll-driven active index while the section is pinned
   useEffect(() => {
     const onScroll = () => {
@@ -68,7 +89,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
       raf.current = requestAnimationFrame(() => {
         const data = scrollContainer();
         if (!data) return;
-        const next = Math.min(count - 1, Math.floor(data.progress * count));
+        const next = Math.round(data.progress * (count - 1));
         setActive(clamp(next));
       });
     };
@@ -80,6 +101,42 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
       cancelAnimationFrame(raf.current);
     };
   }, [clamp, count, scrollContainer]);
+
+  useEffect(() => {
+    const onWheel = (e: WheelEvent) => {
+      if (!isPinned()) return;
+      const dir = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
+      if (!dir) return;
+      if ((dir > 0 && activeRef.current >= count - 1) || (dir < 0 && activeRef.current <= 0)) return;
+      e.preventDefault();
+      stepLocked(dir);
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchY.current = e.touches[0]?.clientY ?? null;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (touchY.current == null || !isPinned()) return;
+      const y = e.touches[0]?.clientY;
+      if (y == null) return;
+      const delta = touchY.current - y;
+      if (Math.abs(delta) < 28) return;
+      const dir = delta > 0 ? 1 : -1;
+      if ((dir > 0 && activeRef.current >= count - 1) || (dir < 0 && activeRef.current <= 0)) return;
+      e.preventDefault();
+      if (stepLocked(dir)) touchY.current = y;
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+    };
+  }, [count, isPinned, stepLocked]);
 
   // Keyboard
   useEffect(() => {
@@ -108,12 +165,13 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
   return (
     <div
       ref={containerRef}
-      className="relative w-full select-none overflow-hidden"
+      data-committee-carousel
+      className="relative w-full select-none overflow-visible"
       style={{ perspective: "1600px" }}
     >
       {/* Stage */}
       <div
-        className="relative mx-auto h-[520px] md:h-[600px] flex items-center justify-center touch-pan-y"
+        className="relative mx-auto h-[min(52svh,520px)] md:h-[min(58svh,600px)] flex items-center justify-center touch-pan-y"
         style={{ transformStyle: "preserve-3d" }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -125,8 +183,8 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
           const isActive = offset === 0;
           const abs = Math.abs(offset);
           const angle = reduced.current ? 0 : offset * -32;
-          const translateX = offset * 240;
-          const translateZ = -abs * 180;
+          const translateX = offset * 220;
+          const translateZ = -abs * 170;
           const scale = isActive ? 1 : Math.max(0.78, 1 - abs * 0.1);
           const opacity = abs > 3 ? 0 : isActive ? 1 : Math.max(0.35, 1 - abs * 0.25);
           const dragShift = dragStart.current != null ? dragDX * 0.4 : 0;
@@ -174,7 +232,8 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
           return (
             <div
               key={c.slug}
-              className="absolute top-1/2 left-1/2 h-[440px] w-[300px] md:h-[520px] md:w-[360px]"
+              data-committee-card
+              className="absolute top-1/2 left-1/2 h-[min(44svh,440px)] w-[min(74vw,300px)] md:h-[min(50svh,520px)] md:w-[min(34vw,360px)]"
               style={style}
               aria-hidden={!isActive}
             >
