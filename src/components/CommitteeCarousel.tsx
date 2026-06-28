@@ -48,7 +48,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
     (i: number) => {
       const data = scrollContainer();
       if (!data) return;
-      const targetProgress = (i + 0.5) / count;
+      const targetProgress = count <= 1 ? 0 : i / (count - 1);
       const targetScrollY = window.scrollY + data.rect.top + targetProgress * data.end;
       window.scrollTo({ top: targetScrollY, behavior: "smooth" });
     },
@@ -74,7 +74,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
       const next = clamp(activeRef.current + dir);
       if (next === activeRef.current) return false;
       const now = window.performance.now();
-      if (now - lastStep.current < 620) return true;
+      if (now - lastStep.current < 280) return true;
       lastStep.current = now;
       scrollToIndex(next);
       return true;
@@ -89,7 +89,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
       raf.current = requestAnimationFrame(() => {
         const data = scrollContainer();
         if (!data) return;
-        const next = Math.min(count - 1, Math.floor(data.progress * count));
+        const next = Math.round(data.progress * (count - 1));
         setActive(clamp(next));
       });
     };
