@@ -16,6 +16,8 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
   const reduced = useRef(false);
   const activeRef = useRef(0);
   const raf = useRef<number>(0);
+  const touchY = useRef<number | null>(null);
+  const lastStep = useRef(0);
 
   useEffect(() => {
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -61,6 +63,25 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
     [clamp, scrollToIndex],
   );
 
+  const isPinned = useCallback(() => {
+    const data = scrollContainer();
+    if (!data) return null;
+    return data.rect.top <= 1 && data.rect.bottom >= data.viewport - 1 ? data : null;
+  }, [scrollContainer]);
+
+  const stepLocked = useCallback(
+    (dir: number) => {
+      const next = clamp(activeRef.current + dir);
+      if (next === activeRef.current) return false;
+      const now = window.performance.now();
+      if (now - lastStep.current < 620) return true;
+      lastStep.current = now;
+      scrollToIndex(next);
+      return true;
+    },
+    [clamp, scrollToIndex],
+  );
+
   // Scroll-driven active index while the section is pinned
   useEffect(() => {
     const onScroll = () => {
@@ -80,6 +101,42 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
       cancelAnimationFrame(raf.current);
     };
   }, [clamp, count, scrollContainer]);
+
+  useEffect(() => {
+    const onWheel = (e: WheelEvent) => {
+      if (!isPinned()) return;
+      const dir = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
+      if (!dir) return;
+      if ((dir > 0 && activeRef.current >= count - 1) || (dir < 0 && activeRef.current <= 0)) return;
+      e.preventDefault();
+      stepLocked(dir);
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchY.current = e.touches[0]?.clientY ?? null;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (touchY.current == null || !isPinned()) return;
+      const y = e.touches[0]?.clientY;
+      if (y == null) return;
+      const delta = touchY.current - y;
+      if (Math.abs(delta) < 28) return;
+      const dir = delta > 0 ? 1 : -1;
+      if ((dir > 0 && activeRef.current >= count - 1) || (dir < 0 && activeRef.current <= 0)) return;
+      e.preventDefault();
+      if (stepLocked(dir)) touchY.current = y;
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+    };
+  }, [count, isPinned, stepLocked]);
 
   // Keyboard
   useEffect(() => {
