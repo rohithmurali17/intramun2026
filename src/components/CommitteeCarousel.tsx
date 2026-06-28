@@ -108,6 +108,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
   return (
     <div
       ref={containerRef}
+      data-committee-carousel
       className="relative w-full select-none overflow-hidden"
       style={{ perspective: "1600px" }}
     >
@@ -174,6 +175,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
           return (
             <div
               key={c.slug}
+              data-committee-card
               className="absolute top-1/2 left-1/2 h-[440px] w-[300px] md:h-[520px] md:w-[360px]"
               style={style}
               aria-hidden={!isActive}
