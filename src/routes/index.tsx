@@ -281,7 +281,7 @@ function Committees() {
       </div>
 
       <div ref={carouselSectionRef} className="relative h-[360svh] bg-background">
-        <div className="sticky top-0 h-svh w-full flex items-center justify-center px-4 sm:px-6 overflow-hidden">
+        <div className="sticky top-0 h-svh w-full flex items-center justify-center px-4 sm:px-6">
           <div className="w-full max-w-[1400px]">
             <CommitteeCarousel committees={COMMITTEES} sectionRef={carouselSectionRef} />
           </div>
