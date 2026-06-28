@@ -63,7 +63,7 @@ export function BgmPlayer() {
       aria-label={playing ? "Mute background music" : "Play background music"}
       aria-pressed={playing}
       disabled={!ready}
-      className="fixed top-4 right-[12.25rem] z-[100] flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--mun-gold)]/40 bg-background/70 backdrop-blur-md transition-all hover:border-[color:var(--mun-gold)] hover:shadow-[var(--shadow-gold)]"
+      className="fixed top-4 right-28 sm:right-[12.25rem] z-[100] flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--mun-gold)]/40 bg-background/70 backdrop-blur-md transition-all hover:border-[color:var(--mun-gold)] hover:shadow-[var(--shadow-gold)]"
     >
       <div className="flex h-4 items-end gap-[2px]">
         {Array.from({ length: BARS }).map((_, i) => (

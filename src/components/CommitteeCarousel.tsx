@@ -108,7 +108,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
   return (
     <div
       ref={containerRef}
-      className="relative w-full select-none"
+      className="relative w-full select-none overflow-hidden"
       style={{ perspective: "1600px" }}
     >
       {/* Stage */}
