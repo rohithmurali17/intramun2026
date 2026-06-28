@@ -109,12 +109,12 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
     <div
       ref={containerRef}
       data-committee-carousel
-      className="relative w-full select-none overflow-hidden"
+      className="relative w-full select-none overflow-visible"
       style={{ perspective: "1600px" }}
     >
       {/* Stage */}
       <div
-        className="relative mx-auto h-[520px] md:h-[600px] flex items-center justify-center touch-pan-y"
+        className="relative mx-auto h-[min(52svh,520px)] md:h-[min(58svh,600px)] flex items-center justify-center touch-pan-y"
         style={{ transformStyle: "preserve-3d" }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -126,8 +126,8 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
           const isActive = offset === 0;
           const abs = Math.abs(offset);
           const angle = reduced.current ? 0 : offset * -32;
-          const translateX = offset * 240;
-          const translateZ = -abs * 180;
+          const translateX = offset * 220;
+          const translateZ = -abs * 170;
           const scale = isActive ? 1 : Math.max(0.78, 1 - abs * 0.1);
           const opacity = abs > 3 ? 0 : isActive ? 1 : Math.max(0.35, 1 - abs * 0.25);
           const dragShift = dragStart.current != null ? dragDX * 0.4 : 0;
@@ -176,7 +176,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
             <div
               key={c.slug}
               data-committee-card
-              className="absolute top-1/2 left-1/2 h-[440px] w-[300px] md:h-[520px] md:w-[360px]"
+              className="absolute top-1/2 left-1/2 h-[min(44svh,440px)] w-[min(74vw,300px)] md:h-[min(50svh,520px)] md:w-[min(34vw,360px)]"
               style={style}
               aria-hidden={!isActive}
             >
