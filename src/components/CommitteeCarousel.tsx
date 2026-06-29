@@ -18,9 +18,13 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
   const raf = useRef<number>(0);
   const touchY = useRef<number | null>(null);
   const lastStep = useRef(0);
+  const [vw, setVw] = useState(typeof window !== "undefined" ? window.innerWidth : 1280);
 
   useEffect(() => {
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const onResize = () => setVw(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   const count = committees.length;
@@ -166,7 +170,7 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
     <div
       ref={containerRef}
       data-committee-carousel
-      className="relative w-full select-none overflow-visible"
+      className="relative w-full select-none overflow-x-hidden"
       style={{ perspective: "1600px" }}
     >
       {/* Stage */}
@@ -182,9 +186,11 @@ export function CommitteeCarousel({ committees, sectionRef }: Props) {
           const offset = i - active;
           const isActive = offset === 0;
           const abs = Math.abs(offset);
+          const isMobile = vw < 640;
           const angle = reduced.current ? 0 : offset * -32;
-          const translateX = offset * 220;
-          const translateZ = -abs * 170;
+          const stepX = isMobile ? Math.min(130, vw * 0.32) : 220;
+          const translateX = offset * stepX;
+          const translateZ = -abs * (isMobile ? 120 : 170);
           const scale = isActive ? 1 : Math.max(0.78, 1 - abs * 0.1);
           const opacity = abs > 3 ? 0 : isActive ? 1 : Math.max(0.35, 1 - abs * 0.25);
           const dragShift = dragStart.current != null ? dragDX * 0.4 : 0;
