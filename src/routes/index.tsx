@@ -151,14 +151,14 @@ function Hero() {
       </div>
 
       <div className="relative border-t border-border/60 bg-[oklch(0.15_0.09_300/0.5)] backdrop-blur-sm">
-        <div className="mx-auto max-w-[1400px] grid grid-cols-3 sm:grid-cols-4 divide-x divide-border/60 text-xs font-mono uppercase tracking-widest">
+        <div className="mx-auto max-w-[1400px] grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border/60 text-xs font-mono uppercase tracking-widest">
           {[
             ["Dates", "20–21 Jul"],
             ["Prize", "₹10,000"],
             ["Deadline", "19 Jul · 12PM"],
             ["Venue", "TBA"],
           ].map(([k, v], i) => (
-            <div key={k} className={`px-4 py-5 ${i === 3 ? "hidden sm:block" : ""}`}>
+            <div key={k} className="px-4 py-5">
               <p className="text-foreground/50 text-[10px]">{k}</p>
               <p className="text-foreground mt-1 text-sm">{v}</p>
             </div>
@@ -459,7 +459,7 @@ function Footer() {
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden w-full max-w-[100vw]" style={{ fontFamily: "var(--font-sans)" }}>
       <style>{`
         html{scroll-behavior:smooth}
         body{font-feature-settings:"ss01","cv11";letter-spacing:-0.005em}
