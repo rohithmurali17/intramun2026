@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { Committee } from "@/data/committees";
 
 type Props = {
   committees: Committee[];
-  sectionRef: React.RefObject<HTMLElement | null>;
+  sectionRef: RefObject<HTMLElement | null>;
 };
 
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
