@@ -7,7 +7,7 @@ import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
 import { ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
 import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
-import { CommitteeCarousel } from "@/components/CommitteeCarousel";
+import { CommitteeVerticalStack } from "@/components/CommitteeVerticalStack";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -138,7 +138,7 @@ function Hero() {
           Diplomacy. Debate. Distinction.
         </p>
         <p className="mt-3 max-w-xl text-sm md:text-base text-foreground/70 leading-relaxed">
-          The 2026 edition of INTRA MUN is open. Five committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
+          The 2026 edition of INTRA MUN is open. Four committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3.5 font-mono text-xs tracking-widest uppercase text-primary-foreground hover:gap-5 transition-all">
@@ -170,7 +170,7 @@ function Hero() {
 }
 
 function Marquee() {
-  const items = ["UNSC", "UNHRC", "AIPPM", "IPC", "ECOSOC", "Diplomacy", "Debate", "Distinction"];
+  const items = ["UNSC", "UNHRC", "AIPPM", "IPC", "Diplomacy", "Debate", "Distinction"];
   const row = [...items, ...items, ...items];
   return (
     <div className="border-y border-border bg-[oklch(0.20_0.10_300)] overflow-hidden py-5">
@@ -200,7 +200,7 @@ function SectionNumber({ n, label }: { n: string; label: string }) {
 function Society() {
   const stats = [
     ["5+", "Years Strong"],
-    ["5", "Committees"],
+    ["4", "Committees"],
     ["10K", "Cash Prize"],
     ["150+", "Delegates"],
   ];
@@ -265,26 +265,28 @@ function WhatIsMun() {
 function Committees() {
   const carouselSectionRef = useRef<HTMLDivElement>(null);
   return (
-    <section id="committees" className="bg-background">
+    <section id="committees" className="bg-background overflow-x-hidden">
       <div className="py-20 md:py-28">
         <div className="mx-auto max-w-[1400px] px-6">
           <SectionNumber n="003" label="The Floor" />
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
-              Five <span className="italic text-primary">committees.</span>
+              Four <span className="italic text-primary">committees.</span>
             </h2>
             <p className="max-w-md text-foreground/70 text-base">
-              Five battlegrounds. Five sets of rules. Tap a committee to see its portfolio matrix and the role of every seat on the floor.
+              Four battlegrounds. Four sets of rules. Tap a committee to see its portfolio matrix and the role of every seat on the floor.
             </p>
           </div>
         </div>
       </div>
 
-      <div ref={carouselSectionRef} className="relative h-[280svh] bg-background">
-        <div className="sticky top-0 h-svh w-full flex items-center justify-center px-4 sm:px-6">
-          <div className="w-full max-w-[1400px]">
-            <CommitteeCarousel committees={COMMITTEES} sectionRef={carouselSectionRef} />
-          </div>
+      <div
+        ref={carouselSectionRef}
+        className="relative bg-background"
+        style={{ height: `${COMMITTEES.length * 112}svh` }}
+      >
+        <div className="sticky top-0 h-svh w-full">
+          <CommitteeVerticalStack committees={COMMITTEES} sectionRef={carouselSectionRef} />
         </div>
       </div>
 
@@ -292,7 +294,7 @@ function Committees() {
         <div className="mx-auto max-w-[1400px] px-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-t border-border pt-8">
             <div>
-              <p className="font-mono text-xs tracking-widest text-primary">06</p>
+              <p className="font-mono text-xs tracking-widest text-primary">04</p>
               <h3 className="mt-2 font-serif text-3xl md:text-4xl tracking-tight italic">Your portfolio awaits.</h3>
             </div>
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-primary hover:gap-4 transition-all">
@@ -314,7 +316,7 @@ function Board() {
           <h2 className="md:col-span-7 font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
             The Executive <span className="italic text-primary">Board.</span>
           </h2>
-          <p className="md:col-span-5 text-foreground/70">The dais decides the tempo. Names of our chairs, vice-chairs, and rapporteurs across all five committees are unveiled in the coming weeks.</p>
+          <p className="md:col-span-5 text-foreground/70">The dais decides the tempo. Names of our chairs, vice-chairs, and rapporteurs across all four committees are unveiled in the coming weeks.</p>
         </div>
         <div className="mt-14 border border-primary/40 px-8 py-16 text-center bg-background/40 backdrop-blur-sm">
           <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">Announcement Pending</p>
