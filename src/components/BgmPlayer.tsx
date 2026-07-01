@@ -15,28 +15,31 @@ export function BgmPlayer() {
     audioRef.current = a;
     setReady(true);
 
-    // Try autoplay; browsers usually block until user gesture
-    const tryPlay = async () => {
+    // Wait for the splash intro to complete before starting BGM.
+    // The splash dispatches `splash:complete` with { withSound }.
+    const onSplash = async (e: Event) => {
+      const withSound = (e as CustomEvent<{ withSound: boolean }>).detail?.withSound;
+      if (!withSound) return;
       try {
         await a.play();
         setPlaying(true);
-      } catch {
-        // wait for first user interaction
+      } catch {}
+    };
+    window.addEventListener("splash:complete", onSplash as EventListener);
+
+    // If splash was already dismissed earlier this session, try autoplay now.
+    if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("docmun:introSeen") === "1") {
+      a.play().then(() => setPlaying(true)).catch(() => {
         const onFirst = async () => {
-          try {
-            await a.play();
-            setPlaying(true);
-          } catch {}
+          try { await a.play(); setPlaying(true); } catch {}
           window.removeEventListener("pointerdown", onFirst);
-          window.removeEventListener("keydown", onFirst);
         };
         window.addEventListener("pointerdown", onFirst, { once: true });
-        window.addEventListener("keydown", onFirst, { once: true });
-      }
-    };
-    tryPlay();
+      });
+    }
 
     return () => {
+      window.removeEventListener("splash:complete", onSplash as EventListener);
       a.pause();
       audioRef.current = null;
     };
