@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import logoAsset from "@/assets/logo.asset.json";
 import heroCrowd from "@/assets/hero-crowd.jpg";
 import heroVideo from "@/assets/un-vid.mp4.asset.json";
@@ -7,7 +7,7 @@ import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
 import { ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
 import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
-import { CommitteeVerticalStack } from "@/components/CommitteeVerticalStack";
+import { CommitteeExpandGrid } from "@/components/CommitteeExpandGrid";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -263,7 +263,6 @@ function WhatIsMun() {
 }
 
 function Committees() {
-  const carouselSectionRef = useRef<HTMLDivElement>(null);
   return (
     <section id="committees" className="bg-background overflow-x-hidden">
       <div className="py-20 md:py-28">
@@ -274,19 +273,10 @@ function Committees() {
               Four <span className="italic text-primary">committees.</span>
             </h2>
             <p className="max-w-md text-foreground/70 text-base">
-              Four battlegrounds. Four sets of rules. Tap a committee to see its portfolio matrix and the role of every seat on the floor.
+              Four battlegrounds. Four sets of rules. Hover a committee to expand it, then click through for its portfolio matrix.
             </p>
           </div>
-        </div>
-      </div>
-
-      <div
-        ref={carouselSectionRef}
-        className="relative bg-background"
-        style={{ height: `${COMMITTEES.length * 112}svh` }}
-      >
-        <div className="sticky top-0 h-svh w-full">
-          <CommitteeVerticalStack committees={COMMITTEES} sectionRef={carouselSectionRef} />
+          <CommitteeExpandGrid committees={COMMITTEES} />
         </div>
       </div>
 
