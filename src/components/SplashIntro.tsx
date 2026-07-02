@@ -48,8 +48,16 @@ export function SplashIntro() {
         playsInline
         preload="auto"
         onEnded={() => setEnded(true)}
-        className="absolute inset-0 h-full w-full object-cover"
+        className={
+          "absolute inset-0 h-full w-full object-cover transition-opacity duration-500 " +
+          (ended ? "opacity-0" : "opacity-100")
+        }
       />
+
+      {/* Dark scrim behind end-state so the choice UI never overlaps the video's last frame */}
+      {ended && (
+        <div className="absolute inset-0 bg-black" />
+      )}
 
       {/* Skip button */}
       {!ended && (
