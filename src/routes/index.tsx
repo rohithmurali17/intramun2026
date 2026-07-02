@@ -8,6 +8,7 @@ import gavel from "@/assets/gavel.jpg";
 import { ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
 import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
 import { CommitteeExpandGrid } from "@/components/CommitteeExpandGrid";
+import { LegacyVideo } from "@/components/LegacyVideo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -477,6 +478,7 @@ function Index() {
         <Committees />
         <Board />
         <Process />
+        <LegacyVideo />
         <Register />
         <Contact />
       </main>
