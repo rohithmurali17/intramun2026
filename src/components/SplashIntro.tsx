@@ -28,6 +28,8 @@ export function SplashIntro() {
       new CustomEvent("splash:complete", { detail: { withSound } }),
     );
     setLeaving(true);
+    // Restore scroll immediately so the site is scrollable during the fade-out
+    document.body.style.overflow = "";
     setTimeout(() => setMounted(false), 700);
   };
 
