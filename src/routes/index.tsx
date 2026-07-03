@@ -72,7 +72,7 @@ function TopBar() {
       <div className="fixed top-0 left-0 right-0 z-[60] h-[2px] bg-transparent">
         <div className="h-full bg-primary transition-[width] duration-150" style={{ width: `${p}%` }} />
       </div>
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.09_300/0.6)] border-b border-border/60">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.045_190/0.6)] border-b border-border/60">
         <div className="mx-auto max-w-[1400px] flex items-center justify-between px-6 py-4">
           <a href="#top" className="flex items-center gap-3 group">
             <img src={logoAsset.url} alt="DOC MUN Society" className="h-9 w-9 rounded-full ring-1 ring-primary/40" />
@@ -114,7 +114,7 @@ function Hero() {
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover scale-110 will-change-transform animate-[kenburns_22s_ease-in-out_infinite_alternate]"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.09_300/0.78)] via-[oklch(0.18_0.09_300/0.65)] to-[oklch(0.15_0.09_300)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.045_190/0.78)] via-[oklch(0.18_0.045_190/0.65)] to-[oklch(0.15_0.045_190)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.78_0.17_75/0.18),transparent_60%)]" />
       <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>')]" />
 
@@ -151,7 +151,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className="relative border-t border-border/60 bg-[oklch(0.15_0.09_300/0.5)] backdrop-blur-sm">
+      <div className="relative border-t border-border/60 bg-[oklch(0.15_0.045_190/0.5)] backdrop-blur-sm">
         <div className="mx-auto max-w-[1400px] grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border/60 text-xs font-mono uppercase tracking-widest">
           {[
             ["Dates", "20–21 Jul"],
@@ -174,7 +174,7 @@ function Marquee() {
   const items = ["UNSC", "UNHRC", "AIPPM", "IPC", "Diplomacy", "Debate", "Distinction"];
   const row = [...items, ...items, ...items];
   return (
-    <div className="border-y border-border bg-[oklch(0.20_0.10_300)] overflow-hidden py-5">
+    <div className="border-y border-border bg-[oklch(0.20_0.045_190)] overflow-hidden py-5">
       <div className="flex gap-10 whitespace-nowrap animate-[marquee_40s_linear_infinite]">
         {row.map((t, i) => (
           <span key={i} className="font-display text-3xl md:text-4xl tracking-wider text-foreground/40 inline-flex items-center gap-10">
@@ -234,9 +234,9 @@ function Society() {
 
 function WhatIsMun() {
   return (
-    <section id="mun" className="relative py-24 md:py-32 bg-[oklch(0.16_0.09_300)] border-y border-border">
+    <section id="mun" className="relative py-24 md:py-32 bg-[oklch(0.16_0.045_190)] border-y border-border">
       <img src={munHall} alt="" width={1600} height={900} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[oklch(0.16_0.09_300/0.6)] to-[oklch(0.16_0.09_300)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[oklch(0.16_0.045_190/0.6)] to-[oklch(0.16_0.045_190)]" />
       <div className="relative mx-auto max-w-[1400px] px-6">
         <SectionNumber n="002" label="The Practice" />
         <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-5xl">
@@ -300,7 +300,7 @@ function Committees() {
 
 function Board() {
   return (
-    <section id="board" className="py-24 md:py-32 bg-[oklch(0.16_0.09_300)] border-y border-border">
+    <section id="board" className="py-24 md:py-32 bg-[oklch(0.16_0.045_190)] border-y border-border">
       <div className="mx-auto max-w-[1400px] px-6">
         <SectionNumber n="004" label="The Dais" />
         <div className="grid md:grid-cols-12 gap-10 items-end">
@@ -322,7 +322,7 @@ function Board() {
 
 function Process() {
   return (
-    <section id="process" className="py-24 md:py-32 bg-[oklch(0.16_0.09_300)] border-y border-border">
+    <section id="process" className="py-24 md:py-32 bg-[oklch(0.16_0.045_190)] border-y border-border">
       <div className="mx-auto max-w-[1400px] px-6">
         <SectionNumber n="006" label="The Process" />
         <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-4xl">
@@ -349,7 +349,7 @@ function Register() {
   return (
     <section id="register" className="relative py-24 md:py-32 overflow-hidden">
       <img src={gavel} alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-10" />
-      <div className="absolute inset-0 bg-[oklch(0.15_0.09_300/0.92)]" />
+      <div className="absolute inset-0 bg-[oklch(0.15_0.045_190/0.92)]" />
       <div className="relative mx-auto max-w-[1400px] px-6">
         <SectionNumber n="007" label="Final Call" />
         <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.88] tracking-tight max-w-6xl">
@@ -370,7 +370,7 @@ function Register() {
               Register as Individual <ArrowRight className="h-4 w-4" />
             </a>
           </div>
-          <div className="group bg-[oklch(0.22_0.10_300)] p-8 md:p-12 relative">
+          <div className="group bg-[oklch(0.22_0.045_190)] p-8 md:p-12 relative">
             <span className="absolute top-6 right-6 font-mono text-[10px] tracking-[0.25em] uppercase text-primary border border-primary/60 px-2 py-1">Min · 7</span>
             <p className="font-mono text-xs tracking-widest text-primary">B.</p>
             <h3 className="mt-4 font-serif text-4xl md:text-5xl">Delegation</h3>
@@ -391,7 +391,7 @@ function Register() {
 
 function Contact() {
   return (
-    <section id="contact" className="py-24 md:py-32 bg-[oklch(0.13_0.08_300)] border-t border-border">
+    <section id="contact" className="py-24 md:py-32 bg-[oklch(0.13_0.045_190)] border-t border-border">
       <div className="mx-auto max-w-[1400px] px-6">
         <SectionNumber n="008" label="Reach Out" />
         <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-4xl">
@@ -416,7 +416,7 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="bg-[oklch(0.11_0.07_300)] py-14 border-t border-border">
+    <footer className="bg-[oklch(0.11_0.045_190)] py-14 border-t border-border">
       <div className="mx-auto max-w-[1400px] px-6 grid md:grid-cols-3 gap-10 items-start">
         <div className="flex items-center gap-4">
           <img src={logoAsset.url} alt="DOC MUN Society" className="h-14 w-14 rounded-full ring-1 ring-primary/40" />

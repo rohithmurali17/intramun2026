@@ -70,7 +70,7 @@ function TrackPage() {
       className="min-h-screen bg-background text-foreground"
       style={{ fontFamily: "var(--font-sans)" }}
     >
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.09_300/0.7)] border-b border-border/60">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.045_190/0.7)] border-b border-border/60">
         <div className="mx-auto max-w-[1400px] flex items-center justify-between px-6 py-4">
           <Link to="/" className="flex items-center gap-3">
             <img
@@ -101,7 +101,7 @@ function TrackPage() {
           alt=""
           className="absolute inset-0 h-full w-full object-cover opacity-25"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.09_300/0.7)] to-[oklch(0.15_0.09_300)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.045_190/0.7)] to-[oklch(0.15_0.045_190)]" />
         <div className="relative mx-auto max-w-[1400px] px-6">
           <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">
             Committee · {committee.n} · {track.code}
@@ -174,7 +174,7 @@ function TrackPage() {
         </div>
       </section>
 
-      <footer className="bg-[oklch(0.11_0.07_300)] py-10 border-t border-border">
+      <footer className="bg-[oklch(0.11_0.045_190)] py-10 border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">
           <span>© 2026 DOC MUN Society</span>
           <a

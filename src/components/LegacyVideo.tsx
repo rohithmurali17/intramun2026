@@ -34,7 +34,7 @@ export function LegacyVideo() {
   return (
     <section
       id="legacy"
-      className="relative py-24 md:py-32 bg-[oklch(0.12_0.08_300)] border-y border-border overflow-hidden"
+      className="relative py-24 md:py-32 bg-[oklch(0.12_0.045_190)] border-y border-border overflow-hidden"
     >
       {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0 opacity-60">
@@ -87,8 +87,8 @@ export function LegacyVideo() {
           </div>
 
           {/* Soft edge fades to blend into surrounding sections */}
-          <div className="pointer-events-none absolute -top-24 inset-x-0 h-24 bg-gradient-to-b from-[oklch(0.12_0.08_300)] to-transparent" />
-          <div className="pointer-events-none absolute -bottom-24 inset-x-0 h-24 bg-gradient-to-t from-[oklch(0.12_0.08_300)] to-transparent" />
+          <div className="pointer-events-none absolute -top-24 inset-x-0 h-24 bg-gradient-to-b from-[oklch(0.12_0.045_190)] to-transparent" />
+          <div className="pointer-events-none absolute -bottom-24 inset-x-0 h-24 bg-gradient-to-t from-[oklch(0.12_0.045_190)] to-transparent" />
 
           <p className="mt-6 text-center font-mono text-[10px] tracking-[0.3em] uppercase text-foreground/50">
             Previous Winners · INTRA MUN
