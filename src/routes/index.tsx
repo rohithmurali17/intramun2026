@@ -401,7 +401,7 @@ function Contact() {
           {HEADS.map((h) => (
             <a key={h.name} href={`tel:${h.phone.replace(/\s/g, "")}`} className="group bg-background p-7 flex items-center justify-between hover:bg-secondary/40 transition-colors">
               <div>
-                <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{h.n} · Event Head</p>
+                <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{h.n} · CORE</p>
                 <p className="mt-2 font-serif text-2xl">{h.name}</p>
                 <p className="mt-1 font-mono text-sm text-foreground/60">{h.phone}</p>
               </div>
