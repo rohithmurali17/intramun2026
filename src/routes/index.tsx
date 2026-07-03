@@ -14,9 +14,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "INTRA MUN 2026 | DOC MUN Society" },
-      { name: "description", content: "INTRA MUN 2026 by the Department of Commerce MUN Society. 20–21 July 2026. ₹10,000 cash prize. Register as Individual or Delegation." },
+      { name: "description", content: "INTRA MUN 2026 by the Department of Commerce MUN Society. 20–21 July 2026. ₹8,000 cash prize. Register as Individual or Delegation." },
       { property: "og:title", content: "INTRA MUN 2026 | DOC MUN Society" },
-      { property: "og:description", content: "Diplomacy. Debate. Distinction. 20–21 July 2026 — ₹10,000 cash prize." },
+      { property: "og:description", content: "Diplomacy. Debate. Distinction. 20–21 July 2026 — ₹8,000 cash prize." },
     ],
   }),
   component: Index,
@@ -47,7 +47,7 @@ const PROCESS = [
   { n: "01", when: "Now Open", title: "Registration Live", body: "Apply as an individual or assemble a delegation of seven or more." },
   { n: "02", when: "19 July · 12:00 PM", title: "Applications Close", body: "Last call. No extensions. The gate locks at noon." },
   { n: "03", when: "20 July", title: "Day One · Opening", body: "Ceremony, committee sessions, the first vote on the floor." },
-  { n: "04", when: "21 July", title: "Day Two · Verdict", body: "Final sessions, closing remarks, the ₹10,000 cash prize awarded." },
+  { n: "04", when: "21 July", title: "Day Two · Verdict", body: "Final sessions, closing remarks, the ₹8,000 cash prize awarded." },
 ];
 
 function useScrollProgress() {
@@ -120,7 +120,7 @@ function Hero() {
 
       <div className="relative mx-auto max-w-[1400px] w-full px-6 pt-28 pb-10 flex items-center justify-between text-xs font-mono tracking-widest uppercase text-foreground/70">
         <span>066 <span className="text-primary">MUNSOC</span> / 2026</span>
-        <span className="hidden sm:inline">Vol. 26 · Presented by DOC MUNSOC</span>
+        <span className="hidden sm:inline">VOL.3 · PRESENTED BY DOC MUNSOC</span>
       </div>
 
       <div className="relative flex-1 mx-auto max-w-[1400px] w-full px-6 flex flex-col justify-center">
@@ -139,7 +139,7 @@ function Hero() {
           Diplomacy. Debate. Distinction.
         </p>
         <p className="mt-3 max-w-xl text-sm md:text-base text-foreground/70 leading-relaxed">
-          The 2026 edition of INTRA MUN is open. Four committees. Two days. One ₹10,000 cash prize. Step forward, or stand aside.
+          The 2026 edition of INTRA MUN is open. Four committees. Two days. One ₹8,000 cash prize. Step forward, or stand aside.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3.5 font-mono text-xs tracking-widest uppercase text-primary-foreground hover:gap-5 transition-all">
@@ -155,7 +155,7 @@ function Hero() {
         <div className="mx-auto max-w-[1400px] grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border/60 text-xs font-mono uppercase tracking-widest">
           {[
             ["Dates", "20–21 Jul"],
-            ["Prize", "₹10,000"],
+            ["Prize", "₹8,000"],
             ["Deadline", "19 Jul · 12PM"],
             ["Venue", "TBA"],
           ].map(([k, v], i) => (
@@ -202,7 +202,7 @@ function Society() {
   const stats = [
     ["5+", "Years Strong"],
     ["4", "Committees"],
-    ["10K", "Cash Prize"],
+    ["8K", "Cash Prize"],
     ["150+", "Delegates"],
   ];
   return (
@@ -357,7 +357,7 @@ function Register() {
         </h2>
 
         <div className="mt-12 inline-flex flex-wrap items-center gap-6 border border-primary/50 px-7 py-5 bg-background/40 backdrop-blur-sm">
-          <span className="font-display text-5xl md:text-6xl text-primary leading-none">₹10,000</span>
+          <span className="font-display text-5xl md:text-6xl text-primary leading-none">₹8,000</span>
           <span className="font-serif italic text-foreground/80">cash prize · winning delegation</span>
         </div>
 
@@ -374,7 +374,7 @@ function Register() {
             <span className="absolute top-6 right-6 font-mono text-[10px] tracking-[0.25em] uppercase text-primary border border-primary/60 px-2 py-1">Min · 7</span>
             <p className="font-mono text-xs tracking-widest text-primary">B.</p>
             <h3 className="mt-4 font-serif text-4xl md:text-5xl">Delegation</h3>
-            <p className="mt-4 text-foreground/70 leading-relaxed">Bring your crew. Seven members minimum. Compete together. Win together. The ₹10,000 cash prize is built for you.</p>
+            <p className="mt-4 text-foreground/70 leading-relaxed">Bring your crew. Seven members minimum. Compete together. Win together. The ₹8,000 cash prize is built for you.</p>
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="mt-10 inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-foreground border-b border-primary pb-1 group-hover:gap-5 transition-all">
               Register as Delegation <ArrowRight className="h-4 w-4" />
             </a>
