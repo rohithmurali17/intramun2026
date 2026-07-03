@@ -61,7 +61,7 @@ export function GlassCursor() {
       <div
         ref={ringRef}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[100] hidden md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] hidden md:block"
         style={{
           width: hover ? 64 : 36,
           height: hover ? 64 : 36,
@@ -79,7 +79,7 @@ export function GlassCursor() {
       <div
         ref={dotRef}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[101] hidden md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[10000] hidden md:block"
         style={{
           width: 6,
           height: 6,

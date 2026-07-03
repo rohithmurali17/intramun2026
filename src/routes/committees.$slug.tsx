@@ -44,7 +44,7 @@ function CommitteePage() {
   const { committee } = Route.useLoaderData() as { committee: Committee };
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.09_300/0.7)] border-b border-border/60">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.045_190/0.7)] border-b border-border/60">
         <div className="mx-auto max-w-[1400px] flex items-center justify-between px-6 py-4">
           <Link to="/" className="flex items-center gap-3">
             <img src={logoAsset.url} alt="DOC MUN Society" className="h-9 w-9 rounded-full ring-1 ring-primary/40" />
@@ -61,7 +61,7 @@ function CommitteePage() {
 
       <section className="relative pt-32 pb-20 overflow-hidden border-b border-border">
         <img src={committee.img} alt="" className="absolute inset-0 h-full w-full object-cover opacity-25" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.09_300/0.7)] to-[oklch(0.15_0.09_300)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.15_0.045_190/0.7)] to-[oklch(0.15_0.045_190)]" />
         <div className="relative mx-auto max-w-[1400px] px-6">
           <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">Committee · {committee.n}</p>
           <h1 className="mt-4 font-display tracking-tight text-[14vw] md:text-[10rem] leading-[0.85] text-foreground">{committee.name}</h1>
@@ -87,7 +87,7 @@ function CommitteePage() {
       </section>
 
       {committee.slug === "ipc" ? (
-        <section className="py-16 md:py-20 bg-[oklch(0.16_0.09_300)] border-y border-border">
+        <section className="py-16 md:py-20 bg-[oklch(0.16_0.045_190)] border-y border-border">
           <div className="mx-auto max-w-[1400px] px-6">
             <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary mb-6">Choose your track</p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -115,7 +115,7 @@ function CommitteePage() {
       ) : (
         <>
           {committee.tracks && (
-            <section className="py-16 md:py-20 bg-[oklch(0.16_0.09_300)] border-y border-border">
+            <section className="py-16 md:py-20 bg-[oklch(0.16_0.045_190)] border-y border-border">
               <div className="mx-auto max-w-[1400px] px-6">
                 <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary mb-6">Two Tracks</p>
                 <div className="grid md:grid-cols-2 gap-px bg-border border border-border">
@@ -166,7 +166,7 @@ function CommitteePage() {
         </>
       )}
 
-      <footer className="bg-[oklch(0.11_0.07_300)] py-10 border-t border-border">
+      <footer className="bg-[oklch(0.11_0.045_190)] py-10 border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">
           <span>© 2026 DOC MUN Society</span>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="hover:text-primary">@docmunsoc</a>

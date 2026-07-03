@@ -46,7 +46,7 @@ function CountryPage() {
   const { committee, portfolio } = Route.useLoaderData() as { committee: Committee; portfolio: Portfolio };
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.09_300/0.7)] border-b border-border/60">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.045_190/0.7)] border-b border-border/60">
         <div className="mx-auto max-w-[1400px] flex items-center justify-between px-6 py-4">
           <Link to="/" className="flex items-center gap-3">
             <img src={logoAsset.url} alt="DOC MUN Society" className="h-9 w-9 rounded-full ring-1 ring-primary/40" />
@@ -90,7 +90,7 @@ function CountryPage() {
         </div>
       </section>
 
-      <section className="py-12 border-t border-border bg-[oklch(0.16_0.09_300)]">
+      <section className="py-12 border-t border-border bg-[oklch(0.16_0.045_190)]">
         <div className="mx-auto max-w-[1100px] px-6 flex flex-wrap items-center justify-between gap-6">
           <Link
             to="/committees/$slug"
