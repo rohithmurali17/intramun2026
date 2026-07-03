@@ -59,7 +59,7 @@ export const COMMITTEES: Committee[] = [
     tag: "Peace and security. Veto power. No veto on voice.",
     description:
       "The UNSC is the most powerful organ of the United Nations — charged with maintaining international peace and security. Fifteen seats. Five permanent members with the veto. Every word on the record.",
-    agenda: "TBA",
+    agenda: "Deliberating on the complexities concerning Iran's Nuclear enrichment program and its Implications for International Peace and Security",
     board: "TBA",
     img: commUnsc,
     intro: {
