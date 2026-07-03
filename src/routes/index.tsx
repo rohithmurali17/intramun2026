@@ -157,7 +157,7 @@ function Hero() {
             ["Dates", "20–21 Jul"],
             ["Prize", "₹8,000"],
             ["Deadline", "19 Jul · 12PM"],
-            ["Venue", "TBA"],
+            ["Venue", "CHRIST UNIVERSITY (CENTRAL CAMPUS)"],
           ].map(([k, v], i) => (
             <div key={k} className="px-4 py-5">
               <p className="text-foreground/50 text-[10px]">{k}</p>
