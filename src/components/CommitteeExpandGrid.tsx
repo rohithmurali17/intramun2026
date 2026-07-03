@@ -41,10 +41,13 @@ export function CommitteeExpandGrid({ committees }: Props) {
               draggable={false}
               className={[
                 "absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)]",
+                "[filter:hue-rotate(210deg)_saturate(0.7)]",
                 isActive ? "scale-110" : "scale-100 group-hover:scale-105",
               ].join(" ")}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-background/10" />
+            {/* Teal color wash to neutralize baked-in purple */}
+            <div className="pointer-events-none absolute inset-0 bg-[oklch(0.28_0.06_190)] mix-blend-color" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-background/10" />
             <div className="absolute inset-0 border border-primary/0 transition-colors duration-500 group-hover:border-primary/60" />
 
             {/* Collapsed label — rotated on desktop */}
