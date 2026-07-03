@@ -101,7 +101,7 @@ export const COMMITTEES: Committee[] = [
     tag: "Human rights, weaponised.",
     description:
       "The UNHRC investigates, condemns, and recommends — turning testimony into doctrine. Forty-seven members, one mandate: hold states accountable to the rights they swore to protect.",
-    agenda: "TBA",
+    agenda: "Addressing the Ongoing State Affairs In Sudan, including Allegations of Genocide and Systemically Induced Starvation.",
     board: "TBA",
     img: commUnhrc,
     intro: {
