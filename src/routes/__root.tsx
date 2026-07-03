@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { BgmPlayer } from "../components/BgmPlayer";
 import { SplashIntro } from "../components/SplashIntro";
+import { GlassCursor } from "../components/GlassCursor";
 
 function NotFoundComponent() {
   return (
@@ -136,6 +137,7 @@ function RootComponent() {
       <Outlet />
       <BgmPlayer />
       <SplashIntro />
+      <GlassCursor />
     </QueryClientProvider>
   );
 }
