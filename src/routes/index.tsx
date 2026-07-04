@@ -7,6 +7,7 @@ import munHall from "@/assets/mun-hall.jpg";
 import gavel from "@/assets/gavel.jpg";
 import { ArrowRight, ArrowUpRight, Instagram } from "lucide-react";
 import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
+import { BgmPlayer } from "@/components/BgmPlayer";
 import { CommitteeExpandGrid } from "@/components/CommitteeExpandGrid";
 import { LegacyVideo } from "@/components/LegacyVideo";
 
@@ -87,6 +88,7 @@ function TopBar() {
             ))}
           </nav>
           <div className="flex items-center gap-3">
+            <BgmPlayer className="flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--mun-gold)]/40 bg-background/70 backdrop-blur-md transition-all hover:border-[color:var(--mun-gold)] hover:shadow-[var(--shadow-gold)]" />
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram @docmunsoc" className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--mun-gold)]/40 bg-background/70 backdrop-blur-md text-[color:var(--mun-gold)] hover:border-[color:var(--mun-gold)] hover:shadow-[var(--shadow-gold)] transition-all">
               <Instagram className="h-4 w-4" />
             </a>
