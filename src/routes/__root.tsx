@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { BgmPlayer } from "../components/BgmPlayer";
+import { BgmAudio } from "../components/BgmPlayer";
 import { SplashIntro } from "../components/SplashIntro";
 import { GlassCursor } from "../components/GlassCursor";
 
@@ -135,7 +135,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
-      <BgmPlayer />
+      <BgmAudio />
       <SplashIntro />
       <GlassCursor />
     </QueryClientProvider>

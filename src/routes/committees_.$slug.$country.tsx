@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import logoAsset from "@/assets/logo.asset.json";
 import { getCommittee, getPortfolio, INSTAGRAM_URL, type Committee, type Portfolio } from "@/data/committees";
+import { BgmPlayer } from "@/components/BgmPlayer";
 
 export const Route = createFileRoute("/committees_/$slug/$country")({
   loader: ({ params }) => {
@@ -55,13 +56,16 @@ function CountryPage() {
               <p className="font-serif italic text-sm">Intra MUN / 2026</p>
             </div>
           </Link>
-          <Link
-            to="/committees/$slug"
-            params={{ slug: committee.slug }}
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-foreground/70 hover:text-primary"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" /> {committee.name}
-          </Link>
+          <div className="flex items-center gap-3">
+            <BgmPlayer className="flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--mun-gold)]/40 bg-background/70 backdrop-blur-md transition-all hover:border-[color:var(--mun-gold)] hover:shadow-[var(--shadow-gold)]" />
+            <Link
+              to="/committees/$slug"
+              params={{ slug: committee.slug }}
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-foreground/70 hover:text-primary"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" /> {committee.name}
+            </Link>
+          </div>
         </div>
       </header>
 
