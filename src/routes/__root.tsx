@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { BgmAudio } from "../components/BgmPlayer";
 import { SplashIntro } from "../components/SplashIntro";
 import { GlassCursor } from "../components/GlassCursor";
+import { WhooshNav } from "../components/WhooshNav";
 
 function NotFoundComponent() {
   return (
@@ -136,6 +137,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <BgmAudio />
+      <WhooshNav />
       <SplashIntro />
       <GlassCursor />
     </QueryClientProvider>
