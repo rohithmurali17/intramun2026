@@ -400,8 +400,8 @@ function Contact() {
           Questions? <span className="italic text-primary">Call us.</span>
         </h2>
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-          {HEADS.map((h) => (
-            <a key={h.name} href={`tel:${h.phone.replace(/\s/g, "")}`} className="group bg-background p-7 flex items-center justify-between hover:bg-secondary/40 transition-colors">
+          {HEADS.map((h, i) => (
+            <a key={h.name} href={`tel:${h.phone.replace(/\s/g, "")}`} className={`group bg-background p-7 flex items-center justify-between hover:bg-secondary/40 transition-colors ${i === HEADS.length - 1 ? "sm:col-span-2 lg:col-span-2" : ""}`}>
               <div>
                 <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{h.n} · CORE</p>
                 <p className="mt-2 font-serif text-2xl">{h.name}</p>
