@@ -14,7 +14,6 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { BgmAudio } from "../components/BgmPlayer";
 import { SplashIntro } from "../components/SplashIntro";
 import { GlassCursor } from "../components/GlassCursor";
-import { CursorTrail } from "../components/CursorTrail";
 import { WhooshNav } from "../components/WhooshNav";
 
 function NotFoundComponent() {
@@ -140,7 +139,6 @@ function RootComponent() {
       <BgmAudio />
       <WhooshNav />
       <SplashIntro />
-      <CursorTrail />
       <GlassCursor />
     </QueryClientProvider>
   );
