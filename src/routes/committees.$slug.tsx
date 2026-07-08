@@ -154,14 +154,26 @@ function CommitteePage() {
                     key={p.slug}
                     to="/committees/$slug/$country"
                     params={{ slug: committee.slug, country: p.slug }}
-                    className="group bg-background p-7 flex items-center justify-between hover:bg-secondary/40 transition-colors"
+                    className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between hover:bg-secondary/40 transition-colors"
                   >
-                    <div>
+                    {p.flagCode && (
+                      <>
+                        <img
+                          src={`https://flagcdn.com/w640/${p.flagCode}.png`}
+                          alt=""
+                          aria-hidden="true"
+                          loading="lazy"
+                          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40 saturate-[0.85] transition-all duration-500 group-hover:opacity-60 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+                      </>
+                    )}
+                    <div className="relative">
                       <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{String(i + 1).padStart(2, "0")}</p>
-                      <p className="mt-3 font-serif text-2xl leading-tight">{p.name}</p>
-                      {p.role && <p className="mt-1 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50">{p.role}</p>}
+                      <p className="mt-3 font-serif text-2xl leading-tight drop-shadow-[0_2px_8px_oklch(0.15_0.045_190/0.9)]">{p.name}</p>
+                      {p.role && <p className="mt-1 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/70">{p.role}</p>}
                     </div>
-                    <ArrowUpRight className="h-5 w-5 text-foreground/40 group-hover:text-primary group-hover:rotate-45 transition-all" />
+                    <ArrowUpRight className="relative h-5 w-5 text-foreground/60 group-hover:text-primary group-hover:rotate-45 transition-all" />
                   </Link>
                 ))}
               </div>
