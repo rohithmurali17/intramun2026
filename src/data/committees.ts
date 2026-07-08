@@ -89,11 +89,45 @@ export const COMMITTEES: Committee[] = [
         "rests entirely in your hands.",
       ],
     },
-    portfolios: [
-      "United States", "Russia", "China", "United Kingdom", "France",
-      "India", "Brazil", "Japan", "Germany", "South Africa",
-      "United Arab Emirates", "Mexico",
-    ].map(country),
+    portfolios: (
+      [
+        // Permanent Members (P5)
+        ["United States of America", "us", "P5", "Permanent Members"],
+        ["United Kingdom of Great Britain and Northern Ireland", "gb", "P5"],
+        ["French Republic", "fr", "P5"],
+        ["Russian Federation", "ru", "P5"],
+        ["People's Republic of China", "cn", "P5"],
+        // Non-Permanent Members (NP10)
+        ["Kingdom of Bahrain", "bh", "Non-Permanent Member", "Non-Permanent Members"],
+        ["Republic of Colombia", "co", "Non-Permanent Member"],
+        ["Democratic Republic of the Congo", "cd", "Non-Permanent Member"],
+        ["Kingdom of Denmark", "dk", "Non-Permanent Member"],
+        ["Hellenic Republic", "gr", "Non-Permanent Member"],
+        ["Republic of Latvia", "lv", "Non-Permanent Member"],
+        ["Republic of Liberia", "lr", "Non-Permanent Member"],
+        ["Islamic Republic of Pakistan", "pk", "Non-Permanent Member"],
+        ["Republic of Panama", "pa", "Non-Permanent Member"],
+        ["Federal Republic of Somalia", "so", "Non-Permanent Member"],
+        // Observer Nations
+        ["Islamic Republic of Iran", "ir", "Observer", "Observer Nations"],
+        ["State of Israel", "il", "Observer"],
+        ["Kingdom of Saudi Arabia", "sa", "Observer"],
+        ["United Arab Emirates", "ae", "Observer"],
+        ["Federal Republic of Germany", "de", "Observer"],
+        ["State of Qatar", "qa", "Observer"],
+        ["Republic of Türkiye", "tr", "Observer"],
+        ["Republic of Iraq", "iq", "Observer"],
+        ["Republic of India", "in", "Observer"],
+        ["Japan", "jp", "Observer"],
+      ] as [string, string, string, string?][]
+    ).map(([name, code, role, groupStart]): Portfolio => ({
+      slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+      name,
+      role,
+      position: placeholder(name),
+      flagCode: code,
+      groupStart,
+    })),
   },
   {
     slug: "unhrc",
