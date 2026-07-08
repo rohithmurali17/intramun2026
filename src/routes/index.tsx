@@ -46,7 +46,7 @@ const HEADS = [
 
 const PROCESS = [
   { n: "01", when: "Now Open", title: "Registration Live", body: "Apply as an individual or assemble a delegation of seven or more." },
-  { n: "02", when: "19 July · 12:00 PM", title: "Applications Close", body: "Last call. No extensions. The gate locks at noon." },
+  { n: "02", when: "18 JULY · 12:00 PM", title: "Applications Close", body: "Last call. No extensions. The gate locks at noon." },
   { n: "03", when: "20 July", title: "Day One · Opening", body: "Ceremony, committee sessions, the first vote on the floor." },
   { n: "04", when: "21 July", title: "Day Two · Verdict", body: "Final sessions, closing remarks, the ₹8,000 cash prize awarded." },
 ];
@@ -158,7 +158,7 @@ function Hero() {
           {[
             ["Dates", "20–21 Jul"],
             ["Prize", "₹8,000"],
-            ["Deadline", "19 Jul · 12PM"],
+            ["Deadline", "18 JUL · 12PM"],
             ["Venue", "CHRIST UNIVERSITY (CENTRAL CAMPUS)"],
           ].map(([k, v], i) => (
             <div key={k} className="px-4 py-5">
@@ -355,7 +355,7 @@ function Register() {
       <div className="relative mx-auto max-w-[1400px] px-6">
         <SectionNumber n="007" label="Final Call" />
         <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.88] tracking-tight max-w-6xl">
-          Apply. <span className="italic text-primary">Before</span><br /> 19 . 07 . 2026.
+          Apply.&nbsp;<span className="italic text-primary">Before</span><br /> 18 . 07 . 2026.
         </h2>
 
         <div className="mt-12 inline-flex flex-wrap items-center gap-6 border border-primary/50 px-7 py-5 bg-background/40 backdrop-blur-sm">
@@ -384,7 +384,7 @@ function Register() {
         </div>
 
         <p className="mt-10 font-mono text-xs tracking-[0.25em] uppercase text-foreground/60">
-          Deadline · 19 . 07 . 2026 · 12:00 PM IST
+          Deadline · 18 . 07 . 2026 · 12:00 PM IST
         </p>
       </div>
     </section>
