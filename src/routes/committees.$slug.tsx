@@ -148,35 +148,60 @@ function CommitteePage() {
                 <p className="max-w-sm text-sm text-foreground/60">Click a portfolio to read its position on the agenda within this committee.</p>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-                {committee.portfolios.map((p, i) => (
-                  <Link
-                    key={p.slug}
-                    to="/committees/$slug/$country"
-                    params={{ slug: committee.slug, country: p.slug }}
-                    className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between hover:bg-secondary/40 transition-colors"
-                  >
-                    {p.flagCode && (
-                      <>
-                        <img
-                          src={`https://flagcdn.com/w640/${p.flagCode}.png`}
-                          alt=""
-                          aria-hidden="true"
-                          loading="lazy"
-                          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40 saturate-[0.85] transition-all duration-500 group-hover:opacity-60 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
-                      </>
-                    )}
-                    <div className="relative">
-                      <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{String(i + 1).padStart(2, "0")}</p>
-                      <p className="mt-3 font-serif text-2xl leading-tight drop-shadow-[0_2px_8px_oklch(0.15_0.045_190/0.9)]">{p.name}</p>
-                      {p.role && <p className="mt-1 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/70">{p.role}</p>}
-                    </div>
-                    <ArrowUpRight className="relative h-5 w-5 text-foreground/60 group-hover:text-primary group-hover:rotate-45 transition-all" />
-                  </Link>
-                ))}
-              </div>
+              {(() => {
+                type Group = { label: string; items: { p: (typeof committee.portfolios)[number]; index: number }[] };
+                const groups: Group[] = [];
+                committee.portfolios.forEach((p, index) => {
+                  if (p.groupStart || groups.length === 0) {
+                    groups.push({ label: p.groupStart ?? "", items: [] });
+                  }
+                  groups[groups.length - 1].items.push({ p, index });
+                });
+                return (
+                  <div className="space-y-12">
+                    {groups.map((g) => (
+                      <div key={g.label || "default"}>
+                        {g.label && (
+                          <div className="mb-4 flex items-center gap-4">
+                            <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">{g.label}</p>
+                            <span className="h-px flex-1 bg-border" />
+                            <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/40">{g.items.length}</p>
+                          </div>
+                        )}
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+                          {g.items.map(({ p, index }) => (
+                            <Link
+                              key={p.slug}
+                              to="/committees/$slug/$country"
+                              params={{ slug: committee.slug, country: p.slug }}
+                              className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between hover:bg-secondary/40 transition-colors"
+                            >
+                              {p.flagCode && (
+                                <>
+                                  <img
+                                    src={`https://flagcdn.com/w640/${p.flagCode}.png`}
+                                    alt=""
+                                    aria-hidden="true"
+                                    loading="lazy"
+                                    className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40 saturate-[0.85] transition-all duration-500 group-hover:opacity-60 group-hover:scale-105"
+                                  />
+                                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+                                </>
+                              )}
+                              <div className="relative">
+                                <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{String(index + 1).padStart(2, "0")}</p>
+                                <p className="mt-3 font-serif text-2xl leading-tight drop-shadow-[0_2px_8px_oklch(0.15_0.045_190/0.9)]">{p.name}</p>
+                                {p.role && <p className="mt-1 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/70">{p.role}</p>}
+                              </div>
+                              <ArrowUpRight className="relative h-5 w-5 text-foreground/60 group-hover:text-primary group-hover:rotate-45 transition-all" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
             </div>
           </section>
         </>
