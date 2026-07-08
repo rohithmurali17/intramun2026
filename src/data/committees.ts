@@ -197,6 +197,7 @@ export const COMMITTEES: Committee[] = [
       role: idx < 45 ? "Member Nation" : "Observer Nation",
       position: placeholder(name as string),
       flagCode: code as string,
+      groupStart: idx === 0 ? "Member Nations" : idx === 45 ? "Observer Nations" : undefined,
     })),
   },
   {
