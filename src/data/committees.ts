@@ -16,6 +16,7 @@ export type Portfolio = {
   role?: string;
   position: string;
   flagCode?: string;
+  groupStart?: string;
 };
 
 export type Committee = {
