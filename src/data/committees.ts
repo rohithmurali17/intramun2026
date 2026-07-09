@@ -19,6 +19,7 @@ export type Portfolio = {
   groupStart?: string;
   party?: string;
   state?: string;
+  flagUrl?: string;
 };
 
 export type Committee = {
@@ -248,7 +249,7 @@ export const COMMITTEES: Committee[] = [
         { name: "Nitin Jairam Gadkari", state: "Maharashtra", party: "BJP", alliance: "NDA", position: "Union Cabinet Minister" },
         { name: "Shivraj Singh Chouhan", state: "Madhya Pradesh", party: "BJP", alliance: "NDA", position: "Union Cabinet Minister" },
         { name: "Manohar Lal Khattar", state: "Haryana", party: "BJP", alliance: "NDA", position: "Union Cabinet Minister" },
-        { name: "H.D. Kumaraswamy", state: "Karnataka", party: "BJP", alliance: "NDA", position: "Union Cabinet Minister" },
+        { name: "H.D. Kumaraswamy", state: "Karnataka", party: "Janata Dal (Secular)", alliance: "NDA", position: "Union Cabinet Minister" },
         { name: "Dharmendra Pradhan", state: "Odisha", party: "BJP", alliance: "NDA", position: "Union Cabinet Minister" },
         { name: "Rajiv Ranjan Singh", state: "Bihar", party: "Janata Dal (United)", alliance: "NDA", position: "Union Cabinet Minister" },
         { name: "Kinjarapu Rammohan Naidu", state: "Andhra Pradesh", party: "Telugu Desam Party", alliance: "NDA", position: "Union Cabinet Minister" },
@@ -281,6 +282,23 @@ export const COMMITTEES: Committee[] = [
         { name: "Supriya Sule", state: "Maharashtra", party: "NCP", alliance: "INDIA", position: "Member of Parliament" },
         { name: "Asaduddin Owaisi", state: "Telangana", party: "All India Majlis-E-Ittehadul Muslimeen", alliance: "Unaligned/Other", position: "Member of Parliament" },
       ];
+      const partyFlag: Record<string, string> = {
+        "BJP": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Bharatiya_Janata_Party_logo.svg/640px-Bharatiya_Janata_Party_logo.svg.png",
+        "Bharatiya Janata Party": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Bharatiya_Janata_Party_logo.svg/640px-Bharatiya_Janata_Party_logo.svg.png",
+        "Indian National Congress": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Indian_National_Congress_hand_logo.svg/640px-Indian_National_Congress_hand_logo.svg.png",
+        "INC": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Indian_National_Congress_hand_logo.svg/640px-Indian_National_Congress_hand_logo.svg.png",
+        "Janata Dal (United)": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Janta_Dal_%28United%29_Flag.svg/640px-Janta_Dal_%28United%29_Flag.svg.png",
+        "Janata Dal (Secular)": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Janata_Dal_%28Secular%29_flag.svg/640px-Janata_Dal_%28Secular%29_flag.svg.png",
+        "Telugu Desam Party": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Telugu_Desam_Party_flag.svg/640px-Telugu_Desam_Party_flag.svg.png",
+        "Lok Janshakti Party (Ram Vilas)": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Lok_Janshakti_Party_%28Ram_Vilas%29_logo.png/640px-Lok_Janshakti_Party_%28Ram_Vilas%29_logo.png",
+        "Apna Dal (Soneylal)": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Apna_Dal_%28Sonelal%29_logo.png/640px-Apna_Dal_%28Sonelal%29_logo.png",
+        "Shiv Sena (Uddhav Balasaheb Thackeray)": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Shiv_Sena_%28UBT%29_logo.svg/640px-Shiv_Sena_%28UBT%29_logo.svg.png",
+        "Rashtriya Janata Dal": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Rashtriya_Janata_Dal_Flag.svg/640px-Rashtriya_Janata_Dal_Flag.svg.png",
+        "All India Trinamool Congress": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/All_India_Trinamool_Congress_flag.svg/640px-All_India_Trinamool_Congress_flag.svg.png",
+        "DMK": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Dravida_Munnetra_Kazhagam.svg/640px-Flag_of_Dravida_Munnetra_Kazhagam.svg.png",
+        "NCP": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Nationalist_Congress_Party_flag.svg/640px-Nationalist_Congress_Party_flag.svg.png",
+        "All India Majlis-E-Ittehadul Muslimeen": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/AIMIM_flag.svg/640px-AIMIM_flag.svg.png",
+      };
       let currentAlliance = "";
       return rows.map((r) => {
         const groupStart = r.alliance !== currentAlliance ? r.alliance : undefined;
@@ -292,6 +310,7 @@ export const COMMITTEES: Committee[] = [
           position: placeholder(r.name),
           party: r.party,
           state: r.state,
+          flagUrl: partyFlag[r.party],
           groupStart,
         };
       });

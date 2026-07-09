@@ -176,10 +176,10 @@ function CommitteePage() {
                               params={{ slug: committee.slug, country: p.slug }}
                               className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between hover:bg-secondary/40 transition-colors"
                             >
-                              {p.flagCode && (
+                              {(p.flagCode || p.flagUrl) && (
                                 <>
                                   <img
-                                    src={`https://flagcdn.com/w640/${p.flagCode}.png`}
+                                    src={p.flagUrl ?? `https://flagcdn.com/w640/${p.flagCode}.png`}
                                     alt=""
                                     aria-hidden="true"
                                     loading="lazy"
