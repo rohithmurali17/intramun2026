@@ -192,6 +192,13 @@ function CommitteePage() {
                                 <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{String(index + 1).padStart(2, "0")}</p>
                                 <p className="mt-3 font-serif text-2xl leading-tight drop-shadow-[0_2px_8px_oklch(0.15_0.045_190/0.9)]">{p.name}</p>
                                 {p.role && <p className="mt-1 font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/70">{p.role}</p>}
+                                {(p.party || p.state) && (
+                                  <p className="mt-2 font-mono text-[10px] tracking-[0.2em] uppercase text-foreground/50">
+                                    {p.party}
+                                    {p.party && p.state ? " · " : ""}
+                                    {p.state}
+                                  </p>
+                                )}
                               </div>
                               <ArrowUpRight className="relative h-5 w-5 text-foreground/60 group-hover:text-primary group-hover:rotate-45 transition-all" />
                             </Link>
