@@ -19,6 +19,7 @@ export type Portfolio = {
   groupStart?: string;
   party?: string;
   state?: string;
+  flagUrl?: string;
 };
 
 export type Committee = {
