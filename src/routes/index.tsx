@@ -212,13 +212,13 @@ function Society() {
       <div className="mx-auto max-w-[1400px] px-6">
         <SectionNumber n="001" label="The Society" />
         <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-5xl">
-          We don't run <span className="italic text-primary">a club.</span> We run <span className="italic text-primary">a delegation.</span>
+          About DOCMUNSOC&nbsp;.
         </h2>
         <div className="mt-14 grid md:grid-cols-2 gap-12 lg:gap-20">
           <div className="space-y-5 text-base md:text-lg text-foreground/75 leading-relaxed max-w-xl">
-            <p>Within the Department of Commerce, the MUN Society stands as a premier forum for diplomacy, debate, and global affairs — fostering a culture of research, rhetoric, and leadership.</p>
+            <p>Within the Department of Commerce, the MUN Society serves as a premier forum for diplomacy, debate, and global affairs, fostering a culture of research, rhetoric, and leadership.</p>
             <p>We don't gather to participate. We gather to set the standard the rest follow.</p>
-            <p>INTRA MUN is our flagship internal conference — the proving ground where new delegates discover their voice and veterans defend their record.</p>
+            <p>INTRA MUN is our flagship internal conference, the proving ground where new delegates discover their voice and veterans defend their record.</p>
           </div>
           <div className="grid grid-cols-2 gap-px bg-border border border-border self-start">
             {stats.map(([v, l]) => (
