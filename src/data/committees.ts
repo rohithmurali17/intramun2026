@@ -20,6 +20,8 @@ export type Portfolio = {
   party?: string;
   state?: string;
   flagUrl?: string;
+  bgColor?: string;
+  badge?: string;
 };
 
 export type Committee = {
@@ -283,26 +285,32 @@ export const COMMITTEES: Committee[] = [
         { name: "Asaduddin Owaisi", state: "Telangana", party: "All India Majlis-E-Ittehadul Muslimeen", alliance: "Unaligned/Other", position: "Member of Parliament" },
       ];
       const partyFlag: Record<string, string> = {
-        "BJP": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Bharatiya_Janata_Party_logo.svg/640px-Bharatiya_Janata_Party_logo.svg.png",
-        "Bharatiya Janata Party": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Bharatiya_Janata_Party_logo.svg/640px-Bharatiya_Janata_Party_logo.svg.png",
-        "Indian National Congress": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Indian_National_Congress_hand_logo.svg/640px-Indian_National_Congress_hand_logo.svg.png",
-        "INC": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Indian_National_Congress_hand_logo.svg/640px-Indian_National_Congress_hand_logo.svg.png",
-        "Janata Dal (United)": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Janta_Dal_%28United%29_Flag.svg/640px-Janta_Dal_%28United%29_Flag.svg.png",
-        "Janata Dal (Secular)": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Janata_Dal_%28Secular%29_flag.svg/640px-Janata_Dal_%28Secular%29_flag.svg.png",
-        "Telugu Desam Party": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Telugu_Desam_Party_flag.svg/640px-Telugu_Desam_Party_flag.svg.png",
-        "Lok Janshakti Party (Ram Vilas)": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Lok_Janshakti_Party_%28Ram_Vilas%29_logo.png/640px-Lok_Janshakti_Party_%28Ram_Vilas%29_logo.png",
-        "Apna Dal (Soneylal)": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Apna_Dal_%28Sonelal%29_logo.png/640px-Apna_Dal_%28Sonelal%29_logo.png",
-        "Shiv Sena (Uddhav Balasaheb Thackeray)": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Shiv_Sena_%28UBT%29_logo.svg/640px-Shiv_Sena_%28UBT%29_logo.svg.png",
-        "Rashtriya Janata Dal": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Rashtriya_Janata_Dal_Flag.svg/640px-Rashtriya_Janata_Dal_Flag.svg.png",
-        "All India Trinamool Congress": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/All_India_Trinamool_Congress_flag.svg/640px-All_India_Trinamool_Congress_flag.svg.png",
-        "DMK": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Dravida_Munnetra_Kazhagam.svg/640px-Flag_of_Dravida_Munnetra_Kazhagam.svg.png",
-        "NCP": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Nationalist_Congress_Party_flag.svg/640px-Nationalist_Congress_Party_flag.svg.png",
-        "All India Majlis-E-Ittehadul Muslimeen": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/AIMIM_flag.svg/640px-AIMIM_flag.svg.png",
+        // Verified via Commons Special:FilePath (redirects to a cache-friendly URL).
+        "BJP": "https://commons.wikimedia.org/wiki/Special:FilePath/Logo%20of%20the%20Bharatiya%20Janata%20Party.svg?width=640",
+        "Bharatiya Janata Party": "https://commons.wikimedia.org/wiki/Special:FilePath/Logo%20of%20the%20Bharatiya%20Janata%20Party.svg?width=640",
+        "Indian National Congress": "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20National%20Congress%20hand%20logo.svg?width=640",
+        "INC": "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20National%20Congress%20hand%20logo.svg?width=640",
+        "Janata Dal (United)": "https://commons.wikimedia.org/wiki/Special:FilePath/Janata%20Dal%20%28United%29%20Flag.svg?width=640",
+        "Janata Dal (Secular)": "https://commons.wikimedia.org/wiki/Special:FilePath/Janata%20Dal%20%28Secular%29%20flag%20%281%29.svg?width=640",
+        "Shiv Sena (Uddhav Balasaheb Thackeray)": "https://commons.wikimedia.org/wiki/Special:FilePath/Shiv%20Sena%20%28UBT%29%20Logo.png?width=640",
+        "Rashtriya Janata Dal": "https://commons.wikimedia.org/wiki/Special:FilePath/RJD%20Flag.svg?width=640",
+        "All India Trinamool Congress": "https://commons.wikimedia.org/wiki/Special:FilePath/All%20India%20Trinamool%20Congress%20flag%20%282%29.svg?width=640",
+        "NCP": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Nationalist%20Congress%20Party.svg?width=640",
+      };
+      // Parties without a hotlink-friendly image: fall back to a party-colored gradient.
+      const partyColor: Record<string, { color: string; badge: string }> = {
+        "Telugu Desam Party": { color: "#f7c722", badge: "TDP" },
+        "TDP": { color: "#f7c722", badge: "TDP" },
+        "Lok Janshakti Party (Ram Vilas)": { color: "#0a4d8c", badge: "LJP(RV)" },
+        "Apna Dal (Soneylal)": { color: "#c9a24b", badge: "AD(S)" },
+        "DMK": { color: "#e2231a", badge: "DMK" },
+        "All India Majlis-E-Ittehadul Muslimeen": { color: "#0a7a3b", badge: "AIMIM" },
       };
       let currentAlliance = "";
       return rows.map((r) => {
         const groupStart = r.alliance !== currentAlliance ? r.alliance : undefined;
         currentAlliance = r.alliance;
+        const fallback = partyColor[r.party];
         return {
           slug: r.name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
           name: r.name,
@@ -311,6 +319,8 @@ export const COMMITTEES: Committee[] = [
           party: r.party,
           state: r.state,
           flagUrl: partyFlag[r.party],
+          bgColor: fallback?.color,
+          badge: fallback?.badge,
           groupStart,
         };
       });
