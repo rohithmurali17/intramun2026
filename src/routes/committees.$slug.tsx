@@ -176,7 +176,7 @@ function CommitteePage() {
                               params={{ slug: committee.slug, country: p.slug }}
                               className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between hover:bg-secondary/40 transition-colors"
                             >
-                              {(p.flagCode || p.flagUrl) && (
+                              {(p.flagCode || p.flagUrl) ? (
                                 <>
                                   <img
                                     src={p.flagUrl ?? `https://flagcdn.com/w640/${p.flagCode}.png`}
@@ -187,7 +187,28 @@ function CommitteePage() {
                                   />
                                   <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
                                 </>
-                              )}
+                              ) : p.bgColor ? (
+                                <>
+                                  <div
+                                    aria-hidden="true"
+                                    className="absolute inset-0 -z-10 transition-opacity duration-500 group-hover:opacity-80"
+                                    style={{
+                                      background: `linear-gradient(120deg, ${p.bgColor} 0%, ${p.bgColor}cc 45%, oklch(0.15 0.045 190) 100%)`,
+                                      opacity: 0.55,
+                                    }}
+                                  />
+                                  {p.badge && (
+                                    <span
+                                      aria-hidden="true"
+                                      className="pointer-events-none absolute -right-2 top-1/2 -translate-y-1/2 -z-10 font-serif font-black tracking-tight text-white/15 select-none"
+                                      style={{ fontSize: "5rem", lineHeight: 1 }}
+                                    >
+                                      {p.badge}
+                                    </span>
+                                  )}
+                                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/90 via-background/60 to-background/20" />
+                                </>
+                              ) : null}
                               <div className="relative">
                                 <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{String(index + 1).padStart(2, "0")}</p>
                                 <p className="mt-3 font-serif text-2xl leading-tight drop-shadow-[0_2px_8px_oklch(0.15_0.045_190/0.9)]">{p.name}</p>
