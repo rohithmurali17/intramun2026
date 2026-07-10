@@ -20,6 +20,8 @@ export type Portfolio = {
   party?: string;
   state?: string;
   flagUrl?: string;
+  bgColor?: string;
+  badge?: string;
 };
 
 export type Committee = {
