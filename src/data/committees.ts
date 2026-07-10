@@ -211,7 +211,7 @@ export const COMMITTEES: Committee[] = [
     tag: "The Republic, in the same room.",
     description:
       "AIPPM brings every major Indian political party to a single table — to debate the most consequential domestic questions of the day. No diplomacy. Just politics, sharpened.",
-    agenda: "Discussing The Policy of Demonetisation and Its Socio-economic Ramifications on the Nation.\n\nFreeze Date: 18th November 2016",
+    agenda: "Discussion on Center - State relations and Federalism (Article 356's misuse, Governors Role).",
     board: "TBA",
     img: commAippm,
     intro: {
