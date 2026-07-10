@@ -373,10 +373,10 @@ function Register() {
             </a>
           </div>
           <div className="group bg-[oklch(0.22_0.045_190)] p-8 md:p-12 relative">
-            <span className="absolute top-6 right-6 font-mono text-[10px] tracking-[0.25em] uppercase text-primary border border-primary/60 px-2 py-1">Min · 7</span>
+            <span className="absolute top-6 right-6 font-mono text-[10px] tracking-[0.25em] uppercase text-primary border border-primary/60 px-2 py-1 text-right">MIN · 7<br />MAX . 15</span>
             <p className="font-mono text-xs tracking-widest text-primary">B.</p>
             <h3 className="mt-4 font-serif text-4xl md:text-5xl">Delegation</h3>
-            <p className="mt-4 text-foreground/70 leading-relaxed">Bring your crew. Seven members minimum. Compete together. Win together. The ₹8,000 cash prize is built for you.</p>
+            <p className="mt-4 text-foreground/70 leading-relaxed">Bring your crew. 7 members minimum, 15 members maximum, while ensuring the delegation covers all 4 committees. Compete together. Win together. The ₹8,000 cash prize is built for you.</p>
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="mt-10 inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-foreground border-b border-primary pb-1 group-hover:gap-5 transition-all">
               Register as Delegation <ArrowRight className="h-4 w-4" />
             </a>
