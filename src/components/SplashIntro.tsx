@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import intro from "@/assets/docmunsoc-intro.mp4.asset.json";
+import introWebm from "@/assets/docmunsoc-intro.webm.asset.json";
 import introPoster from "@/assets/docmunsoc-intro-poster.jpg.asset.json";
 
 const SESSION_KEY = "docmun:introSeen";
@@ -56,7 +57,6 @@ export function SplashIntro() {
     >
       <video
         ref={videoRef}
-        src={intro.url}
         poster={introPoster.url}
         crossOrigin="anonymous"
         autoPlay
@@ -68,7 +68,10 @@ export function SplashIntro() {
           "absolute inset-0 h-full w-full object-cover transition-opacity duration-500 " +
           (ended ? "opacity-0" : "opacity-100")
         }
-      />
+      >
+        <source src={introWebm.url} type="video/webm" />
+        <source src={intro.url} type="video/mp4" />
+      </video>
 
       {/* Dark scrim behind end-state so the choice UI never overlaps the video's last frame */}
       {ended && (

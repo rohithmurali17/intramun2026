@@ -16,6 +16,7 @@ import { SplashIntro } from "../components/SplashIntro";
 import { GlassCursor } from "../components/GlassCursor";
 import { WhooshNav } from "../components/WhooshNav";
 import introVideo from "../assets/docmunsoc-intro.mp4.asset.json";
+import introWebm from "../assets/docmunsoc-intro.webm.asset.json";
 import introPoster from "../assets/docmunsoc-intro-poster.jpg.asset.json";
 
 function NotFoundComponent() {
@@ -100,6 +101,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "preload",
+        as: "fetch",
+        href: introWebm.url,
+        type: "video/webm",
+        fetchPriority: "high",
+        crossOrigin: "anonymous",
       },
       {
         rel: "preload",
