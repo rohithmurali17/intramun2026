@@ -106,14 +106,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         as: "fetch",
         href: introVideo.url,
         type: "video/mp4",
-        fetchpriority: "high",
+        fetchPriority: "high",
         crossOrigin: "anonymous",
       },
       {
         rel: "preload",
         as: "image",
         href: introPoster.url,
-        fetchpriority: "high",
+        fetchPriority: "high",
       },
       {
         rel: "preconnect",
