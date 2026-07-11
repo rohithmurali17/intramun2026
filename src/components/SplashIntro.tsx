@@ -58,6 +58,7 @@ export function SplashIntro() {
         ref={videoRef}
         src={intro.url}
         poster={introPoster.url}
+        crossOrigin="anonymous"
         autoPlay
         muted
         playsInline
