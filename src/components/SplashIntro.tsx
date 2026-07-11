@@ -5,18 +5,29 @@ import intro from "@/assets/docmunsoc-intro.mp4.asset.json";
 const SESSION_KEY = "docmun:introSeen";
 
 export function SplashIntro() {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(true);
   const [ended, setEnded] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (sessionStorage.getItem(SESSION_KEY) === "1") return;
-    setMounted(true);
+    if (sessionStorage.getItem(SESSION_KEY) === "1") {
+      setMounted(false);
+      return;
+    }
+
     // Lock body scroll while splash is visible
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
+    const video = videoRef.current;
+    video?.load();
+    void video?.play().catch(() => {
+      // Muted autoplay is allowed on modern browsers; if a browser still blocks,
+      // the skip control keeps the visitor from being trapped.
+    });
+
     return () => {
       document.body.style.overflow = prev;
     };
@@ -49,6 +60,7 @@ export function SplashIntro() {
         muted
         playsInline
         preload="auto"
+        fetchPriority="high"
         onEnded={() => setEnded(true)}
         className={
           "absolute inset-0 h-full w-full object-cover transition-opacity duration-500 " +
