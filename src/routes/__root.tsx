@@ -15,6 +15,7 @@ import { BgmAudio } from "../components/BgmPlayer";
 import { SplashIntro } from "../components/SplashIntro";
 import { GlassCursor } from "../components/GlassCursor";
 import { WhooshNav } from "../components/WhooshNav";
+import introVideo from "../assets/docmunsoc-intro.mp4.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -98,6 +99,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "preload",
+        as: "video",
+        href: introVideo.url,
+        type: "video/mp4",
+        fetchpriority: "high",
       },
       {
         rel: "preconnect",
