@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import intro from "@/assets/docmunsoc-intro.mp4.asset.json";
+import introPoster from "@/assets/docmunsoc-intro-poster.jpg.asset.json";
 
 const SESSION_KEY = "docmun:introSeen";
 
@@ -56,6 +57,7 @@ export function SplashIntro() {
       <video
         ref={videoRef}
         src={intro.url}
+        poster={introPoster.url}
         autoPlay
         muted
         playsInline
