@@ -60,7 +60,6 @@ export function SplashIntro() {
         muted
         playsInline
         preload="auto"
-        fetchPriority="high"
         onEnded={() => setEnded(true)}
         className={
           "absolute inset-0 h-full w-full object-cover transition-opacity duration-500 " +
