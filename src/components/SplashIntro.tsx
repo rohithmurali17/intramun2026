@@ -1,22 +1,35 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import intro from "@/assets/docmunsoc-intro.mp4.asset.json";
+import introWebm from "@/assets/docmunsoc-intro.webm.asset.json";
+import introPoster from "@/assets/docmunsoc-intro-poster.jpg.asset.json";
 
 const SESSION_KEY = "docmun:introSeen";
 
 export function SplashIntro() {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(true);
   const [ended, setEnded] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (sessionStorage.getItem(SESSION_KEY) === "1") return;
-    setMounted(true);
+    if (sessionStorage.getItem(SESSION_KEY) === "1") {
+      setMounted(false);
+      return;
+    }
+
     // Lock body scroll while splash is visible
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
+    const video = videoRef.current;
+    video?.load();
+    void video?.play().catch(() => {
+      // Muted autoplay is allowed on modern browsers; if a browser still blocks,
+      // the skip control keeps the visitor from being trapped.
+    });
+
     return () => {
       document.body.style.overflow = prev;
     };
@@ -44,7 +57,8 @@ export function SplashIntro() {
     >
       <video
         ref={videoRef}
-        src={intro.url}
+        poster={introPoster.url}
+        crossOrigin="anonymous"
         autoPlay
         muted
         playsInline
@@ -54,7 +68,10 @@ export function SplashIntro() {
           "absolute inset-0 h-full w-full object-cover transition-opacity duration-500 " +
           (ended ? "opacity-0" : "opacity-100")
         }
-      />
+      >
+        <source src={introWebm.url} type="video/webm" />
+        <source src={intro.url} type="video/mp4" />
+      </video>
 
       {/* Dark scrim behind end-state so the choice UI never overlaps the video's last frame */}
       {ended && (
