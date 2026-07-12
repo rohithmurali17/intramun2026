@@ -37,11 +37,13 @@ const NAV = [
 ];
 
 const HEADS = [
-  { n: "01", name: "Bharanidharan TH", phone: "+91 88676 20512" },
-  { n: "02", name: "Dhruv S Dali", phone: "+91 99729 67558" },
-  { n: "03", name: "Hayati Podugu", phone: "+91 63015 92872" },
-  { n: "04", name: "Nihal P Patil", phone: "+91 93533 45923" },
-  { n: "05", name: "Rohith M", phone: "+91 84959 12380" },
+  { n: "01", name: "Bharanidharan TH", phone: "+91 88676 20512", role: "CORE" },
+  { n: "02", name: "Dhruv S Dali", phone: "+91 99729 67558", role: "CORE" },
+  { n: "03", name: "Hayati Podugu", phone: "+91 63015 92872", role: "CORE" },
+  { n: "04", name: "Nihal P Patil", phone: "+91 93533 45923", role: "CORE" },
+  { n: "05", name: "Rohith M", phone: "+91 84959 12380", role: "CORE" },
+  { n: "06", name: "Keshav", phone: "+91 99723 48790", role: "Head of Delegate Affairs" },
+  { n: "07", name: "Tia", phone: "+91 79853 70369", role: "Head of Delegate Affairs" },
 ];
 
 const PROCESS = [
@@ -403,7 +405,7 @@ function Contact() {
           {HEADS.map((h, i) => (
             <a key={h.name} href={`tel:${h.phone.replace(/\s/g, "")}`} className={`group bg-background p-7 flex items-center justify-between hover:bg-secondary/40 transition-colors ${i === HEADS.length - 1 ? "sm:col-span-2 lg:col-span-2" : ""}`}>
               <div>
-                <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{h.n} · CORE</p>
+                <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-primary">{h.n} · {h.role}</p>
                 <p className="mt-2 font-serif text-2xl">{h.name}</p>
                 <p className="mt-1 font-mono text-sm text-foreground/60">{h.phone}</p>
               </div>
