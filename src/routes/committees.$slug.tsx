@@ -183,9 +183,9 @@ function CommitteePage() {
                                     alt=""
                                     aria-hidden="true"
                                     loading="lazy"
-                                    className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40 saturate-[0.85] transition-all duration-500 group-hover:opacity-60 group-hover:scale-105"
+                                    className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40 saturate-[0.85] transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:opacity-95 group-hover:saturate-100 group-hover:scale-105"
                                   />
-                                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+                                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/70 to-background/30 transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:from-background/70 group-hover:via-background/35 group-hover:to-background/10" />
                                 </>
                               ) : p.bgColor ? (
                                 <>
