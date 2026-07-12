@@ -174,7 +174,7 @@ function CommitteePage() {
                               key={p.slug}
                               to="/committees/$slug/$country"
                               params={{ slug: committee.slug, country: p.slug }}
-                              className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between hover:bg-secondary/40 transition-colors"
+                              className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between transition-all duration-300 ease-out hover:scale-[1.03] hover:z-10 hover:shadow-[0_20px_60px_-12px_oklch(0.15_0.045_190/0.5)] hover:border hover:border-primary/40"
                             >
                               {(p.flagCode || p.flagUrl) ? (
                                 <>
