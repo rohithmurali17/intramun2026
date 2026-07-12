@@ -183,15 +183,15 @@ function CommitteePage() {
                                     alt=""
                                     aria-hidden="true"
                                     loading="lazy"
-                                    className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40 saturate-[0.85] transition-all duration-500 group-hover:opacity-60 group-hover:scale-105"
+                                    className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40 saturate-[0.85] transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:opacity-95 group-hover:saturate-100 group-hover:scale-105"
                                   />
-                                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+                                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/70 to-background/30 transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:from-background/70 group-hover:via-background/35 group-hover:to-background/10" />
                                 </>
                               ) : p.bgColor ? (
                                 <>
                                   <div
                                     aria-hidden="true"
-                                    className="absolute inset-0 -z-10 transition-opacity duration-500 group-hover:opacity-80"
+                                    className="absolute inset-0 -z-10 transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:opacity-40"
                                     style={{
                                       background: `linear-gradient(120deg, ${p.bgColor} 0%, ${p.bgColor}cc 45%, oklch(0.15 0.045 190) 100%)`,
                                       opacity: 0.55,
@@ -200,13 +200,13 @@ function CommitteePage() {
                                   {p.badge && (
                                     <span
                                       aria-hidden="true"
-                                      className="pointer-events-none absolute -right-2 top-1/2 -translate-y-1/2 -z-10 font-serif font-black tracking-tight text-white/15 select-none"
+                                      className="pointer-events-none absolute -right-2 top-1/2 -translate-y-1/2 -z-10 font-serif font-black tracking-tight text-white/15 select-none transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:text-white/30"
                                       style={{ fontSize: "5rem", lineHeight: 1 }}
                                     >
                                       {p.badge}
                                     </span>
                                   )}
-                                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/90 via-background/60 to-background/20" />
+                                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/90 via-background/60 to-background/20 transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:from-background/70 group-hover:via-background/35 group-hover:to-background/10" />
                                 </>
                               ) : null}
                               <div className="relative">
