@@ -191,7 +191,7 @@ function CommitteePage() {
                                 <>
                                   <div
                                     aria-hidden="true"
-                                    className="absolute inset-0 -z-10 transition-opacity duration-500 group-hover:opacity-80"
+                                    className="absolute inset-0 -z-10 transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:opacity-40"
                                     style={{
                                       background: `linear-gradient(120deg, ${p.bgColor} 0%, ${p.bgColor}cc 45%, oklch(0.15 0.045 190) 100%)`,
                                       opacity: 0.55,
