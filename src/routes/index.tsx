@@ -484,6 +484,7 @@ function Index() {
         <Board />
         <Process />
         <LegacyVideo />
+        <Brochure />
         <Register />
         <Contact />
       </main>
