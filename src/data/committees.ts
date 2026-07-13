@@ -282,6 +282,12 @@ export const COMMITTEES: Committee[] = [
         { name: "Manish Tewari", state: "Chandigarh", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
         { name: "K.C. Venugopal", state: "Kerala", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
         { name: "Supriya Sule", state: "Maharashtra", party: "NCP", alliance: "INDIA", position: "Member of Parliament" },
+        { name: "Priyanka Gandhi", state: "Kerala", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
+        { name: "D.K. Shivakumar", state: "Karnataka", party: "INC", alliance: "INDIA", position: "Member of Legislative Assembly" },
+        { name: "Alfred Kanngam S. Arthur", state: "Manipur", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
+        { name: "Angomcha Bimol Akoijam", state: "Manipur", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
+        { name: "S. Supongmeren Jamir", state: "Assam", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
+        { name: "Saleng A. Sangma", state: "Meghalaya", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
         { name: "Asaduddin Owaisi", state: "Telangana", party: "All India Majlis-E-Ittehadul Muslimeen", alliance: "Unaligned/Other", position: "Member of Parliament" },
       ];
       const partyFlag: Record<string, string> = {
