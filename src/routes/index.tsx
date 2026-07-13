@@ -394,6 +394,49 @@ function Register() {
   );
 }
 
+function Brochure() {
+  return (
+    <section id="brochure" className="relative py-24 md:py-32 bg-[oklch(0.13_0.045_190)] border-y border-border overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.35_0.06_190/0.35),transparent_70%)]" />
+      <div className="relative mx-auto max-w-[1400px] px-6 grid md:grid-cols-[1.1fr_1fr] gap-12 items-center">
+        <div>
+          <SectionNumber n="006" label="The Brochure" />
+          <h2 className="font-serif text-5xl md:text-7xl leading-[0.9] tracking-tight">
+            The full <span className="italic text-primary">dossier.</span>
+          </h2>
+          <p className="mt-6 max-w-xl text-foreground/70 leading-relaxed">
+            Every committee. Every agenda. Every rule of procedure. Download the official INTRA MUN 2026 brochure before you register.
+          </p>
+          <a
+            href={brochureAsset.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-10 inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-foreground border border-primary/60 px-6 py-4 hover:bg-primary hover:text-background transition-colors"
+          >
+            Download Brochure (PDF) <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+        <a
+          href={brochureAsset.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block aspect-[3/4] border border-border bg-[oklch(0.18_0.045_190)] overflow-hidden hover:border-primary/60 transition-colors"
+        >
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8 text-center">
+            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-primary">Official Document</p>
+            <p className="font-serif text-4xl md:text-5xl leading-tight">INTRA MUN<br /><span className="italic text-primary">2026</span></p>
+            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-foreground/60">Vol. 3 · Brochure</p>
+            <span className="mt-6 inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-foreground group-hover:text-primary transition-colors">
+              Open PDF <ArrowUpRight className="h-4 w-4 group-hover:rotate-45 transition-transform" />
+            </span>
+          </div>
+          <div className="absolute inset-x-0 bottom-0 h-1 bg-primary/60" />
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function Contact() {
   return (
     <section id="contact" className="py-24 md:py-32 bg-[oklch(0.13_0.045_190)] border-t border-border">
