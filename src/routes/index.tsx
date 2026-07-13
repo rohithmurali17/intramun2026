@@ -10,6 +10,7 @@ import { COMMITTEES, INSTAGRAM_URL } from "@/data/committees";
 import { BgmPlayer } from "@/components/BgmPlayer";
 import { CommitteeExpandGrid } from "@/components/CommitteeExpandGrid";
 import { LegacyVideo } from "@/components/LegacyVideo";
+import brochureAsset from "@/assets/brochure.pdf.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
