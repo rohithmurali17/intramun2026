@@ -150,6 +150,21 @@ function TrackPage() {
             </p>
           </div>
 
+          {filteredPortfolios.length === 0 ? (
+            <div className="border border-border bg-background p-10 md:p-14">
+              <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">
+                Independent Allocation
+              </p>
+              <p className="mt-4 font-serif text-2xl md:text-3xl leading-snug max-w-3xl">
+                {isPhoto
+                  ? "Photographers in IPP participate as independent individuals — no agency, no affiliation. Assignments are issued on-site by the Executive Board."
+                  : "Journalists in IPJ are allocated to news agencies by the Executive Board at the start of the conference. No pre-declared roster."}
+              </p>
+              <p className="mt-4 text-sm text-foreground/60 max-w-2xl">
+                Portfolios will be confirmed after registration closes. Reach out via the contact section on the home page for anything urgent.
+              </p>
+            </div>
+          ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
             {filteredPortfolios.map((p, i) => (
               <Link
@@ -175,6 +190,7 @@ function TrackPage() {
               </Link>
             ))}
           </div>
+          )}
         </div>
       </section>
 
