@@ -171,13 +171,10 @@ function CommitteePage() {
                           </div>
                         )}
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-                          {g.items.map(({ p, index }) => (
-                            <Link
-                              key={p.slug}
-                              to="/committees/$slug/$country"
-                              params={{ slug: committee.slug, country: p.slug }}
-                              className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] hover:scale-[1.09] hover:z-20 hover:shadow-[0_30px_80px_-40px_oklch(0_0_0/0.85)] hover:border hover:border-primary/60"
-                            >
+                          {g.items.map(({ p, index }) => {
+                            const isAllocated = !!allocated?.has(normalizeName(p.name));
+                            const commonInner = (
+                              <>
                               {(p.flagCode || p.flagUrl) ? (
                                 <>
                                   <img
@@ -223,9 +220,39 @@ function CommitteePage() {
                                   </p>
                                 )}
                               </div>
-                              <ArrowUpRight className="relative h-5 w-5 text-foreground/60 group-hover:text-primary group-hover:rotate-45 transition-all" />
-                            </Link>
-                          ))}
+                              {!isAllocated && (
+                                <ArrowUpRight className="relative h-5 w-5 text-foreground/60 group-hover:text-primary group-hover:rotate-45 transition-all" />
+                              )}
+                              {isAllocated && (
+                                <>
+                                  <div aria-hidden="true" className="absolute inset-0 -z-10 bg-background/70 backdrop-grayscale" />
+                                  <div className="pointer-events-none absolute top-3 right-3 z-10 px-2 py-1 border border-foreground/40 bg-background/70 backdrop-blur-sm">
+                                    <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-foreground/70">Allocated</span>
+                                  </div>
+                                </>
+                              )}
+                              </>
+                            );
+                            return isAllocated ? (
+                              <div
+                                key={p.slug}
+                                aria-disabled="true"
+                                title="This portfolio has already been allocated"
+                                className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between grayscale opacity-60 cursor-not-allowed select-none"
+                              >
+                                {commonInner}
+                              </div>
+                            ) : (
+                              <Link
+                                key={p.slug}
+                                to="/committees/$slug/$country"
+                                params={{ slug: committee.slug, country: p.slug }}
+                                className="group relative isolate overflow-hidden bg-background p-7 min-h-[168px] flex items-center justify-between transition-all duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)] hover:scale-[1.09] hover:z-20 hover:shadow-[0_30px_80px_-40px_oklch(0_0_0/0.85)] hover:border hover:border-primary/60"
+                              >
+                                {commonInner}
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
                     ))}
