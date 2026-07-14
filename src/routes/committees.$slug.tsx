@@ -4,6 +4,7 @@ import logoAsset from "@/assets/logo.asset.json";
 import { getCommittee, INSTAGRAM_URL, type Committee } from "@/data/committees";
 import { IntroPlayer } from "@/components/IntroPlayer";
 import { BgmPlayer } from "@/components/BgmPlayer";
+import { useAllocations, normalizeName } from "@/lib/allocations";
 
 export const Route = createFileRoute("/committees/$slug")({
   loader: ({ params }) => {
@@ -43,6 +44,7 @@ export const Route = createFileRoute("/committees/$slug")({
 
 function CommitteePage() {
   const { committee } = Route.useLoaderData() as { committee: Committee };
+  const { data: allocated } = useAllocations(committee.slug);
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[oklch(0.15_0.045_190/0.7)] border-b border-border/60">
