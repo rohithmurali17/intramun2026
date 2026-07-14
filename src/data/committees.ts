@@ -403,18 +403,7 @@ export const COMMITTEES: Committee[] = [
         },
       },
     ],
-    portfolios: [
-      { slug: "reuters", name: "Reuters", role: "Wire Service", position: placeholder("Reuters") },
-      { slug: "ap", name: "Associated Press", role: "Wire Service", position: placeholder("Associated Press") },
-      { slug: "bbc", name: "BBC News", role: "Broadcast", position: placeholder("BBC News") },
-      { slug: "al-jazeera", name: "Al Jazeera", role: "Broadcast", position: placeholder("Al Jazeera") },
-      { slug: "the-hindu", name: "The Hindu", role: "Print", position: placeholder("The Hindu") },
-      { slug: "the-indian-express", name: "The Indian Express", role: "Print", position: placeholder("The Indian Express") },
-      { slug: "new-york-times", name: "The New York Times", role: "Print", position: placeholder("The New York Times") },
-      { slug: "magnum", name: "Magnum Photos", role: "Photography", position: placeholder("Magnum Photos") },
-      { slug: "getty", name: "Getty Images", role: "Photography", position: placeholder("Getty Images") },
-      { slug: "afp-photo", name: "AFP Photo", role: "Photography", position: placeholder("AFP Photo") },
-    ],
+    portfolios: [],
   },
 ];
 
