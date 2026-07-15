@@ -145,6 +145,8 @@ function Hero() {
         </p>
         <p className="mt-3 max-w-xl text-sm md:text-base text-foreground/70 leading-relaxed">
           The 2026 edition of INTRA MUN is open. Four committees. Two days. One ₹8,000 cash prize. Step forward, or stand aside.
+          <br />
+          <span className="text-[11px] opacity-80">*Exclusively for the Students of the Department of Commerce(DOC).</span>
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3.5 font-mono text-xs tracking-widest uppercase text-primary-foreground hover:gap-5 transition-all">
