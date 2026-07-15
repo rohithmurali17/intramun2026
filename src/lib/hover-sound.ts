@@ -11,10 +11,11 @@ export function playHoverTick() {
   const Ctx = (window as any).AudioContext || (window as any).webkitAudioContext;
   if (!Ctx) return;
 
-  if (!audioCtx) {
-    audioCtx = new Ctx();
+  let ctx = audioCtx;
+  if (!ctx) {
+    ctx = new Ctx();
+    audioCtx = ctx;
   }
-  const ctx = audioCtx;
 
   if (ctx.state === "suspended") {
     ctx.resume();
