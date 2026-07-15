@@ -8,17 +8,19 @@ export function playHoverTick() {
   if (now - lastTick < 90) return;
   lastTick = now;
 
+  const Ctx = (window as any).AudioContext || (window as any).webkitAudioContext;
+  if (!Ctx) return;
+
   if (!audioCtx) {
-    const Ctx = (window as any).AudioContext || (window as any).webkitAudioContext;
-    if (!Ctx) return;
     audioCtx = new Ctx();
   }
+  const ctx = audioCtx;
 
-  if (audioCtx.state === "suspended") {
-    audioCtx.resume();
+  if (ctx.state === "suspended") {
+    ctx.resume();
   }
 
-  const t = audioCtx.currentTime;
+  const t = ctx.currentTime;
   const volume = 0.06;
 
   const ticks = [
@@ -27,8 +29,8 @@ export function playHoverTick() {
   ];
 
   for (const { freq, delay, duration } of ticks) {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
 
     osc.type = "sine";
     osc.frequency.setValueAtTime(freq, t + delay);
@@ -39,7 +41,7 @@ export function playHoverTick() {
     gain.gain.exponentialRampToValueAtTime(0.001, t + delay + duration);
 
     osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    gain.connect(ctx.destination);
     osc.start(t + delay);
     osc.stop(t + delay + duration + 0.01);
   }
