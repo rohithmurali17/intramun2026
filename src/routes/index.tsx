@@ -32,7 +32,6 @@ const NAV = [
   { href: "#committees", label: "Committees" },
   { href: "#board", label: "Board" },
   { href: "#process", label: "Process" },
-  { href: "#process", label: "Process" },
   { href: "#register", label: "Register" },
   { href: "#contact", label: "Contact" },
 ];
