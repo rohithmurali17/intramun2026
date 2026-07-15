@@ -5,6 +5,7 @@ import { getCommittee, INSTAGRAM_URL, type Committee } from "@/data/committees";
 import { IntroPlayer } from "@/components/IntroPlayer";
 import { BgmPlayer } from "@/components/BgmPlayer";
 import { useAllocations, normalizeName } from "@/lib/allocations";
+import { playHoverTick } from "@/lib/hover-sound";
 
 export const Route = createFileRoute("/committees/$slug")({
   loader: ({ params }) => {
