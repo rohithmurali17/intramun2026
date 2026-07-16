@@ -76,8 +76,29 @@ export const COMMITTEES: Committee[] = [
     description:
       "The UNSC is the most powerful organ of the United Nations — charged with maintaining international peace and security. Fifteen seats. Five permanent members with the veto. Every word on the record.",
     agenda: "Deliberating on the complexities concerning Iran's Nuclear enrichment program and its Implications for International Peace and Security",
-    board: "TBA",
+    board: "Adithya Krishna · Sunaada S Acharya · Rohith M",
     img: commUnsc,
+    eb: [
+      {
+        name: "Adithya Krishna",
+        role: "Chairperson",
+        photoUrl: ebUnscAdithya.url,
+        writeUp: "Never leave a rose garden without blood on your hands.",
+      },
+      {
+        name: "Sunaada S Acharya",
+        role: "Vice Chairperson",
+        photoUrl: ebUnscSunaada.url,
+        writeUp:
+          "स्थितप्रज्ञस्य का भाषा समाधिस्थस्य केशव | स्थितधी: किं प्रभाषेत किमासीत व्रजेत किम्\n\nA dedicated cricketer and passionate follower of Formula 1, Sunaada discovered Model UN after stepping into his undergraduation. Initially finding his footing in the circuit, he soon carved out his space, winning at prestigious conferences like CUBS, BMSCE, Future MUN and many more within just one year. He served as Charge de Affaires of JIGYASA 4.0 and is one of the core secretariat members of the JU MUN Society for academic year 2026-27. Now, as an Executive Board member, he is eager to foster a sharp and engaging committee. He is a keen observer of global geopolitics and is always ready for the next learning opportunity. Presenting Sunaada S Acharya, Vice Chairperson UNSC.",
+      },
+      {
+        name: "Rohith M",
+        role: "Moderator",
+        photoUrl: ebUnscRohith.url,
+        writeUp: "Play The Perfect Courtier.",
+      },
+    ],
     intro: {
       audioUrl: unscIntroAudio.url,
       segments: [
