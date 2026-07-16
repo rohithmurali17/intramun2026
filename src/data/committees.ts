@@ -7,6 +7,9 @@ import unhrcIntroAudio from "@/assets/unhrc-intro.mp3.asset.json";
 import aippmIntroAudio from "@/assets/aippm-intro.mp3.asset.json";
 import ipjIntroAudio from "@/assets/ipj-intro.mp3.asset.json";
 import ippIntroAudio from "@/assets/ipp-intro.mp3.asset.json";
+import ebUnscAdithya from "@/assets/eb-unsc-adithya.jpeg.asset.json";
+import ebUnscSunaada from "@/assets/eb-unsc-sunaada.jpeg.asset.json";
+import ebUnscRohith from "@/assets/eb-unsc-rohith.jpeg.asset.json";
 
 export type CommitteeSlug = "unsc" | "unhrc" | "aippm" | "ipc";
 
@@ -35,6 +38,12 @@ export type Committee = {
   board: string;
   guideUrl?: string;
   img: string;
+  eb?: {
+    name: string;
+    role: string;
+    photoUrl: string;
+    writeUp: string;
+  }[];
   tracks?: {
     code: string;
     name: string;
