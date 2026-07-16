@@ -30,7 +30,6 @@ const NAV = [
   { href: "#society", label: "Society" },
   { href: "#mun", label: "MUN" },
   { href: "#committees", label: "Committees" },
-  { href: "#board", label: "Board" },
   { href: "#process", label: "Process" },
   { href: "#register", label: "Register" },
   { href: "#contact", label: "Contact" },
@@ -304,33 +303,13 @@ function Committees() {
   );
 }
 
-function Board() {
-  return (
-    <section id="board" className="py-24 md:py-32 bg-[oklch(0.16_0.045_190)] border-y border-border">
-      <div className="mx-auto max-w-[1400px] px-6">
-        <SectionNumber n="004" label="The Dais" />
-        <div className="grid md:grid-cols-12 gap-10 items-end">
-          <h2 className="md:col-span-7 font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
-            The Executive <span className="italic text-primary">Board.</span>
-          </h2>
-          <p className="md:col-span-5 text-foreground/70">The dais decides the tempo. Names of our chairs, vice-chairs, and rapporteurs across all four committees are unveiled in the coming weeks.</p>
-        </div>
-        <div className="mt-14 border border-primary/40 px-8 py-16 text-center bg-background/40 backdrop-blur-sm">
-          <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">Announcement Pending</p>
-          <p className="mt-4 font-serif italic text-3xl md:text-5xl text-foreground/90">"The board is being assembled."</p>
-          <p className="mt-6 font-mono text-xs tracking-widest uppercase text-foreground/50">Stay tuned · Reveal Soon</p>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 
 function Process() {
   return (
     <section id="process" className="py-24 md:py-32 bg-[oklch(0.16_0.045_190)] border-y border-border">
       <div className="mx-auto max-w-[1400px] px-6">
-        <SectionNumber n="006" label="The Process" />
+        <SectionNumber n="004" label="The Process" />
         <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-4xl">
           The road to <span className="italic text-primary">the floor.</span>
         </h2>
@@ -357,7 +336,7 @@ function Register() {
       <img src={gavel} alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-10" />
       <div className="absolute inset-0 bg-[oklch(0.15_0.045_190/0.92)]" />
       <div className="relative mx-auto max-w-[1400px] px-6">
-        <SectionNumber n="007" label="Final Call" />
+        <SectionNumber n="006" label="Final Call" />
         <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.88] tracking-tight max-w-6xl">
           Apply.&nbsp;<span className="italic text-primary">Before</span><br /> 18 . 07 . 2026.
         </h2>
@@ -401,7 +380,7 @@ function Brochure() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.35_0.06_190/0.35),transparent_70%)]" />
       <div className="relative mx-auto max-w-[1400px] px-6 grid md:grid-cols-[1.1fr_1fr] gap-12 items-center">
         <div>
-          <SectionNumber n="006" label="The Brochure" />
+          <SectionNumber n="005" label="The Brochure" />
           <h2 className="font-serif text-5xl md:text-7xl leading-[0.9] tracking-tight">
             The full <span className="italic text-primary">dossier.</span>
           </h2>
@@ -442,7 +421,7 @@ function Contact() {
   return (
     <section id="contact" className="py-24 md:py-32 bg-[oklch(0.13_0.045_190)] border-t border-border">
       <div className="mx-auto max-w-[1400px] px-6">
-        <SectionNumber n="008" label="Reach Out" />
+        <SectionNumber n="007" label="Reach Out" />
         <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-4xl">
           Questions? <span className="italic text-primary">Call us.</span>
         </h2>
@@ -525,7 +504,6 @@ function Index() {
         <Society />
         <WhatIsMun />
         <Committees />
-        <Board />
         <Process />
         <LegacyVideo />
         <Brochure />
