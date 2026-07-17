@@ -16,6 +16,10 @@ import ebUnhrcDhruv from "@/assets/eb-unhrc-dhruv.jpeg.asset.json";
 import ebAippmShakeib from "@/assets/eb-aippm-shakeib.jpeg.asset.json";
 import ebAippmAdharsh from "@/assets/eb-aippm-adharsh.jpeg.asset.json";
 import ebAippmRamkumar from "@/assets/eb-aippm-ramkumar.jpeg.asset.json";
+import ebIppPrabhu from "@/assets/eb-ipp-prabhu.jpeg.asset.json";
+import ebIppChirag from "@/assets/eb-ipp-chirag.jpeg.asset.json";
+import ebIpjRaashi from "@/assets/eb-ipj-raashi.jpeg.asset.json";
+import ebIpjPranav from "@/assets/eb-ipj-pranav.jpeg.asset.json";
 
 export type CommitteeSlug = "unsc" | "unhrc" | "aippm" | "ipc";
 
@@ -55,6 +59,12 @@ export type Committee = {
     name: string;
     blurb: string;
     intro?: { audioUrl: string; segments: string[] };
+    eb?: {
+      name: string;
+      role: string;
+      photoUrl: string;
+      writeUp: string;
+    }[];
   }[];
   portfolios: Portfolio[];
   intro?: {
