@@ -439,6 +439,22 @@ export const COMMITTEES: Committee[] = [
         code: "IPP",
         name: "International Press Photography",
         blurb: "Capture the moment a resolution dies. The handshake. The walkout. Visual record of the floor.",
+        eb: [
+          {
+            name: "Prabhu Shankar",
+            role: "Head of Photojournalism",
+            photoUrl: ebIppPrabhu.url,
+            writeUp:
+              "Prabhu Shankar, a Law Graduate from VIT Chennai, is an adventurous soul whose passion for travel led him to photography. A storyteller through his lens, he won the Nikon Shutterbug Contest Season 3 for capturing \u201Clife outdoors in Chennai.\u201D Known for his picture-perfect portraits and dynamic MUN coverage, he has won multiple photography awards across conferences. His journey reached a milestone when he became the first photojournalist to serve as Secretary-General of VITC Intra MUN 2024.",
+          },
+          {
+            name: "Chirag Kaundinya",
+            role: "Director of Photojournalism",
+            photoUrl: ebIppChirag.url,
+            writeUp:
+              "A final-year B.Com student at Christ University Central Campus and one of the overall heads of DOCMediaWorks. Always drawn to photography, videography, and editing \u2014 the craft of shaping raw moments into memory.",
+          },
+        ],
         intro: {
           audioUrl: ippIntroAudio.url,
           segments: [
@@ -467,6 +483,22 @@ export const COMMITTEES: Committee[] = [
         code: "IPJ",
         name: "International Press Journalism",
         blurb: "Editorials, op-eds, breaking bulletins. File copy on deadline. Hold the dais to account.",
+        eb: [
+          {
+            name: "Raashi Agarwal",
+            role: "Head of Journalism",
+            photoUrl: ebIpjRaashi.url,
+            writeUp:
+              "Raashi Agarwal is a third-year Political Science student at Christ (Deemed to be University) BRC, and has been an active MUNer since 2023 \u2014 participating and EBing in both press and other conventional committees, across the Pune and Bangalore MUN circuits. She enjoys press because it goes beyond reporting; it's about holding the right people accountable, building narratives, and telling stories that mould a committee's reality.",
+          },
+          {
+            name: "Pranav Menon",
+            role: "Editor in Chief",
+            photoUrl: ebIpjPranav.url,
+            writeUp:
+              "We present to you, Pranav Menon. A second-year student in the Department of Professional Studies at Christ University, Pranav is a passionate MUNer and debater. Formerly serving as the President of the Forum under the DPS Debate and MUN Society, he values meaningful discourse, critical thinking, and collaborative leadership. As an Executive Board panelist, he looks forward to fostering an engaging committee, encouraging rigorous debate, and ensuring a fair, insightful, and rewarding experience for every delegate.",
+          },
+        ],
         intro: {
           audioUrl: ipjIntroAudio.url,
           segments: [
