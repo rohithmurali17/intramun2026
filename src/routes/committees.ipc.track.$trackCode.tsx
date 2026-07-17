@@ -133,6 +133,45 @@ function TrackPage() {
         </div>
       </section>
 
+      {track.eb && track.eb.length > 0 && (
+        <section className="py-20 md:py-24 bg-[oklch(0.16_0.045_190)] border-y border-border">
+          <div className="mx-auto max-w-[1400px] px-6">
+            <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+              <div>
+                <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-primary">The Executive Board</p>
+                <h2 className="mt-3 font-serif text-4xl md:text-6xl tracking-tight">Meet your <span className="italic text-primary">dais.</span></h2>
+              </div>
+              <p className="max-w-sm text-sm text-foreground/60">The editors of the record. Their pens shape the proceedings.</p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {track.eb.map((m) => (
+                <article
+                  key={m.name}
+                  className="group relative overflow-hidden border border-border bg-background/60 backdrop-blur-sm transition-all duration-500 hover:border-primary/60 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.15)]"
+                >
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <img
+                      src={m.photoUrl}
+                      alt={m.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.05]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-primary">{m.role}</p>
+                      <h3 className="mt-1 font-serif text-2xl leading-tight">{m.name}</h3>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-sm leading-relaxed text-foreground/75 whitespace-pre-line">{m.writeUp}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-6">
           <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
