@@ -10,6 +10,12 @@ import ippIntroAudio from "@/assets/ipp-intro.mp3.asset.json";
 import ebUnscAdithya from "@/assets/eb-unsc-adithya.jpeg.asset.json";
 import ebUnscSunaada from "@/assets/eb-unsc-sunaada.jpeg.asset.json";
 import ebUnscRohith from "@/assets/eb-unsc-rohith.jpeg.asset.json";
+import ebUnhrcVarna from "@/assets/eb-unhrc-varna.jpeg.asset.json";
+import ebUnhrcJay from "@/assets/eb-unhrc-jay.jpeg.asset.json";
+import ebUnhrcDhruv from "@/assets/eb-unhrc-dhruv.jpeg.asset.json";
+import ebAippmShakeib from "@/assets/eb-aippm-shakeib.jpeg.asset.json";
+import ebAippmAdharsh from "@/assets/eb-aippm-adharsh.jpeg.asset.json";
+import ebAippmRamkumar from "@/assets/eb-aippm-ramkumar.jpeg.asset.json";
 
 export type CommitteeSlug = "unsc" | "unhrc" | "aippm" | "ipc";
 
@@ -173,8 +179,31 @@ export const COMMITTEES: Committee[] = [
     description:
       "The UNHRC investigates, condemns, and recommends — turning testimony into doctrine. Forty-seven members, one mandate: hold states accountable to the rights they swore to protect.",
     agenda: "Addressing the Ongoing State Affairs In Sudan, including Allegations of Genocide and Systemically Induced Starvation.",
-    board: "TBA",
+    board: "Varna V Hegde · Jay Krishna · Dhruv S. Dali",
     img: commUnhrc,
+    eb: [
+      {
+        name: "Varna V Hegde",
+        role: "Chairperson",
+        photoUrl: ebUnhrcVarna.url,
+        writeUp:
+          "A fourth-year BA Psychology student at JAIN (Deemed-to-be University), Varna V Hegde has been active in the MUN circuit for over three years, earning multiple awards across conferences in Bangalore and appearing most frequently in UNHRC committees. With a strong interest in psychology, she values clarity, balance, and substance in committee discussions.",
+      },
+      {
+        name: "Jay Krishna",
+        role: "Co-Vice Chairperson",
+        photoUrl: ebUnhrcJay.url,
+        writeUp:
+          "Jay is a thorough researcher whose insatiable thirst for knowledge guides him through his MUN journey. Pouring hours and hours into the most niche topics just to satisfy his quench for knowing more makes him a capable opponent for anyone who seeks to challenge his ideas. With a passion for perfection in all work he partakes in, Jay has exemplified the \"Let's get it done\" spirit. Stepping onto the Executive Board as the Vice-Chairperson of UNHRC, he brings a demeanour that combines authority with approachability to ensure a committee that thrives on both discipline and diplomacy.",
+      },
+      {
+        name: "Dhruv Sujayendra Dali",
+        role: "Co-Vice Chairperson",
+        photoUrl: ebUnhrcDhruv.url,
+        writeUp:
+          "Dhruv S. Dali is an enthusiastic and diplomatic student at Christ University, possessing deep and nuanced knowledge of geopolitics. Guided by the principle, \"A wrathful man stirreth up strife: but he that is slow to anger appeaseth strife,\" he approaches deliberation with composure, balance, and emotional maturity. His temperament and expertise enable him to facilitate structured, respectful, and solution-oriented debate, making him a strong and reliable candidate for the position of Vice Chairperson.",
+      },
+    ],
     intro: {
       audioUrl: unhrcIntroAudio.url,
       segments: [
@@ -244,8 +273,30 @@ export const COMMITTEES: Committee[] = [
     description:
       "AIPPM brings every major Indian political party to a single table — to debate the most consequential domestic questions of the day. No diplomacy. Just politics, sharpened.",
     agenda: "Discussion on Center - State relations and Federalism (Article 356's misuse, Governors Role).",
-    board: "TBA",
+    board: "Shakeib · Adharsh Arjun · Ramkumar K S",
     img: commAippm,
+    eb: [
+      {
+        name: "Shakeib",
+        role: "Moderator",
+        photoUrl: ebAippmShakeib.url,
+        writeUp: "Hey! I am Shakaib. The circuit knows the rest.",
+      },
+      {
+        name: "Adharsh Arjun",
+        role: "Deputy Moderator",
+        photoUrl: ebAippmAdharsh.url,
+        writeUp:
+          "Adharsh Arjun B, an ACCA student at Christ University, finds his spark in the world of Indian politics and law. Ever since he stepped into MUNs in his first year, he's been drawn to the beauty of polarized minds sharing one room and challenging each other's ideas. To him, an AIPPM delegate isn't just a role, it's a glimpse of what a better, more thoughtful politician could be and that's where real learning begins.",
+      },
+      {
+        name: "Ramkumar K S",
+        role: "Scribe",
+        photoUrl: ebAippmRamkumar.url,
+        writeUp:
+          "\"Debate in a democracy is not just about confrontation; it is the ultimate tool for consensus and progress.\"\n\nRamkumar KS is a B.Com student at Christ University, driven by a deep curiosity about the mechanisms that shape our society. He possesses a keen interest in geopolitics, public policy, economics, and local governance, constantly analyzing how macroeconomic trends and legislative decisions impact community development. Beyond his academic pursuits, Ramkumar is committed to personal growth and self-discipline, consistently seeking avenues to sharpen his analytical and leadership skills. He embraces challenges with a solution-oriented mindset, believing that a strong foundation in economic principles and parliamentary thought is key to driving meaningful change. With a natural drive for innovation, a focus on team-building, and strong decision-making abilities, he aims to channel his diverse knowledge into impactful future ventures.",
+      },
+    ],
     intro: {
       audioUrl: aippmIntroAudio.url,
       segments: [
