@@ -273,8 +273,30 @@ export const COMMITTEES: Committee[] = [
     description:
       "AIPPM brings every major Indian political party to a single table — to debate the most consequential domestic questions of the day. No diplomacy. Just politics, sharpened.",
     agenda: "Discussion on Center - State relations and Federalism (Article 356's misuse, Governors Role).",
-    board: "TBA",
+    board: "Shakeib · Adharsh Arjun · Ramkumar K S",
     img: commAippm,
+    eb: [
+      {
+        name: "Shakeib",
+        role: "Moderator",
+        photoUrl: ebAippmShakeib.url,
+        writeUp: "Hey! I am Shakaib. The circuit knows the rest.",
+      },
+      {
+        name: "Adharsh Arjun",
+        role: "Deputy Moderator",
+        photoUrl: ebAippmAdharsh.url,
+        writeUp:
+          "Adharsh Arjun B, an ACCA student at Christ University, finds his spark in the world of Indian politics and law. Ever since he stepped into MUNs in his first year, he's been drawn to the beauty of polarized minds sharing one room and challenging each other's ideas. To him, an AIPPM delegate isn't just a role, it's a glimpse of what a better, more thoughtful politician could be and that's where real learning begins.",
+      },
+      {
+        name: "Ramkumar K S",
+        role: "Scribe",
+        photoUrl: ebAippmRamkumar.url,
+        writeUp:
+          "\"Debate in a democracy is not just about confrontation; it is the ultimate tool for consensus and progress.\"\n\nRamkumar KS is a B.Com student at Christ University, driven by a deep curiosity about the mechanisms that shape our society. He possesses a keen interest in geopolitics, public policy, economics, and local governance, constantly analyzing how macroeconomic trends and legislative decisions impact community development. Beyond his academic pursuits, Ramkumar is committed to personal growth and self-discipline, consistently seeking avenues to sharpen his analytical and leadership skills. He embraces challenges with a solution-oriented mindset, believing that a strong foundation in economic principles and parliamentary thought is key to driving meaningful change. With a natural drive for innovation, a focus on team-building, and strong decision-making abilities, he aims to channel his diverse knowledge into impactful future ventures.",
+      },
+    ],
     intro: {
       audioUrl: aippmIntroAudio.url,
       segments: [
