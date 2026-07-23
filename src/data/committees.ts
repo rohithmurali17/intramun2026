@@ -380,6 +380,17 @@ export const COMMITTEES: Committee[] = [
         { name: "S. Supongmeren Jamir", state: "Assam", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
         { name: "Saleng A. Sangma", state: "Meghalaya", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
         { name: "Asaduddin Owaisi", state: "Telangana", party: "All India Majlis-E-Ittehadul Muslimeen", alliance: "Unaligned/Other", position: "Member of Parliament" },
+        { name: "Akhilesh Yadav", state: "Uttar Pradesh", party: "Samajwadi Party", alliance: "INDIA", position: "Member of Parliament" },
+        { name: "Mamata Banerjee", state: "West Bengal", party: "All India Trinamool Congress", alliance: "INDIA", position: "Member of Legislative Assembly" },
+        { name: "Sharad Pawar", state: "Maharashtra", party: "Nationalist Congress Party", alliance: "INDIA", position: "Member of Parliament" },
+        { name: "Lalu Prasad Yadav", state: "Bihar", party: "Rashtriya Janata Dal", alliance: "INDIA", position: "Party President" },
+        { name: "Farooq Abdullah", state: "Jammu and Kashmir", party: "Jammu and Kashmir National Conference", alliance: "INDIA", position: "Party President" },
+        { name: "Hanuman Beniwal", state: "Rajasthan", party: "Rashtriya Loktantrik Party", alliance: "INDIA", position: "Member of Parliament" },
+        { name: "Revanth Reddy", state: "Telengana", party: "Indian National Congress", alliance: "INDIA", position: "Member of Legislative Assembly" },
+        { name: "Omar Abdullah", state: "Jammu and Kashmir", party: "Jammu and Kashmir National Conference", alliance: "INDIA", position: "Member of Legislative Assembly" },
+        { name: "Shashi Tharoor", state: "Kerala", party: "Indian National Congress", alliance: "INDIA", position: "Member of Parliament" },
+        { name: "N. Chandrababu Naidu", state: "Andhra Pradesh", party: "Telugu Desam Party", alliance: "NDA", position: "Member of Legislative Assembly" },
+        { name: "Nitish Kumar", state: "Bihar", party: "Janata Dal (United)", alliance: "NDA", position: "Member of Legislative Council" },
       ];
       const partyFlag: Record<string, string> = {
         // Verified via Commons Special:FilePath (redirects to a cache-friendly URL).
@@ -393,6 +404,8 @@ export const COMMITTEES: Committee[] = [
         "Rashtriya Janata Dal": "https://commons.wikimedia.org/wiki/Special:FilePath/RJD%20Flag.svg?width=640",
         "All India Trinamool Congress": "https://commons.wikimedia.org/wiki/Special:FilePath/All%20India%20Trinamool%20Congress%20flag%20%282%29.svg?width=640",
         "NCP": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Nationalist%20Congress%20Party.svg?width=640",
+        "Nationalist Congress Party": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Nationalist%20Congress%20Party.svg?width=640",
+        "Samajwadi Party": "https://commons.wikimedia.org/wiki/Special:FilePath/Samajwadi%20Party%20flag.svg?width=640",
       };
       // Parties without a hotlink-friendly image: fall back to a party-colored gradient.
       const partyColor: Record<string, { color: string; badge: string }> = {
@@ -402,6 +415,8 @@ export const COMMITTEES: Committee[] = [
         "Apna Dal (Soneylal)": { color: "#c9a24b", badge: "AD(S)" },
         "DMK": { color: "#e2231a", badge: "DMK" },
         "All India Majlis-E-Ittehadul Muslimeen": { color: "#0a7a3b", badge: "AIMIM" },
+        "Jammu and Kashmir National Conference": { color: "#c8102e", badge: "JKNC" },
+        "Rashtriya Loktantrik Party": { color: "#1f6feb", badge: "RLP" },
       };
       let currentAlliance = "";
       return rows.map((r) => {
