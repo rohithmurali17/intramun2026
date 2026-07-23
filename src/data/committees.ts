@@ -361,6 +361,8 @@ export const COMMITTEES: Committee[] = [
         { name: "Sukanta Majumdar", state: "West Bengal", party: "Bharatiya Janata Party", alliance: "NDA", position: "Minister of State" },
         { name: "Pankaj Choudhary", state: "Uttar Pradesh", party: "Bharatiya Janata Party", alliance: "NDA", position: "Minister of State" },
         { name: "Chandra Sekhar Pemmasani", state: "Andhra Pradesh", party: "Telugu Desam Party", alliance: "NDA", position: "Minister of State" },
+        { name: "N. Chandrababu Naidu", state: "Andhra Pradesh", party: "Telugu Desam Party", alliance: "NDA", position: "Member of Legislative Assembly" },
+        { name: "Nitish Kumar", state: "Bihar", party: "Janata Dal (United)", alliance: "NDA", position: "Member of Legislative Council" },
         { name: "Rahul Gandhi", state: "Uttar Pradesh", party: "Indian National Congress", alliance: "INDIA", position: "Leader of Opposition" },
         { name: "Aashtikar Patil Nagesh Bapurao", state: "Maharashtra", party: "Shiv Sena (Uddhav Balasaheb Thackeray)", alliance: "INDIA", position: "Member of Parliament" },
         { name: "Abhay Kumar Sinha", state: "Bihar", party: "Rashtriya Janata Dal", alliance: "INDIA", position: "Member of Parliament" },
@@ -379,7 +381,6 @@ export const COMMITTEES: Committee[] = [
         { name: "Angomcha Bimol Akoijam", state: "Manipur", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
         { name: "S. Supongmeren Jamir", state: "Assam", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
         { name: "Saleng A. Sangma", state: "Meghalaya", party: "INC", alliance: "INDIA", position: "Member of Parliament" },
-        { name: "Asaduddin Owaisi", state: "Telangana", party: "All India Majlis-E-Ittehadul Muslimeen", alliance: "Unaligned/Other", position: "Member of Parliament" },
         { name: "Akhilesh Yadav", state: "Uttar Pradesh", party: "Samajwadi Party", alliance: "INDIA", position: "Member of Parliament" },
         { name: "Mamata Banerjee", state: "West Bengal", party: "All India Trinamool Congress", alliance: "INDIA", position: "Member of Legislative Assembly" },
         { name: "Sharad Pawar", state: "Maharashtra", party: "Nationalist Congress Party", alliance: "INDIA", position: "Member of Parliament" },
@@ -389,8 +390,7 @@ export const COMMITTEES: Committee[] = [
         { name: "Revanth Reddy", state: "Telengana", party: "Indian National Congress", alliance: "INDIA", position: "Member of Legislative Assembly" },
         { name: "Omar Abdullah", state: "Jammu and Kashmir", party: "Jammu and Kashmir National Conference", alliance: "INDIA", position: "Member of Legislative Assembly" },
         { name: "Shashi Tharoor", state: "Kerala", party: "Indian National Congress", alliance: "INDIA", position: "Member of Parliament" },
-        { name: "N. Chandrababu Naidu", state: "Andhra Pradesh", party: "Telugu Desam Party", alliance: "NDA", position: "Member of Legislative Assembly" },
-        { name: "Nitish Kumar", state: "Bihar", party: "Janata Dal (United)", alliance: "NDA", position: "Member of Legislative Council" },
+        { name: "Asaduddin Owaisi", state: "Telangana", party: "All India Majlis-E-Ittehadul Muslimeen", alliance: "Unaligned/Other", position: "Member of Parliament" },
       ];
       const partyFlag: Record<string, string> = {
         // Verified via Commons Special:FilePath (redirects to a cache-friendly URL).
