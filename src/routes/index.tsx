@@ -159,9 +159,9 @@ function Hero() {
       <div className="relative border-t border-border/60 bg-[oklch(0.15_0.045_190/0.5)] backdrop-blur-sm">
         <div className="mx-auto max-w-[1400px] grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border/60 text-xs font-mono uppercase tracking-widest">
           {[
-            ["Dates", "20–21 Jul"],
+            ["Dates", "27–28 Jul"],
             ["Prize", "₹8,000"],
-            ["Deadline", "18 JUL · 12PM"],
+            ["Deadline", "26 JUL · 12PM"],
             ["Venue", "CHRIST UNIVERSITY (CENTRAL CAMPUS)"],
           ].map(([k, v], i) => (
             <div key={k} className="px-4 py-5">
