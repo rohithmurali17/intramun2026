@@ -47,9 +47,9 @@ const HEADS = [
 
 const PROCESS = [
   { n: "01", when: "Now Open", title: "Registration Live", body: "Apply as an individual or assemble a delegation of seven or more." },
-  { n: "02", when: "18 JULY · 12:00 PM", title: "Applications Close", body: "Last call. No extensions. The gate locks at noon." },
-  { n: "03", when: "20 July", title: "Day One · Opening", body: "Ceremony, committee sessions, the first vote on the floor." },
-  { n: "04", when: "21 July", title: "Day Two · Verdict", body: "Final sessions, closing remarks, the ₹8,000 cash prize awarded." },
+  { n: "02", when: "26 JULY · 12:00 PM", title: "Applications Close", body: "Last call. No extensions. The gate locks at noon." },
+  { n: "03", when: "27 JULY", title: "Day One · Opening", body: "Ceremony, committee sessions, the first vote on the floor." },
+  { n: "04", when: "28 JULY", title: "Day Two · Verdict", body: "Final sessions, closing remarks, the ₹8,000 cash prize awarded." },
 ];
 
 function useScrollProgress() {
