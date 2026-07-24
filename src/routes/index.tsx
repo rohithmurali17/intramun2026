@@ -16,9 +16,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "INTRA MUN 2026 | DOC MUN Society" },
-      { name: "description", content: "INTRA MUN 2026 by the Department of Commerce MUN Society. 20–21 July 2026. ₹8,000 cash prize. Register as Individual or Delegation." },
+      { name: "description", content: "INTRA MUN 2026 by the Department of Commerce MUN Society. 27–28 July 2026. ₹8,000 cash prize. Register as Individual or Delegation." },
       { property: "og:title", content: "INTRA MUN 2026 | DOC MUN Society" },
-      { property: "og:description", content: "Diplomacy. Debate. Distinction. 20–21 July 2026 — ₹8,000 cash prize." },
+      { property: "og:description", content: "Diplomacy. Debate. Distinction. 27–28 July 2026 — ₹8,000 cash prize." },
     ],
   }),
   component: Index,
