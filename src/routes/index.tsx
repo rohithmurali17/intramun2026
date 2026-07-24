@@ -367,7 +367,7 @@ function Register() {
         </div>
 
         <p className="mt-10 font-mono text-xs tracking-[0.25em] uppercase text-foreground/60">
-          Deadline · 18 . 07 . 2026 · 12:00 PM IST
+          Deadline · 26 . 07 . 2026 · 12:00 PM IST
         </p>
       </div>
     </section>
