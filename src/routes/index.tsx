@@ -464,7 +464,7 @@ function Footer() {
         <div>
           <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50 mb-4">Edition</p>
           <p className="font-serif italic text-2xl text-foreground">Intra MUN / 2026</p>
-          <p className="mt-2 font-mono text-xs tracking-widest uppercase text-foreground/60">20–21 July · Bengaluru</p>
+          <p className="mt-2 font-mono text-xs tracking-widest uppercase text-foreground/60">27–28 JULY · BENGALURU</p>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-foreground/70 hover:text-primary">
             <Instagram className="h-4 w-4" /> @docmunsoc
           </a>
