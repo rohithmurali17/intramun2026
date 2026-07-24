@@ -338,7 +338,7 @@ function Register() {
       <div className="relative mx-auto max-w-[1400px] px-6">
         <SectionNumber n="006" label="Final Call" />
         <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.88] tracking-tight max-w-6xl">
-          Apply.&nbsp;<span className="italic text-primary">Before</span><br /> 18 . 07 . 2026.
+          Apply.&nbsp;<span className="italic text-primary">Before</span><br /> 26 . 07 . 2026.
         </h2>
 
         <div className="mt-12 inline-flex flex-wrap items-center gap-6 border border-primary/50 px-7 py-5 bg-background/40 backdrop-blur-sm">
