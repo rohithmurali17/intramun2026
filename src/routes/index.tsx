@@ -16,9 +16,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "INTRA MUN 2026 | DOC MUN Society" },
-      { name: "description", content: "INTRA MUN 2026 by the Department of Commerce MUN Society. 20–21 July 2026. ₹8,000 cash prize. Register as Individual or Delegation." },
+      { name: "description", content: "INTRA MUN 2026 by the Department of Commerce MUN Society. 27–28 July 2026. ₹8,000 cash prize. Register as Individual or Delegation." },
       { property: "og:title", content: "INTRA MUN 2026 | DOC MUN Society" },
-      { property: "og:description", content: "Diplomacy. Debate. Distinction. 20–21 July 2026 — ₹8,000 cash prize." },
+      { property: "og:description", content: "Diplomacy. Debate. Distinction. 27–28 July 2026 — ₹8,000 cash prize." },
     ],
   }),
   component: Index,
@@ -47,9 +47,9 @@ const HEADS = [
 
 const PROCESS = [
   { n: "01", when: "Now Open", title: "Registration Live", body: "Apply as an individual or assemble a delegation of seven or more." },
-  { n: "02", when: "18 JULY · 12:00 PM", title: "Applications Close", body: "Last call. No extensions. The gate locks at noon." },
-  { n: "03", when: "20 July", title: "Day One · Opening", body: "Ceremony, committee sessions, the first vote on the floor." },
-  { n: "04", when: "21 July", title: "Day Two · Verdict", body: "Final sessions, closing remarks, the ₹8,000 cash prize awarded." },
+  { n: "02", when: "26 JULY · 12:00 PM", title: "Applications Close", body: "Last call. No extensions. The gate locks at noon." },
+  { n: "03", when: "27 JULY", title: "Day One · Opening", body: "Ceremony, committee sessions, the first vote on the floor." },
+  { n: "04", when: "28 JULY", title: "Day Two · Verdict", body: "Final sessions, closing remarks, the ₹8,000 cash prize awarded." },
 ];
 
 function useScrollProgress() {
@@ -159,9 +159,9 @@ function Hero() {
       <div className="relative border-t border-border/60 bg-[oklch(0.15_0.045_190/0.5)] backdrop-blur-sm">
         <div className="mx-auto max-w-[1400px] grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border/60 text-xs font-mono uppercase tracking-widest">
           {[
-            ["Dates", "20–21 Jul"],
+            ["Dates", "27–28 Jul"],
             ["Prize", "₹8,000"],
-            ["Deadline", "18 JUL · 12PM"],
+            ["Deadline", "26 JUL · 12PM"],
             ["Venue", "CHRIST UNIVERSITY (CENTRAL CAMPUS)"],
           ].map(([k, v], i) => (
             <div key={k} className="px-4 py-5">
@@ -338,7 +338,7 @@ function Register() {
       <div className="relative mx-auto max-w-[1400px] px-6">
         <SectionNumber n="006" label="Final Call" />
         <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.88] tracking-tight max-w-6xl">
-          Apply.&nbsp;<span className="italic text-primary">Before</span><br /> 18 . 07 . 2026.
+          Apply.&nbsp;<span className="italic text-primary">Before</span><br /> 26 . 07 . 2026.
         </h2>
 
         <div className="mt-12 inline-flex flex-wrap items-center gap-6 border border-primary/50 px-7 py-5 bg-background/40 backdrop-blur-sm">
@@ -367,7 +367,7 @@ function Register() {
         </div>
 
         <p className="mt-10 font-mono text-xs tracking-[0.25em] uppercase text-foreground/60">
-          Deadline · 18 . 07 . 2026 · 12:00 PM IST
+          Deadline · 26 . 07 . 2026 · 12:00 PM IST
         </p>
       </div>
     </section>
@@ -464,7 +464,7 @@ function Footer() {
         <div>
           <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-foreground/50 mb-4">Edition</p>
           <p className="font-serif italic text-2xl text-foreground">Intra MUN / 2026</p>
-          <p className="mt-2 font-mono text-xs tracking-widest uppercase text-foreground/60">20–21 July · Bengaluru</p>
+          <p className="mt-2 font-mono text-xs tracking-widest uppercase text-foreground/60">27–28 JULY · BENGALURU</p>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-foreground/70 hover:text-primary">
             <Instagram className="h-4 w-4" /> @docmunsoc
           </a>
